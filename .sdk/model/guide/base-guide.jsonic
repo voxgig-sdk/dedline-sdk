@@ -1,0 +1,39 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 4
+  metrics: count: path: 6
+  metrics: count: method: 6
+
+  entity: deadline: {
+    path: "/upcoming.json": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: registration_feature: {
+    path: "/lastMinuteAccepted.json": {
+      op: list: method: *GET
+    }
+    path: "/onlineNotAccepted.json": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: stat: {
+    path: "/stats.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: state: {
+    path: "/states.json": {
+      op: list: method: *GET
+    }
+    path: "/states/{stateAbbreviation}.json": {
+      action: "state_abbreviation": {}
+      op: load: method: *GET
+    }
+  }
+
+}

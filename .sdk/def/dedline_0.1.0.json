@@ -1,0 +1,423 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dedline API",
+    "description": "A static API that provides information about US election registration deadlines. It includes endpoints for accessing data on all states, state-specific information, and details about online registration availability.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "dedline-io@protonmail.com"
+    },
+    "license": {
+      "name": "Open Source",
+      "url": "https://github.com/dedline-io/dedline-api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://dedline-api.netlify.app",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/states.json": {
+      "get": {
+        "summary": "Get All States",
+        "description": "Returns an array of all US states (including DC) with their voter registration information.",
+        "operationId": "getAllStates",
+        "tags": [
+          "States"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "states": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/State"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "states": [
+                    {
+                      "label": "California",
+                      "value": "CA",
+                      "deadline": "20261019",
+                      "primaryDeadline": "20260518",
+                      "primaryDate": "20260602",
+                      "generalElectionDate": "20261103",
+                      "url": "https://www.sos.ca.gov/elections/voter-registration/",
+                      "onlineAccepted": true,
+                      "lastMinuteAccepted": true,
+                      "emoji": "🌴🌴🌴🌴🌴",
+                      "notes": "In California, those convicted of felonies can register and vote after serving their sentence."
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/states/{stateAbbreviation}.json": {
+      "get": {
+        "summary": "Get Specific State",
+        "description": "Returns voter registration information for a specific state.",
+        "operationId": "getStateByAbbreviation",
+        "tags": [
+          "States"
+        ],
+        "parameters": [
+          {
+            "name": "stateAbbreviation",
+            "in": "path",
+            "description": "Two-letter state abbreviation (e.g., CA, NY, TX). Case-insensitive.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$",
+              "example": "ca"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/State"
+                },
+                "example": {
+                  "label": "New York",
+                  "value": "NY",
+                  "deadline": "20261024",
+                  "primaryDeadline": "20260528",
+                  "primaryDate": "20260623",
+                  "generalElectionDate": "20261103",
+                  "url": "https://www.ny.gov/services/register-vote",
+                  "onlineAccepted": true,
+                  "lastMinuteAccepted": false,
+                  "emoji": "🗽🗽🗽🗽🗽",
+                  "notes": "In New York, those with felony convictions get their voting rights restored after serving their sentence!"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "State not found"
+          }
+        }
+      }
+    },
+    "/lastMinuteAccepted.json": {
+      "get": {
+        "summary": "Get Same-Day Registration States",
+        "description": "Returns states that allow voter registration on election day.",
+        "operationId": "getSameDayRegistrationStates",
+        "tags": [
+          "Registration Features"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "CA",
+                  "CO",
+                  "CT"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/onlineNotAccepted.json": {
+      "get": {
+        "summary": "Get States Without Online Registration",
+        "description": "Returns states that require voters to register in person or by mail (no online registration available).",
+        "operationId": "getStatesWithoutOnlineRegistration",
+        "tags": [
+          "Registration Features"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "AR",
+                  "ME",
+                  "MS"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upcoming.json": {
+      "get": {
+        "summary": "Get Upcoming Deadlines",
+        "description": "Returns states with primary or general registration deadlines in the next 30 days. Automatically switches from primary to general election deadlines after primary season ends. This endpoint is automatically updated daily via GitHub Actions.",
+        "operationId": "getUpcomingDeadlines",
+        "tags": [
+          "Deadlines"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "primary": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UpcomingDeadline"
+                      }
+                    },
+                    "general": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UpcomingDeadline"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "primary": [
+                    {
+                      "state": "TX",
+                      "label": "Texas",
+                      "deadline": "20260202",
+                      "daysUntil": 8
+                    }
+                  ],
+                  "general": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stats.json": {
+      "get": {
+        "summary": "Get Statistics",
+        "description": "Returns summary statistics about voter registration across all states.",
+        "operationId": "getStatistics",
+        "tags": [
+          "Statistics"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Statistics"
+                },
+                "example": {
+                  "totalStates": 51,
+                  "onlineRegistrationAvailable": 41,
+                  "sameDayRegistrationAvailable": 21,
+                  "lastUpdated": "2026-01-25"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "State": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Full state name",
+            "example": "California"
+          },
+          "value": {
+            "type": "string",
+            "description": "Two-letter state abbreviation",
+            "example": "CA"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "General election voter registration deadline in YYYYMMDD format",
+            "pattern": "^[0-9]{8}$",
+            "example": "20261019"
+          },
+          "primaryDeadline": {
+            "type": "string",
+            "description": "Primary election voter registration deadline in YYYYMMDD format",
+            "pattern": "^[0-9]{8}$",
+            "example": "20260518"
+          },
+          "primaryDate": {
+            "type": "string",
+            "description": "Primary election date in YYYYMMDD format",
+            "pattern": "^[0-9]{8}$",
+            "example": "20260602"
+          },
+          "generalElectionDate": {
+            "type": "string",
+            "description": "General election date in YYYYMMDD format",
+            "pattern": "^[0-9]{8}$",
+            "example": "20261103"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Official state voter registration website",
+            "example": "https://www.sos.ca.gov/elections/voter-registration/"
+          },
+          "onlineAccepted": {
+            "type": "boolean",
+            "description": "Whether voters can register online",
+            "example": true
+          },
+          "lastMinuteAccepted": {
+            "type": "boolean",
+            "description": "Whether voters can register on election day",
+            "example": true
+          },
+          "emoji": {
+            "type": "string",
+            "description": "State-themed emoji",
+            "example": "🌴🌴🌴🌴🌴"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional details about state registration",
+            "example": "In California, those convicted of felonies can register and vote after serving their sentence."
+          }
+        },
+        "required": [
+          "label",
+          "value",
+          "deadline",
+          "primaryDeadline",
+          "primaryDate",
+          "generalElectionDate",
+          "url",
+          "onlineAccepted",
+          "lastMinuteAccepted",
+          "emoji"
+        ]
+      },
+      "UpcomingDeadline": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "description": "Two-letter state abbreviation",
+            "example": "TX"
+          },
+          "label": {
+            "type": "string",
+            "description": "Full state name",
+            "example": "Texas"
+          },
+          "deadline": {
+            "type": "string",
+            "description": "Registration deadline in YYYYMMDD format",
+            "pattern": "^[0-9]{8}$",
+            "example": "20260202"
+          },
+          "daysUntil": {
+            "type": "integer",
+            "description": "Number of days until the deadline",
+            "example": 8
+          }
+        },
+        "required": [
+          "state",
+          "label",
+          "deadline",
+          "daysUntil"
+        ]
+      },
+      "Statistics": {
+        "type": "object",
+        "properties": {
+          "totalStates": {
+            "type": "integer",
+            "description": "Total number of states (including DC)",
+            "example": 51
+          },
+          "onlineRegistrationAvailable": {
+            "type": "integer",
+            "description": "Number of states that offer online registration",
+            "example": 41
+          },
+          "sameDayRegistrationAvailable": {
+            "type": "integer",
+            "description": "Number of states that allow same-day registration",
+            "example": 21
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when the data was last updated",
+            "example": "2026-01-25"
+          }
+        },
+        "required": [
+          "totalStates",
+          "onlineRegistrationAvailable",
+          "sameDayRegistrationAvailable",
+          "lastUpdated"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "States",
+      "description": "Endpoints for retrieving state voter registration information"
+    },
+    {
+      "name": "Registration Features",
+      "description": "Endpoints for filtering states by registration features"
+    },
+    {
+      "name": "Deadlines",
+      "description": "Endpoints for upcoming registration deadlines"
+    },
+    {
+      "name": "Statistics",
+      "description": "Endpoints for voter registration statistics"
+    }
+  ],
+  "externalDocs": {
+    "description": "GitHub Repository",
+    "url": "https://github.com/dedline-io/dedline-api"
+  }
+}

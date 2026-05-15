@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "registration_feature": {
+      "REGISTRATION_FEATURE00": {},
+      "REGISTRATION_FEATURE01": {},
+      "REGISTRATION_FEATURE02": {}
+    }
+  },
+  "new": {
+    "registration_feature": {
+      "registration_feature_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,130 @@
+# Entity: state
+
+main: kit: entity: state: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deadline"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "emoji"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "general_election_date"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "label"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "last_minute_accepted"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "note"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "online_accepted"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "primary_date"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "primary_deadline"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "state"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/states.json"
+          parts: [
+            "states.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ca"
+                kind: "param"
+                name: "state_abbreviation"
+                orig: "state_abbreviation"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/states/{stateAbbreviation}.json"
+          parts: [
+            "states"
+            "{stateAbbreviation}.json"
+          ]
+          select: {
+            "$action": "state_abbreviation"
+            exist: [
+              "state_abbreviation"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "state"
+      ]
+    ]
+  }
+
+
+
+}

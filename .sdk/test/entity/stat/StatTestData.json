@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "stat": {
+      "STAT00": {
+        "last_updated": "s28",
+        "online_registration_available": "s29",
+        "same_day_registration_available": "s2a",
+        "total_state": "s2b"
+      },
+      "STAT01": {
+        "last_updated": "s50",
+        "online_registration_available": "s51",
+        "same_day_registration_available": "s52",
+        "total_state": "s53"
+      },
+      "STAT02": {
+        "last_updated": "s78",
+        "online_registration_available": "s79",
+        "same_day_registration_available": "s7a",
+        "total_state": "s7b"
+      }
+    }
+  },
+  "new": {
+    "stat": {
+      "stat_ref01": {
+        "last_updated": "sa0",
+        "online_registration_available": "sa1",
+        "same_day_registration_available": "sa2",
+        "total_state": "sa3"
+      }
+    }
+  }
+}

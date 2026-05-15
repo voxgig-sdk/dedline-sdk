@@ -1,0 +1,22 @@
+# BasicDeadlineFlow
+
+main: kit: flow: BasicDeadlineFlow:
+{
+  entity: "deadline",
+  kind: "basic",
+  name: "BasicDeadlineFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "deadline_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDeadlineFlow"
+}

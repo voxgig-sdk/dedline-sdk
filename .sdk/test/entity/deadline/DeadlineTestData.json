@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "deadline": {
+      "DEADLINE00": {
+        "general": [],
+        "primary": []
+      },
+      "DEADLINE01": {
+        "general": [],
+        "primary": []
+      },
+      "DEADLINE02": {
+        "general": [],
+        "primary": []
+      }
+    }
+  },
+  "new": {
+    "deadline": {
+      "deadline_ref01": {
+        "general": [],
+        "primary": []
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "dedline-io@protonmail.com"
+      }
+      description: "A static API that provides information about US election registration deadlines. It includes endpoints for accessing data on all states, state-specific information, and details about online registration availability."
+      license: {
+        name: "Open Source"
+        url: "https://github.com/dedline-io/dedline-api"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://dedline-api.netlify.app"
+        }
+      ]
+      title: "Dedline API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

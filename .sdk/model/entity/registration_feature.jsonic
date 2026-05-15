@@ -1,0 +1,40 @@
+# Entity: registration_feature
+
+main: kit: entity: registration_feature: {
+
+  alias: field: {}
+
+  name: "registration_feature"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/lastMinuteAccepted.json"
+          parts: [
+            "lastMinuteAccepted.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/onlineNotAccepted.json"
+          parts: [
+            "onlineNotAccepted.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,42 @@
+# Entity: deadline
+
+main: kit: entity: deadline: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "general"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "primary"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "deadline"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/upcoming.json"
+          parts: [
+            "upcoming.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

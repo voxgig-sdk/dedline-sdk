@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "state": {
+      "STATE00": {
+        "deadline": "s6e",
+        "emoji": "s6f",
+        "general_election_date": "s70",
+        "label": "s71",
+        "last_minute_accepted": true,
+        "note": "s73",
+        "online_accepted": true,
+        "primary_date": "s75",
+        "primary_deadline": "s76",
+        "url": "s77",
+        "value": "s78",
+        "state_abbreviation": "STATE_ABBREVIATION01"
+      },
+      "STATE01": {
+        "deadline": "sdc",
+        "emoji": "sdd",
+        "general_election_date": "sde",
+        "label": "sdf",
+        "last_minute_accepted": true,
+        "note": "se1",
+        "online_accepted": true,
+        "primary_date": "se3",
+        "primary_deadline": "se4",
+        "url": "se5",
+        "value": "se6",
+        "state_abbreviation": "STATE_ABBREVIATION01"
+      },
+      "STATE02": {
+        "deadline": "s14a",
+        "emoji": "s14b",
+        "general_election_date": "s14c",
+        "label": "s14d",
+        "last_minute_accepted": true,
+        "note": "s14f",
+        "online_accepted": true,
+        "primary_date": "s151",
+        "primary_deadline": "s152",
+        "url": "s153",
+        "value": "s154",
+        "state_abbreviation": "STATE_ABBREVIATION01"
+      }
+    }
+  },
+  "new": {
+    "state": {
+      "state_ref01": {
+        "deadline": "s1b8",
+        "emoji": "s1b9",
+        "general_election_date": "s1ba",
+        "label": "s1bb",
+        "last_minute_accepted": true,
+        "note": "s1bd",
+        "online_accepted": true,
+        "primary_date": "s1bf",
+        "primary_deadline": "s1c0",
+        "url": "s1c1",
+        "value": "s1c2"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicRegistrationFeatureFlow
+
+main: kit: flow: BasicRegistrationFeatureFlow:
+{
+  entity: "registration_feature",
+  kind: "basic",
+  name: "BasicRegistrationFeatureFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "registration_feature_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRegistrationFeatureFlow"
+}

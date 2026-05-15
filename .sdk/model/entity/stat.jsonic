@@ -1,0 +1,52 @@
+# Entity: stat
+
+main: kit: entity: stat: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "last_updated"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "online_registration_available"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "same_day_registration_available"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_state"
+      req: true
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "stat"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/stats.json"
+          parts: [
+            "stats.json"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

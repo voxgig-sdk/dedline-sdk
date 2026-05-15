@@ -1,0 +1,44 @@
+# BasicStateFlow
+
+main: kit: flow: BasicStateFlow:
+{
+  entity: "state",
+  kind: "basic",
+  name: "BasicStateFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "state_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "state_ref01",
+        srcdatavar: "state_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        state_abbreviation: "state_abbreviation01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-state_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStateFlow"
+}
