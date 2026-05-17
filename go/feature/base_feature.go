@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/dedline-sdk/core"
+	"github.com/voxgig-sdk/dedline-sdk/go/core"
 )
 
 type BaseFeature struct {

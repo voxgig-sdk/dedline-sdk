@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/dedline-sdk"
-	"github.com/voxgig-sdk/dedline-sdk/core"
+	sdk "github.com/voxgig-sdk/dedline-sdk/go"
+	"github.com/voxgig-sdk/dedline-sdk/go/core"
 )
 
 func TestStateDirect(t *testing.T) {

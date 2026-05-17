@@ -5,19 +5,22 @@
         "last_updated": "s28",
         "online_registration_available": "s29",
         "same_day_registration_available": "s2a",
-        "total_state": "s2b"
+        "total_state": "s2b",
+        "id": "STAT00"
       },
       "STAT01": {
         "last_updated": "s50",
         "online_registration_available": "s51",
         "same_day_registration_available": "s52",
-        "total_state": "s53"
+        "total_state": "s53",
+        "id": "STAT01"
       },
       "STAT02": {
         "last_updated": "s78",
         "online_registration_available": "s79",
         "same_day_registration_available": "s7a",
-        "total_state": "s7b"
+        "total_state": "s7b",
+        "id": "STAT02"
       }
     }
   },

@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/dedline-sdk/core"
+	"github.com/voxgig-sdk/dedline-sdk/go/core"
 )
 
 type LogFeature struct {

@@ -13,7 +13,8 @@
         "primary_deadline": "s76",
         "url": "s77",
         "value": "s78",
-        "state_abbreviation": "STATE_ABBREVIATION01"
+        "state_abbreviation": "STATE_ABBREVIATION01",
+        "id": "STATE00"
       },
       "STATE01": {
         "deadline": "sdc",
@@ -27,7 +28,8 @@
         "primary_deadline": "se4",
         "url": "se5",
         "value": "se6",
-        "state_abbreviation": "STATE_ABBREVIATION01"
+        "state_abbreviation": "STATE_ABBREVIATION01",
+        "id": "STATE01"
       },
       "STATE02": {
         "deadline": "s14a",
@@ -41,7 +43,8 @@
         "primary_deadline": "s152",
         "url": "s153",
         "value": "s154",
-        "state_abbreviation": "STATE_ABBREVIATION01"
+        "state_abbreviation": "STATE_ABBREVIATION01",
+        "id": "STATE02"
       }
     }
   },
