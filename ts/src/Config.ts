@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://dedline-api.netlify.app',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

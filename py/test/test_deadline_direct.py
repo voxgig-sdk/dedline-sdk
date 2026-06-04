@@ -61,14 +61,12 @@ def _deadline_direct_setup(mockres):
     env = runner.env_override({
         "DEDLINE_TEST_DEADLINE_ENTID": {},
         "DEDLINE_TEST_LIVE": "FALSE",
-        "DEDLINE_APIKEY": "NONE",
     })
 
     live = env.get("DEDLINE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("DEDLINE_APIKEY"),
         }
         client = DedlineSDK(merged_opts)
         return {

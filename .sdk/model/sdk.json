@@ -20,7 +20,20 @@
           }
         ],
         "title": "Dedline API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Look up US voter registration deadlines, primary and general election dates, and online registration availability for every state",
+        "homepage": "https://dedline-api.netlify.app",
+        "docs_url": "https://freepublicapis.com/dedline-api",
+        "license_short": "Open Source",
+        "license_md": "- Listed as Open Source on the Free Public APIs catalogue.\n- No formal licence text is published on the API homepage; consult the project's GitHub repository for the exact terms before redistribution.\n- Data is sourced from publicly available state election authorities; verify against official state sources before relying on it for legal or civic-tech use.",
+        "about_md": "Dedline API is a static JSON API that publishes US voter-registration deadlines and related election dates for all fifty states and the District of Columbia. It is served as flat files from [dedline-api.netlify.app](https://dedline-api.netlify.app) and catalogued on [Free Public APIs](https://freepublicapis.com/dedline-api).\n\nWhat you get from the API:\n\n- Per-state objects containing the state's full name (`label`), two-letter abbreviation (`value`), and the official registration `url`.\n- Registration cutoff dates: `deadline` (general election) and `primaryDeadline`, both in `YYYYMMDD` form.\n- Election dates: `primaryDate` and `generalElectionDate`.\n- Booleans for `onlineAccepted` (whether online voter registration is supported) and `lastMinuteAccepted` (same-day or grace-period registration).\n- A `notes` field describing state-specific rules such as felony voting rights, preregistration age limits, and other quirks, plus an `emoji` identifier.\n- Convenience endpoints returning the full list of states, the subset that allows same-day registration, and the subset without online registration.\n\nThe API requires no authentication. Responses are static JSON, so freshness depends on when the upstream data was last updated; CORS is reported as disabled by the Free Public APIs monitor, so browser callers may need a proxy.",
+        "entity_desc": {
+          "deadline": "A registration cutoff date attached to a state, exposed via per-state JSON (for example `/AL.json`) with `deadline` and `primaryDeadline` fields in `YYYYMMDD` format.",
+          "registration_feature": "Boolean flags on each state object indicating capabilities such as `onlineAccepted` and `lastMinuteAccepted`; aggregated lists of states with or without these features are also published.",
+          "stat": "Aggregate views over the state dataset, such as the array of states that allow same-day registration and the array of states without online voter registration.",
+          "state": "A US state or DC record with `label`, `value` (two-letter code), official registration `url`, election dates, deadline fields, `notes`, and an `emoji`; accessible individually by abbreviation (e.g. `/AL.json`) or as the full states array."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -28,7 +41,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "deadline": {

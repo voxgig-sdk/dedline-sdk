@@ -63,14 +63,12 @@ function registration_feature_direct_setup(mockres)
   local env = runner.env_override({
     ["DEDLINE_TEST_REGISTRATION_FEATURE_ENTID"] = {},
     ["DEDLINE_TEST_LIVE"] = "FALSE",
-    ["DEDLINE_APIKEY"] = "NONE",
   })
 
   local live = env["DEDLINE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["DEDLINE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
