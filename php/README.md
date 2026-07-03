@@ -10,7 +10,7 @@ The PHP SDK for the Dedline API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/dedline-sdk
+composer require voxgig-sdk/dedline
 ```
 
 

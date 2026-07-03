@@ -10,13 +10,13 @@ The Ruby SDK for the Dedline API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install dedline-sdk
+gem install voxgig-sdk-dedline
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "dedline-sdk"
+gem "voxgig-sdk-dedline"
 ```
 
 Then run:

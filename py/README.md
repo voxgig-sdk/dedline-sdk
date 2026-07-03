@@ -10,7 +10,7 @@ The Python SDK for the Dedline API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install dedline-sdk
+pip install voxgig-sdk-dedline
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The Lua SDK for the Dedline API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install dedline-sdk
+luarocks install voxgig-sdk-dedline
 ```
 
 If the module is not yet published, add the source directory to

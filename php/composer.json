@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/dedline",
-  "description": "Dedline SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Dedline public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "dedline"],
+  "homepage": "https://github.com/voxgig-sdk/dedline-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/dedline-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/dedline-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

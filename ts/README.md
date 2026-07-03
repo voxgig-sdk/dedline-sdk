@@ -10,7 +10,7 @@ The TypeScript SDK for the Dedline API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install dedline
+npm install @voxgig-sdk/dedline
 ```
 ## Tutorial: your first API call
 
