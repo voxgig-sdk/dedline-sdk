@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'DEDLINE_TEST_STAT_ENTID': idmap,
     'DEDLINE_TEST_LIVE': 'FALSE',
     'DEDLINE_TEST_EXPLAIN': 'FALSE',
+    'DEDLINE_APIKEY': 'NONE',
   })
 
   idmap = env['DEDLINE_TEST_STAT_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DedlineSDK(merge([
       {
+        apikey: env.DEDLINE_APIKEY,
       },
       extra
     ]))

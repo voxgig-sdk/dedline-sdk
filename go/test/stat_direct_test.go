@@ -99,12 +99,14 @@ func statDirectSetup(mockres any) *statDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DEDLINE_TEST_STAT_ENTID": map[string]any{},
 		"DEDLINE_TEST_LIVE":    "FALSE",
+		"DEDLINE_APIKEY":       "NONE",
 	})
 
 	live := env["DEDLINE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["DEDLINE_APIKEY"],
 		}
 		client := sdk.NewDedlineSDK(mergedOpts)
 

@@ -61,12 +61,14 @@ def stat_direct_setup(mockres)
   env = Runner.env_override({
     "DEDLINE_TEST_STAT_ENTID" => {},
     "DEDLINE_TEST_LIVE" => "FALSE",
+    "DEDLINE_APIKEY" => "NONE",
   })
 
   live = env["DEDLINE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["DEDLINE_APIKEY"],
     }
     client = DedlineSDK.new(merged_opts)
     return {

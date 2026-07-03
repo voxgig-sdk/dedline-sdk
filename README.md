@@ -1,23 +1,8 @@
 # Dedline SDK
 
-Look up US voter registration deadlines, primary and general election dates, and online registration availability for every state
+Dedline API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Dedline API
-
-Dedline API is a static JSON API that publishes US voter-registration deadlines and related election dates for all fifty states and the District of Columbia. It is served as flat files from [dedline-api.netlify.app](https://dedline-api.netlify.app) and catalogued on [Free Public APIs](https://freepublicapis.com/dedline-api).
-
-What you get from the API:
-
-- Per-state objects containing the state's full name (`label`), two-letter abbreviation (`value`), and the official registration `url`.
-- Registration cutoff dates: `deadline` (general election) and `primaryDeadline`, both in `YYYYMMDD` form.
-- Election dates: `primaryDate` and `generalElectionDate`.
-- Booleans for `onlineAccepted` (whether online voter registration is supported) and `lastMinuteAccepted` (same-day or grace-period registration).
-- A `notes` field describing state-specific rules such as felony voting rights, preregistration age limits, and other quirks, plus an `emoji` identifier.
-- Convenience endpoints returning the full list of states, the subset that allows same-day registration, and the subset without online registration.
-
-The API requires no authentication. Responses are static JSON, so freshness depends on when the upstream data was last updated; CORS is reported as disabled by the Free Public APIs monitor, so browser callers may need a proxy.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install dedline-sdk
 luarocks install dedline-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DedlineSDK } from 'dedline'
 
-const client = new DedlineSDK({})
+const client = new DedlineSDK({
+  apikey: process.env.DEDLINE_APIKEY,
+})
 
 // List all deadlines
 const deadlines = await client.Deadline().list()
+console.log(deadlines.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,10 +90,10 @@ The API exposes 4 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Deadline** | A registration cutoff date attached to a state, exposed via per-state JSON (for example `/AL.json`) with `deadline` and `primaryDeadline` fields in `YYYYMMDD` format. | `/upcoming.json` |
-| **RegistrationFeature** | Boolean flags on each state object indicating capabilities such as `onlineAccepted` and `lastMinuteAccepted`; aggregated lists of states with or without these features are also published. | `/lastMinuteAccepted.json` |
-| **Stat** | Aggregate views over the state dataset, such as the array of states that allow same-day registration and the array of states without online voter registration. | `/stats.json` |
-| **State** | A US state or DC record with `label`, `value` (two-letter code), official registration `url`, election dates, deadline fields, `notes`, and an `emoji`; accessible individually by abbreviation (e.g. `/AL.json`) or as the full states array. | `/states.json` |
+| **Deadline** |  | `/upcoming.json` |
+| **RegistrationFeature** |  | `/lastMinuteAccepted.json` |
+| **Stat** |  | `/stats.json` |
+| **State** |  | `/states.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,12 +103,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from dedline_sdk import DedlineSDK
 
-client = DedlineSDK({})
+client = DedlineSDK({
+    "apikey": os.environ.get("DEDLINE_APIKEY"),
+})
 
 # List all deadlines
-deadlines, err = client.Deadline(None).list(None, None)
+deadlines, err = client.Deadline().list()
+print(deadlines)
 ```
 
 ### PHP
@@ -130,10 +121,13 @@ deadlines, err = client.Deadline(None).list(None, None)
 <?php
 require_once 'dedline_sdk.php';
 
-$client = new DedlineSDK([]);
+$client = new DedlineSDK([
+    "apikey" => getenv("DEDLINE_APIKEY"),
+]);
 
 // List all deadlines
-[$deadlines, $err] = $client->Deadline(null)->list(null, null);
+[$deadlines, $err] = $client->Deadline()->list();
+print_r($deadlines);
 ```
 
 ### Golang
@@ -141,10 +135,13 @@ $client = new DedlineSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/dedline-sdk/go"
 
-client := sdk.NewDedlineSDK(map[string]any{})
+client := sdk.NewDedlineSDK(map[string]any{
+    "apikey": os.Getenv("DEDLINE_APIKEY"),
+})
 
 // List all deadlines
 deadlines, err := client.Deadline(nil).List(nil, nil)
+fmt.Println(deadlines)
 ```
 
 ### Ruby
@@ -152,10 +149,13 @@ deadlines, err := client.Deadline(nil).List(nil, nil)
 ```ruby
 require_relative "Dedline_sdk"
 
-client = DedlineSDK.new({})
+client = DedlineSDK.new({
+  "apikey" => ENV["DEDLINE_APIKEY"],
+})
 
 # List all deadlines
-deadlines, err = client.Deadline(nil).list(nil, nil)
+deadlines, err = client.Deadline().list
+puts deadlines
 ```
 
 ### Lua
@@ -163,10 +163,13 @@ deadlines, err = client.Deadline(nil).list(nil, nil)
 ```lua
 local sdk = require("dedline_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DEDLINE_APIKEY"),
+})
 
 -- List all deadlines
-local deadlines, err = client:Deadline(nil):list(nil, nil)
+local deadlines, err = client:Deadline():list()
+print(deadlines)
 ```
 
 ## Unit testing in offline mode
@@ -185,25 +188,21 @@ const result = await client.Deadline().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DedlineSDK.test(None, None)
-result, err = client.Deadline(None).load(
-    {"id": "test01"}, None
-)
+client = DedlineSDK.test()
+result, err = client.Deadline().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DedlineSDK::test(null, null);
-[$result, $err] = $client->Deadline(null)->load(
-    ["id" => "test01"], null
-);
+$client = DedlineSDK::test();
+[$result, $err] = $client->Deadline()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Deadline(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -212,19 +211,15 @@ result, err := client.Deadline(nil).Load(
 ### Ruby
 
 ```ruby
-client = DedlineSDK.test(nil, nil)
-result, err = client.Deadline(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DedlineSDK.test
+result, err = client.Deadline().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Deadline(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Deadline():load({ id = "test01" })
 ```
 
 ## How it works
@@ -328,15 +323,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Dedline API
-
-- Upstream: [https://dedline-api.netlify.app](https://dedline-api.netlify.app)
-- API docs: [https://freepublicapis.com/dedline-api](https://freepublicapis.com/dedline-api)
-
-- Listed as Open Source on the Free Public APIs catalogue.
-- No formal licence text is published on the API homepage; consult the project's GitHub repository for the exact terms before redistribution.
-- Data is sourced from publicly available state election authorities; verify against official state sources before relying on it for legal or civic-tech use.
 
 ---
 

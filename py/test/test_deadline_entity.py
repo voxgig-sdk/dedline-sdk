@@ -92,6 +92,7 @@ def _deadline_basic_setup(extra):
         "DEDLINE_TEST_DEADLINE_ENTID": idmap,
         "DEDLINE_TEST_LIVE": "FALSE",
         "DEDLINE_TEST_EXPLAIN": "FALSE",
+        "DEDLINE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _deadline_basic_setup(extra):
     if env.get("DEDLINE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("DEDLINE_APIKEY"),
             },
             extra or {},
         ])

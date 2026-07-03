@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -113,7 +113,7 @@ local deadline = client:Deadline(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Deadline(nil):list(nil, nil)
+local results, err = client:Deadline():list()
 ```
 
 ### Common Methods
@@ -159,7 +159,7 @@ local registration_feature = client:RegistrationFeature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:RegistrationFeature(nil):list(nil, nil)
+local results, err = client:RegistrationFeature():list()
 ```
 
 ### Common Methods
@@ -214,7 +214,7 @@ local stat = client:Stat(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Stat(nil):load({ id = "stat_id" }, nil)
+local result, err = client:Stat():load({ id = "stat_id" })
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ local state = client:State(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:State(nil):list(nil, nil)
+local results, err = client:State():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -284,7 +284,7 @@ local results, err = client:State(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:State(nil):load({ id = "state_id" }, nil)
+local result, err = client:State():load({ id = "state_id" })
 ```
 
 ### Common Methods

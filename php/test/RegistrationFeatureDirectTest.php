@@ -68,12 +68,14 @@ function registration_feature_direct_setup($mockres)
     $env = Runner::env_override([
         "DEDLINE_TEST_REGISTRATION_FEATURE_ENTID" => [],
         "DEDLINE_TEST_LIVE" => "FALSE",
+        "DEDLINE_APIKEY" => "NONE",
     ]);
 
     $live = $env["DEDLINE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["DEDLINE_APIKEY"],
         ];
         $client = new DedlineSDK($merged_opts);
         return [

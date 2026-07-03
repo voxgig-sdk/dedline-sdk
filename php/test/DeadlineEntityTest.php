@@ -86,6 +86,7 @@ function deadline_basic_setup($extra)
         "DEDLINE_TEST_DEADLINE_ENTID" => $idmap,
         "DEDLINE_TEST_LIVE" => "FALSE",
         "DEDLINE_TEST_EXPLAIN" => "FALSE",
+        "DEDLINE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function deadline_basic_setup($extra)
     if ($env["DEDLINE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["DEDLINE_APIKEY"],
             ],
             $extra ?? [],
         ]);
