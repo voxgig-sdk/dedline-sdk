@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DEDLINE_TEST_DEADLINE_ENTID': {},
     'DEDLINE_TEST_LIVE': 'FALSE',
-    'DEDLINE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DEDLINE_TEST_LIVE
 
   if (live) {
     const client = new DedlineSDK({
-      apikey: env.DEDLINE_APIKEY,
     })
 
     let idmap: any = env['DEDLINE_TEST_DEADLINE_ENTID']

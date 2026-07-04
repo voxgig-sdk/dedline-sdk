@@ -43,14 +43,12 @@ class StateEntityTest < Minitest::Test
     state_ref01_ent = client.State(nil)
     state_ref01_match = {}
 
-    state_ref01_list_result, err = state_ref01_ent.list(state_ref01_match, nil)
-    assert_nil err
+    state_ref01_list_result = state_ref01_ent.list(state_ref01_match, nil)
     assert state_ref01_list_result.is_a?(Array)
 
     # LOAD
     state_ref01_match_dt0 = {}
-    state_ref01_data_dt0_loaded, err = state_ref01_ent.load(state_ref01_match_dt0, nil)
-    assert_nil err
+    state_ref01_data_dt0_loaded = state_ref01_ent.load(state_ref01_match_dt0, nil)
     assert !state_ref01_data_dt0_loaded.nil?
 
   end
@@ -89,7 +87,6 @@ def state_basic_setup(extra)
     "DEDLINE_TEST_STATE_ENTID" => idmap,
     "DEDLINE_TEST_LIVE" => "FALSE",
     "DEDLINE_TEST_EXPLAIN" => "FALSE",
-    "DEDLINE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -101,7 +98,6 @@ def state_basic_setup(extra)
   if env["DEDLINE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEDLINE_APIKEY"],
       },
       extra || {},
     ])

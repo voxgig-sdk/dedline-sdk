@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -146,7 +145,7 @@ Alias for `DedlineSDK.test()`.
 ## DeadlineEntity
 
 ```ts
-const deadline = client.Deadline()
+const deadline = client.deadline
 ```
 
 ### Fields
@@ -163,7 +162,7 @@ const deadline = client.Deadline()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Deadline().list()
+const results = await client.deadline.list()
 ```
 
 ### Common Methods
@@ -197,7 +196,7 @@ Return a copy of the entity options.
 ## RegistrationFeatureEntity
 
 ```ts
-const registration_feature = client.RegistrationFeature()
+const registration_feature = client.registration_feature
 ```
 
 ### Operations
@@ -207,7 +206,7 @@ const registration_feature = client.RegistrationFeature()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.RegistrationFeature().list()
+const results = await client.registration_feature.list()
 ```
 
 ### Common Methods
@@ -241,7 +240,7 @@ Return a copy of the entity options.
 ## StatEntity
 
 ```ts
-const stat = client.Stat()
+const stat = client.stat
 ```
 
 ### Fields
@@ -260,7 +259,7 @@ const stat = client.Stat()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Stat().load({ id: 'stat_id' })
+const result = await client.stat.load({ id: 'stat_id' })
 ```
 
 ### Common Methods
@@ -294,7 +293,7 @@ Return a copy of the entity options.
 ## StateEntity
 
 ```ts
-const state = client.State()
+const state = client.state
 ```
 
 ### Fields
@@ -320,7 +319,7 @@ const state = client.State()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.State().list()
+const results = await client.state.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -328,7 +327,7 @@ const results = await client.State().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.State().load({ id: 'state_id' })
+const result = await client.state.load({ id: 'state_id' })
 ```
 
 ### Common Methods

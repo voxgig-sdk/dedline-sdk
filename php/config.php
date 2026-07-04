@@ -20,9 +20,6 @@ class DedlineConfig
             ],
             "options" => [
                 "base" => "https://dedline-api.netlify.app",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -306,6 +303,7 @@ class DedlineConfig
                         'orig' => 'state_abbreviation',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

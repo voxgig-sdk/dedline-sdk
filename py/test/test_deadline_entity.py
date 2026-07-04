@@ -50,8 +50,7 @@ class TestDeadlineEntity:
         deadline_ref01_ent = client.Deadline(None)
         deadline_ref01_match = {}
 
-        deadline_ref01_list_result, err = deadline_ref01_ent.list(deadline_ref01_match, None)
-        assert err is None
+        deadline_ref01_list_result = deadline_ref01_ent.list(deadline_ref01_match, None)
         assert isinstance(deadline_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _deadline_basic_setup(extra):
         "DEDLINE_TEST_DEADLINE_ENTID": idmap,
         "DEDLINE_TEST_LIVE": "FALSE",
         "DEDLINE_TEST_EXPLAIN": "FALSE",
-        "DEDLINE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _deadline_basic_setup(extra):
     if env.get("DEDLINE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEDLINE_APIKEY"),
             },
             extra or {},
         ])

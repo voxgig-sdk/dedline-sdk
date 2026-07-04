@@ -43,8 +43,7 @@ class RegistrationFeatureEntityTest < Minitest::Test
     registration_feature_ref01_ent = client.RegistrationFeature(nil)
     registration_feature_ref01_match = {}
 
-    registration_feature_ref01_list_result, err = registration_feature_ref01_ent.list(registration_feature_ref01_match, nil)
-    assert_nil err
+    registration_feature_ref01_list_result = registration_feature_ref01_ent.list(registration_feature_ref01_match, nil)
     assert registration_feature_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def registration_feature_basic_setup(extra)
     "DEDLINE_TEST_REGISTRATION_FEATURE_ENTID" => idmap,
     "DEDLINE_TEST_LIVE" => "FALSE",
     "DEDLINE_TEST_EXPLAIN" => "FALSE",
-    "DEDLINE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def registration_feature_basic_setup(extra)
   if env["DEDLINE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DEDLINE_APIKEY"],
       },
       extra || {},
     ])

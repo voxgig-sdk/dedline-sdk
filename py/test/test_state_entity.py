@@ -50,14 +50,12 @@ class TestStateEntity:
         state_ref01_ent = client.State(None)
         state_ref01_match = {}
 
-        state_ref01_list_result, err = state_ref01_ent.list(state_ref01_match, None)
-        assert err is None
+        state_ref01_list_result = state_ref01_ent.list(state_ref01_match, None)
         assert isinstance(state_ref01_list_result, list)
 
         # LOAD
         state_ref01_match_dt0 = {}
-        state_ref01_data_dt0_loaded, err = state_ref01_ent.load(state_ref01_match_dt0, None)
-        assert err is None
+        state_ref01_data_dt0_loaded = state_ref01_ent.load(state_ref01_match_dt0, None)
         assert state_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _state_basic_setup(extra):
         "DEDLINE_TEST_STATE_ENTID": idmap,
         "DEDLINE_TEST_LIVE": "FALSE",
         "DEDLINE_TEST_EXPLAIN": "FALSE",
-        "DEDLINE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _state_basic_setup(extra):
     if env.get("DEDLINE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEDLINE_APIKEY"),
             },
             extra or {},
         ])

@@ -144,16 +144,23 @@ class DedlineSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DedlineSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,30 +212,74 @@ class DedlineSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def deadline(self):
+        """Idiomatic facade: client.deadline.list() / client.deadline.load({"id": ...})."""
+        from entity.deadline_entity import DeadlineEntity
+        cached = getattr(self, "_deadline", None)
+        if cached is None:
+            cached = DeadlineEntity(self, None)
+            self._deadline = cached
+        return cached
 
     def Deadline(self, data=None):
+        # Deprecated: use client.deadline instead.
         from entity.deadline_entity import DeadlineEntity
         return DeadlineEntity(self, data)
 
 
+    @property
+    def registration_feature(self):
+        """Idiomatic facade: client.registration_feature.list() / client.registration_feature.load({"id": ...})."""
+        from entity.registration_feature_entity import RegistrationFeatureEntity
+        cached = getattr(self, "_registration_feature", None)
+        if cached is None:
+            cached = RegistrationFeatureEntity(self, None)
+            self._registration_feature = cached
+        return cached
+
     def RegistrationFeature(self, data=None):
+        # Deprecated: use client.registration_feature instead.
         from entity.registration_feature_entity import RegistrationFeatureEntity
         return RegistrationFeatureEntity(self, data)
 
 
+    @property
+    def stat(self):
+        """Idiomatic facade: client.stat.list() / client.stat.load({"id": ...})."""
+        from entity.stat_entity import StatEntity
+        cached = getattr(self, "_stat", None)
+        if cached is None:
+            cached = StatEntity(self, None)
+            self._stat = cached
+        return cached
+
     def Stat(self, data=None):
+        # Deprecated: use client.stat instead.
         from entity.stat_entity import StatEntity
         return StatEntity(self, data)
 
 
+    @property
+    def state(self):
+        """Idiomatic facade: client.state.list() / client.state.load({"id": ...})."""
+        from entity.state_entity import StateEntity
+        cached = getattr(self, "_state", None)
+        if cached is None:
+            cached = StateEntity(self, None)
+            self._state = cached
+        return cached
+
     def State(self, data=None):
+        # Deprecated: use client.state instead.
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 

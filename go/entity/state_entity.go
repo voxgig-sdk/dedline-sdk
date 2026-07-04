@@ -85,6 +85,27 @@ func (e *StateEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an State; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *StateEntity) DataTyped(data ...State) State {
+	if len(data) > 0 {
+		return typedFrom[State](e.Data(asMap(data[0])))
+	}
+	return typedFrom[State](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through State (all fields
+// optional at the wire level).
+func (e *StateEntity) MatchTyped(match ...State) State {
+	if len(match) > 0 {
+		return typedFrom[State](e.Match(asMap(match[0])))
+	}
+	return typedFrom[State](e.Match())
+}
+
 
 func (e *StateEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *StateEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// StateLoadMatch and returns an State. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *StateEntity) LoadTyped(reqmatch StateLoadMatch, ctrl map[string]any) (State, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return State{}, err
+	}
+	return typedFrom[State](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *StateEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// StateListMatch and returns []State. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *StateEntity) ListTyped(reqmatch StateListMatch, ctrl map[string]any) ([]State, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[State](res), nil
 }
 
 

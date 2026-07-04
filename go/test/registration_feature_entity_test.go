@@ -119,7 +119,6 @@ func registration_featureBasicSetup(extra map[string]any) *entityTestSetup {
 		"DEDLINE_TEST_REGISTRATION_FEATURE_ENTID": idmap,
 		"DEDLINE_TEST_LIVE":      "FALSE",
 		"DEDLINE_TEST_EXPLAIN":   "FALSE",
-		"DEDLINE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DEDLINE_TEST_REGISTRATION_FEATURE_ENTID"])
@@ -130,7 +129,6 @@ func registration_featureBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DEDLINE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["DEDLINE_APIKEY"],
 			},
 			extra,
 		})

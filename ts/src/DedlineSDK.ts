@@ -5,6 +5,8 @@ import { RegistrationFeatureEntity } from './entity/RegistrationFeatureEntity'
 import { StatEntity } from './entity/StatEntity'
 import { StateEntity } from './entity/StateEntity'
 
+export type * from './DedlineTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -205,24 +207,56 @@ class DedlineSDK {
 
 
 
+  _deadline?: DeadlineEntity
+
+  // Idiomatic facade: `client.deadline.list()` / `client.deadline.load({ id })`.
+  get deadline(): DeadlineEntity {
+    return (this._deadline ??= new DeadlineEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.deadline` instead. */
   Deadline(data?: any) {
     const self = this
     return new DeadlineEntity(self,data)
   }
 
 
+  _registration_feature?: RegistrationFeatureEntity
+
+  // Idiomatic facade: `client.registration_feature.list()` / `client.registration_feature.load({ id })`.
+  get registration_feature(): RegistrationFeatureEntity {
+    return (this._registration_feature ??= new RegistrationFeatureEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.registration_feature` instead. */
   RegistrationFeature(data?: any) {
     const self = this
     return new RegistrationFeatureEntity(self,data)
   }
 
 
+  _stat?: StatEntity
+
+  // Idiomatic facade: `client.stat.list()` / `client.stat.load({ id })`.
+  get stat(): StatEntity {
+    return (this._stat ??= new StatEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.stat` instead. */
   Stat(data?: any) {
     const self = this
     return new StatEntity(self,data)
   }
 
 
+  _state?: StateEntity
+
+  // Idiomatic facade: `client.state.list()` / `client.state.load({ id })`.
+  get state(): StateEntity {
+    return (this._state ??= new StateEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.state` instead. */
   State(data?: any) {
     const self = this
     return new StateEntity(self,data)

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RegistrationFeatureListMatch
+---@param ctrl? table
+---@return RegistrationFeature[]
+---@return string? err
 function RegistrationFeatureEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

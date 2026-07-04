@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://dedline-api.netlify.app",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -301,6 +298,7 @@ def make_config():
                       "orig": "state_abbreviation",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

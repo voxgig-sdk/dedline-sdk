@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://dedline-api.netlify.app',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -336,7 +332,8 @@ class Config {
                     "name": "state_abbreviation",
                     "orig": "state_abbreviation",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

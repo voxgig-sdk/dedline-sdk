@@ -245,21 +245,33 @@ func (sdk *DedlineSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Deadline returns a Deadline entity bound to this client.
+// Idiomatic usage: client.Deadline(nil).List(nil, nil) or
+// client.Deadline(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DedlineSDK) Deadline(data map[string]any) DedlineEntity {
 	return NewDeadlineEntityFunc(sdk, data)
 }
 
 
+// RegistrationFeature returns a RegistrationFeature entity bound to this client.
+// Idiomatic usage: client.RegistrationFeature(nil).List(nil, nil) or
+// client.RegistrationFeature(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DedlineSDK) RegistrationFeature(data map[string]any) DedlineEntity {
 	return NewRegistrationFeatureEntityFunc(sdk, data)
 }
 
 
+// Stat returns a Stat entity bound to this client.
+// Idiomatic usage: client.Stat(nil).List(nil, nil) or
+// client.Stat(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DedlineSDK) Stat(data map[string]any) DedlineEntity {
 	return NewStatEntityFunc(sdk, data)
 }
 
 
+// State returns a State entity bound to this client.
+// Idiomatic usage: client.State(nil).List(nil, nil) or
+// client.State(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DedlineSDK) State(data map[string]any) DedlineEntity {
 	return NewStateEntityFunc(sdk, data)
 }

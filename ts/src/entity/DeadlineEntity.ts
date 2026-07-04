@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Deadline,
+  DeadlineListMatch,
+} from '../DedlineTypes'
 
 // TODO: needs Entity superclass
-class DeadlineEntity extends DedlineEntityBase {
+class DeadlineEntity extends DedlineEntityBase<Deadline> {
 
   constructor(client: DedlineSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class DeadlineEntity extends DedlineEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: DeadlineListMatch, ctrl?: Control): Promise<Deadline[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class DeadlineEntity extends DedlineEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Deadline[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

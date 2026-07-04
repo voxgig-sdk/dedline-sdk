@@ -92,7 +92,6 @@ function deadline_basic_setup(extra)
     ["DEDLINE_TEST_DEADLINE_ENTID"] = idmap,
     ["DEDLINE_TEST_LIVE"] = "FALSE",
     ["DEDLINE_TEST_EXPLAIN"] = "FALSE",
-    ["DEDLINE_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function deadline_basic_setup(extra)
   if env["DEDLINE_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DEDLINE_APIKEY"],
       },
       extra or {},
     })

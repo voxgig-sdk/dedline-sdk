@@ -45,6 +45,7 @@ class DeadlineEntity
     end
   end
 
+  # @return [Deadline, Hash] the current Deadline data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class DeadlineEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Deadline fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class DeadlineEntity
   
 
   
+  # List Deadline items matching the given filter.
+  #
+  # @param reqmatch [DeadlineListMatch, Hash, nil] match filter (any subset of Deadline fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Deadline>, Array] the matching Deadline items; raises DedlineError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

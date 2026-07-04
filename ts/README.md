@@ -9,9 +9,12 @@ The TypeScript SDK for the Dedline API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/dedline
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/dedline-sdk/releases](https://github.com/voxgig-sdk/dedline-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DedlineSDK } from 'dedline'
+import { DedlineSDK } from '@voxgig-sdk/dedline'
 
-const client = new DedlineSDK({
-  apikey: process.env.DEDLINE_APIKEY,
-})
+const client = new DedlineSDK()
 ```
 
 ### 2. List deadlines
 
 ```ts
-const result = await client.Deadline().list()
+const result = await client.deadline.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DedlineSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.deadline.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DedlineSDK({ apikey: '...' })
+const client = new DedlineSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.deadline
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new DedlineSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 DEDLINE_TEST_LIVE=TRUE
-DEDLINE_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new DedlineSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new DedlineSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -314,7 +311,7 @@ API path: `/states.json`
 
 ### Deadline
 
-Create an instance: `const deadline = client.Deadline()`
+Create an instance: `const deadline = client.deadline`
 
 #### Operations
 
@@ -332,13 +329,13 @@ Create an instance: `const deadline = client.Deadline()`
 #### Example: List
 
 ```ts
-const deadlines = await client.Deadline().list()
+const deadlines = await client.deadline.list()
 ```
 
 
 ### RegistrationFeature
 
-Create an instance: `const registration_feature = client.RegistrationFeature()`
+Create an instance: `const registration_feature = client.registration_feature`
 
 #### Operations
 
@@ -349,13 +346,13 @@ Create an instance: `const registration_feature = client.RegistrationFeature()`
 #### Example: List
 
 ```ts
-const registration_features = await client.RegistrationFeature().list()
+const registration_features = await client.registration_feature.list()
 ```
 
 
 ### Stat
 
-Create an instance: `const stat = client.Stat()`
+Create an instance: `const stat = client.stat`
 
 #### Operations
 
@@ -375,13 +372,13 @@ Create an instance: `const stat = client.Stat()`
 #### Example: Load
 
 ```ts
-const stat = await client.Stat().load({ id: 'stat_id' })
+const stat = await client.stat.load({ id: 'stat_id' })
 ```
 
 
 ### State
 
-Create an instance: `const state = client.State()`
+Create an instance: `const state = client.state`
 
 #### Operations
 
@@ -409,13 +406,13 @@ Create an instance: `const state = client.State()`
 #### Example: Load
 
 ```ts
-const state = await client.State().load({ id: 'state_id' })
+const state = await client.state.load({ id: 'state_id' })
 ```
 
 #### Example: List
 
 ```ts
-const states = await client.State().list()
+const states = await client.state.list()
 ```
 
 
@@ -476,7 +473,7 @@ dedline/
 Import the SDK from the package root:
 
 ```ts
-import { DedlineSDK } from 'dedline'
+import { DedlineSDK } from '@voxgig-sdk/dedline'
 ```
 
 ### Entity state
@@ -486,11 +483,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const deadline = client.deadline
+await deadline.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// deadline.data() now returns the loaded deadline data
+// deadline.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

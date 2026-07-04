@@ -45,6 +45,7 @@ class RegistrationFeatureEntity
     end
   end
 
+  # @return [RegistrationFeature, Hash] the current RegistrationFeature data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RegistrationFeatureEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RegistrationFeature fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class RegistrationFeatureEntity
   
 
   
+  # List RegistrationFeature items matching the given filter.
+  #
+  # @param reqmatch [RegistrationFeatureListMatch, Hash, nil] match filter (any subset of RegistrationFeature fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<RegistrationFeature>, Array] the matching RegistrationFeature items; raises DedlineError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

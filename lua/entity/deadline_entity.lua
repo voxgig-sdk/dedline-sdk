@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DeadlineListMatch
+---@param ctrl? table
+---@return Deadline[]
+---@return string? err
 function DeadlineEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

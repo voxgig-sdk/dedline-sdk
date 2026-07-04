@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Dedline_types'
+
 
 class DedlineSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class DedlineSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class DedlineSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue DedlineError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = DedlineHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class DedlineSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,34 +198,62 @@ class DedlineSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.deadline.list / client.deadline.load({ "id" => ... })
+  def deadline
+    require_relative 'entity/deadline_entity'
+    @deadline ||= DeadlineEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.deadline instead.
   def Deadline(data = nil)
     require_relative 'entity/deadline_entity'
     DeadlineEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.registration_feature.list / client.registration_feature.load({ "id" => ... })
+  def registration_feature
+    require_relative 'entity/registration_feature_entity'
+    @registration_feature ||= RegistrationFeatureEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.registration_feature instead.
   def RegistrationFeature(data = nil)
     require_relative 'entity/registration_feature_entity'
     RegistrationFeatureEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.stat.list / client.stat.load({ "id" => ... })
+  def stat
+    require_relative 'entity/stat_entity'
+    @stat ||= StatEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.stat instead.
   def Stat(data = nil)
     require_relative 'entity/stat_entity'
     StatEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.state.list / client.state.load({ "id" => ... })
+  def state
+    require_relative 'entity/state_entity'
+    @state ||= StateEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.state instead.
   def State(data = nil)
     require_relative 'entity/state_entity'
     StateEntity.new(self, data)

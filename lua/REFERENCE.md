@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -96,7 +95,7 @@ same parameters as `direct()`.
 ## DeadlineEntity
 
 ```lua
-local deadline = client:Deadline(nil)
+local deadline = client:deadline(nil)
 ```
 
 ### Fields
@@ -113,7 +112,7 @@ local deadline = client:Deadline(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Deadline():list()
+local results, err = client:deadline():list()
 ```
 
 ### Common Methods
@@ -149,7 +148,7 @@ Return the entity name.
 ## RegistrationFeatureEntity
 
 ```lua
-local registration_feature = client:RegistrationFeature(nil)
+local registration_feature = client:registration_feature(nil)
 ```
 
 ### Operations
@@ -159,7 +158,7 @@ local registration_feature = client:RegistrationFeature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:RegistrationFeature():list()
+local results, err = client:registration_feature():list()
 ```
 
 ### Common Methods
@@ -195,7 +194,7 @@ Return the entity name.
 ## StatEntity
 
 ```lua
-local stat = client:Stat(nil)
+local stat = client:stat(nil)
 ```
 
 ### Fields
@@ -214,7 +213,7 @@ local stat = client:Stat(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Stat():load({ id = "stat_id" })
+local result, err = client:stat():load({ id = "stat_id" })
 ```
 
 ### Common Methods
@@ -250,7 +249,7 @@ Return the entity name.
 ## StateEntity
 
 ```lua
-local state = client:State(nil)
+local state = client:state(nil)
 ```
 
 ### Fields
@@ -276,7 +275,7 @@ local state = client:State(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:State():list()
+local results, err = client:state():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -284,7 +283,7 @@ local results, err = client:State():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:State():load({ id = "state_id" })
+local result, err = client:state():load({ id = "state_id" })
 ```
 
 ### Common Methods

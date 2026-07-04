@@ -50,8 +50,7 @@ class RegistrationFeatureEntityTest extends TestCase
         $registration_feature_ref01_ent = $client->RegistrationFeature(null);
         $registration_feature_ref01_match = [];
 
-        [$registration_feature_ref01_list_result, $err] = $registration_feature_ref01_ent->list($registration_feature_ref01_match, null);
-        $this->assertNull($err);
+        $registration_feature_ref01_list_result = $registration_feature_ref01_ent->list($registration_feature_ref01_match, null);
         $this->assertIsArray($registration_feature_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function registration_feature_basic_setup($extra)
         "DEDLINE_TEST_REGISTRATION_FEATURE_ENTID" => $idmap,
         "DEDLINE_TEST_LIVE" => "FALSE",
         "DEDLINE_TEST_EXPLAIN" => "FALSE",
-        "DEDLINE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function registration_feature_basic_setup($extra)
     if ($env["DEDLINE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DEDLINE_APIKEY"],
             ],
             $extra ?? [],
         ]);

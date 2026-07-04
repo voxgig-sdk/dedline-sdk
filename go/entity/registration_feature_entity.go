@@ -85,6 +85,27 @@ func (e *RegistrationFeatureEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an RegistrationFeature; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *RegistrationFeatureEntity) DataTyped(data ...RegistrationFeature) RegistrationFeature {
+	if len(data) > 0 {
+		return typedFrom[RegistrationFeature](e.Data(asMap(data[0])))
+	}
+	return typedFrom[RegistrationFeature](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through RegistrationFeature (all fields
+// optional at the wire level).
+func (e *RegistrationFeatureEntity) MatchTyped(match ...RegistrationFeature) RegistrationFeature {
+	if len(match) > 0 {
+		return typedFrom[RegistrationFeature](e.Match(asMap(match[0])))
+	}
+	return typedFrom[RegistrationFeature](e.Match())
+}
+
 func (e *RegistrationFeatureEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *RegistrationFeatureEntity) List(reqmatch map[string]any, ctrl map[strin
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// RegistrationFeatureListMatch and returns []RegistrationFeature. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *RegistrationFeatureEntity) ListTyped(reqmatch RegistrationFeatureListMatch, ctrl map[string]any) ([]RegistrationFeature, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[RegistrationFeature](res), nil
 }
 
 

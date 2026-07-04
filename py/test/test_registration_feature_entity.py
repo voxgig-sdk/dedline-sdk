@@ -50,8 +50,7 @@ class TestRegistrationFeatureEntity:
         registration_feature_ref01_ent = client.RegistrationFeature(None)
         registration_feature_ref01_match = {}
 
-        registration_feature_ref01_list_result, err = registration_feature_ref01_ent.list(registration_feature_ref01_match, None)
-        assert err is None
+        registration_feature_ref01_list_result = registration_feature_ref01_ent.list(registration_feature_ref01_match, None)
         assert isinstance(registration_feature_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _registration_feature_basic_setup(extra):
         "DEDLINE_TEST_REGISTRATION_FEATURE_ENTID": idmap,
         "DEDLINE_TEST_LIVE": "FALSE",
         "DEDLINE_TEST_EXPLAIN": "FALSE",
-        "DEDLINE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _registration_feature_basic_setup(extra):
     if env.get("DEDLINE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DEDLINE_APIKEY"),
             },
             extra or {},
         ])
