@@ -220,73 +220,33 @@ class DedlineSDK:
         }
 
 
-    @property
-    def deadline(self):
-        """Idiomatic facade: client.deadline.list() / client.deadline.load({"id": ...})."""
-        from entity.deadline_entity import DeadlineEntity
-        cached = getattr(self, "_deadline", None)
-        if cached is None:
-            cached = DeadlineEntity(self, None)
-            self._deadline = cached
-        return cached
-
-    def Deadline(self, data=None):
-        # Deprecated: use client.deadline instead.
+    def Deadline(self, data=None) -> "DeadlineEntity":
+        """Entity factory: client.Deadline().list({}) / client.Deadline().load({"id": ...})."""
         from entity.deadline_entity import DeadlineEntity
         return DeadlineEntity(self, data)
 
 
-    @property
-    def registration_feature(self):
-        """Idiomatic facade: client.registration_feature.list() / client.registration_feature.load({"id": ...})."""
-        from entity.registration_feature_entity import RegistrationFeatureEntity
-        cached = getattr(self, "_registration_feature", None)
-        if cached is None:
-            cached = RegistrationFeatureEntity(self, None)
-            self._registration_feature = cached
-        return cached
-
-    def RegistrationFeature(self, data=None):
-        # Deprecated: use client.registration_feature instead.
+    def RegistrationFeature(self, data=None) -> "RegistrationFeatureEntity":
+        """Entity factory: client.RegistrationFeature().list({}) / client.RegistrationFeature().load({"id": ...})."""
         from entity.registration_feature_entity import RegistrationFeatureEntity
         return RegistrationFeatureEntity(self, data)
 
 
-    @property
-    def stat(self):
-        """Idiomatic facade: client.stat.list() / client.stat.load({"id": ...})."""
-        from entity.stat_entity import StatEntity
-        cached = getattr(self, "_stat", None)
-        if cached is None:
-            cached = StatEntity(self, None)
-            self._stat = cached
-        return cached
-
-    def Stat(self, data=None):
-        # Deprecated: use client.stat instead.
+    def Stat(self, data=None) -> "StatEntity":
+        """Entity factory: client.Stat().list({}) / client.Stat().load({"id": ...})."""
         from entity.stat_entity import StatEntity
         return StatEntity(self, data)
 
 
-    @property
-    def state(self):
-        """Idiomatic facade: client.state.list() / client.state.load({"id": ...})."""
-        from entity.state_entity import StateEntity
-        cached = getattr(self, "_state", None)
-        if cached is None:
-            cached = StateEntity(self, None)
-            self._state = cached
-        return cached
-
-    def State(self, data=None):
-        # Deprecated: use client.state instead.
+    def State(self, data=None) -> "StateEntity":
+        """Entity factory: client.State().list({}) / client.State().load({"id": ...})."""
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "DedlineSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -306,3 +266,12 @@ class DedlineSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.deadline_entity import DeadlineEntity
+    from entity.registration_feature_entity import RegistrationFeatureEntity
+    from entity.stat_entity import StatEntity
+    from entity.state_entity import StateEntity

@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/dedline-sdk/go=../dedline-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/dedline-sdk/go"
-    "github.com/voxgig-sdk/dedline-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List deadlines
-
-```go
-    result, err := client.Deadline(nil).List(nil, nil)
+    // List deadline records — the value is the array of records itself.
+    deadlines, err := client.Deadline(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range deadlines.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Deadline(nil).Load(
+deadline, err := client.Deadline(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(deadline) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -213,17 +212,24 @@ All entities implement the `DedlineEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    deadline, err := client.Deadline(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // deadline is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -305,7 +311,11 @@ Create an instance: `deadline := client.Deadline(nil)`
 #### Example: List
 
 ```go
-results, err := client.Deadline(nil).List(nil, nil)
+deadlines, err := client.Deadline(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(deadlines) // the array of records
 ```
 
 
@@ -322,7 +332,11 @@ Create an instance: `registration_feature := client.RegistrationFeature(nil)`
 #### Example: List
 
 ```go
-results, err := client.RegistrationFeature(nil).List(nil, nil)
+registration_features, err := client.RegistrationFeature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(registration_features) // the array of records
 ```
 
 
@@ -348,7 +362,11 @@ Create an instance: `stat := client.Stat(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Stat(nil).Load(map[string]any{"id": "stat_id"}, nil)
+stat, err := client.Stat(nil).Load(map[string]any{"id": "stat_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(stat) // the loaded record
 ```
 
 
@@ -382,13 +400,21 @@ Create an instance: `state := client.State(nil)`
 #### Example: Load
 
 ```go
-result, err := client.State(nil).Load(map[string]any{"id": "state_id"}, nil)
+state, err := client.State(nil).Load(map[string]any{"id": "state_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(state) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.State(nil).List(nil, nil)
+states, err := client.State(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(states) // the array of records
 ```
 
 

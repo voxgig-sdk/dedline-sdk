@@ -31,14 +31,16 @@ from dedline_sdk import DedlineSDK
 client = DedlineSDK()
 ```
 
-### 2. List deadlines
+### 2. List deadline records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.deadline.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    deadlines = client.Deadline().list({})
+    for deadline in deadlines:
+        print(deadline)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DedlineSDK.test()
 
-result = client.deadline.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+deadline = client.Deadline().load({"id": "test01"})
+# deadline contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -266,7 +269,7 @@ API path: `/states.json`
 
 ### Deadline
 
-Create an instance: `const deadline = client.deadline`
+Create an instance: `deadline = client.Deadline()`
 
 #### Operations
 
@@ -283,14 +286,14 @@ Create an instance: `const deadline = client.deadline`
 
 #### Example: List
 
-```ts
-const deadlines = await client.deadline.list()
+```python
+deadlines = client.Deadline().list({})
 ```
 
 
 ### RegistrationFeature
 
-Create an instance: `const registration_feature = client.registration_feature`
+Create an instance: `registration_feature = client.RegistrationFeature()`
 
 #### Operations
 
@@ -300,14 +303,14 @@ Create an instance: `const registration_feature = client.registration_feature`
 
 #### Example: List
 
-```ts
-const registration_features = await client.registration_feature.list()
+```python
+registration_features = client.RegistrationFeature().list({})
 ```
 
 
 ### Stat
 
-Create an instance: `const stat = client.stat`
+Create an instance: `stat = client.Stat()`
 
 #### Operations
 
@@ -326,14 +329,14 @@ Create an instance: `const stat = client.stat`
 
 #### Example: Load
 
-```ts
-const stat = await client.stat.load({ id: 'stat_id' })
+```python
+stat = client.Stat().load({"id": "stat_id"})
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `state = client.State()`
 
 #### Operations
 
@@ -360,14 +363,14 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```python
+state = client.State().load({"id": "state_id"})
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```python
+states = client.State().list({})
 ```
 
 
@@ -441,7 +444,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-deadline = client.deadline
+deadline = client.Deadline()
 deadline.load({"id": "example_id"})
 
 # deadline.data_get() now returns the loaded deadline data

@@ -4,53 +4,51 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Deadline:
-    general: Optional[list] = None
-    primary: Optional[list] = None
+class Deadline(TypedDict, total=False):
+    general: list
+    primary: list
 
 
-@dataclass
-class DeadlineListMatch:
-    general: Optional[list] = None
-    primary: Optional[list] = None
+class DeadlineListMatch(TypedDict, total=False):
+    general: list
+    primary: list
 
 
-@dataclass
-class RegistrationFeature:
+class RegistrationFeature(TypedDict):
     pass
 
 
-@dataclass
-class RegistrationFeatureListMatch:
+class RegistrationFeatureListMatch(TypedDict):
     pass
 
 
-@dataclass
-class Stat:
+class Stat(TypedDict):
     last_updated: str
     online_registration_available: int
     same_day_registration_available: int
     total_state: int
 
 
-@dataclass
-class StatLoadMatch:
-    last_updated: Optional[str] = None
-    online_registration_available: Optional[int] = None
-    same_day_registration_available: Optional[int] = None
-    total_state: Optional[int] = None
+class StatLoadMatch(TypedDict, total=False):
+    last_updated: str
+    online_registration_available: int
+    same_day_registration_available: int
+    total_state: int
 
 
-@dataclass
-class State:
+class StateRequired(TypedDict):
     deadline: str
     emoji: str
     general_election_date: str
@@ -61,25 +59,25 @@ class State:
     primary_deadline: str
     url: str
     value: str
-    note: Optional[str] = None
 
 
-@dataclass
-class StateLoadMatch:
+class State(StateRequired, total=False):
+    note: str
+
+
+class StateLoadMatch(TypedDict):
     state_abbreviation: str
 
 
-@dataclass
-class StateListMatch:
-    deadline: Optional[str] = None
-    emoji: Optional[str] = None
-    general_election_date: Optional[str] = None
-    label: Optional[str] = None
-    last_minute_accepted: Optional[bool] = None
-    note: Optional[str] = None
-    online_accepted: Optional[bool] = None
-    primary_date: Optional[str] = None
-    primary_deadline: Optional[str] = None
-    url: Optional[str] = None
-    value: Optional[str] = None
-
+class StateListMatch(TypedDict, total=False):
+    deadline: str
+    emoji: str
+    general_election_date: str
+    label: str
+    last_minute_accepted: bool
+    note: str
+    online_accepted: bool
+    primary_date: str
+    primary_deadline: str
+    url: str
+    value: str

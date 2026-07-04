@@ -97,7 +97,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## DeadlineEntity
 
 ```php
-$deadline = $client->deadline();
+$deadline = $client->Deadline();
 ```
 
 ### Fields
@@ -114,7 +114,7 @@ $deadline = $client->deadline();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->deadline()->list([]);
+$results = $client->Deadline()->list([]);
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ Return the entity name.
 ## RegistrationFeatureEntity
 
 ```php
-$registration_feature = $client->registration_feature();
+$registration_feature = $client->RegistrationFeature();
 ```
 
 ### Operations
@@ -160,7 +160,7 @@ $registration_feature = $client->registration_feature();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->registration_feature()->list([]);
+$results = $client->RegistrationFeature()->list([]);
 ```
 
 ### Common Methods
@@ -196,7 +196,7 @@ Return the entity name.
 ## StatEntity
 
 ```php
-$stat = $client->stat();
+$stat = $client->Stat();
 ```
 
 ### Fields
@@ -215,7 +215,7 @@ $stat = $client->stat();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->stat()->load(["id" => "stat_id"]);
+$result = $client->Stat()->load(["id" => "stat_id"]);
 ```
 
 ### Common Methods
@@ -251,7 +251,7 @@ Return the entity name.
 ## StateEntity
 
 ```php
-$state = $client->state();
+$state = $client->State();
 ```
 
 ### Fields
@@ -277,7 +277,7 @@ $state = $client->state();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->state()->list([]);
+$results = $client->State()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -285,7 +285,7 @@ $results = $client->state()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->state()->load(["id" => "state_id"]);
+$result = $client->State()->load(["id" => "state_id"]);
 ```
 
 ### Common Methods

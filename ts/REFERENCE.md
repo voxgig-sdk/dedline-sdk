@@ -145,7 +145,7 @@ Alias for `DedlineSDK.test()`.
 ## DeadlineEntity
 
 ```ts
-const deadline = client.deadline
+const deadline = client.Deadline()
 ```
 
 ### Fields
@@ -162,7 +162,7 @@ const deadline = client.deadline
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.deadline.list()
+const results = await client.Deadline().list()
 ```
 
 ### Common Methods
@@ -196,7 +196,7 @@ Return a copy of the entity options.
 ## RegistrationFeatureEntity
 
 ```ts
-const registration_feature = client.registration_feature
+const registration_feature = client.RegistrationFeature()
 ```
 
 ### Operations
@@ -206,7 +206,7 @@ const registration_feature = client.registration_feature
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.registration_feature.list()
+const results = await client.RegistrationFeature().list()
 ```
 
 ### Common Methods
@@ -240,7 +240,7 @@ Return a copy of the entity options.
 ## StatEntity
 
 ```ts
-const stat = client.stat
+const stat = client.Stat()
 ```
 
 ### Fields
@@ -259,7 +259,7 @@ const stat = client.stat
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.stat.load({ id: 'stat_id' })
+const result = await client.Stat().load({ id: 'stat_id' })
 ```
 
 ### Common Methods
@@ -293,7 +293,7 @@ Return a copy of the entity options.
 ## StateEntity
 
 ```ts
-const state = client.state
+const state = client.State()
 ```
 
 ### Fields
@@ -319,7 +319,7 @@ const state = client.state
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.state.list()
+const results = await client.State().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -327,7 +327,7 @@ const results = await client.state.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.state.load({ id: 'state_id' })
+const result = await client.State().load({ id: 'state_id' })
 ```
 
 ### Common Methods

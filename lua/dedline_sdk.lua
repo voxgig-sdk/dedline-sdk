@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:deadline():list() / client:deadline():load({ id = ... })
-function DedlineSDK:deadline(data)
+-- Idiomatic facade: client:Deadline():list() / client:Deadline():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DedlineSDK:Deadline(data)
   local EntityMod = require("entity.deadline_entity")
   if data == nil then
     if self._deadline == nil then
@@ -256,15 +257,10 @@ function DedlineSDK:deadline(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:deadline() instead.
-function DedlineSDK:Deadline(data)
-  local EntityMod = require("entity.deadline_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:registration_feature():list() / client:registration_feature():load({ id = ... })
-function DedlineSDK:registration_feature(data)
+-- Idiomatic facade: client:RegistrationFeature():list() / client:RegistrationFeature():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DedlineSDK:RegistrationFeature(data)
   local EntityMod = require("entity.registration_feature_entity")
   if data == nil then
     if self._registration_feature == nil then
@@ -275,15 +271,10 @@ function DedlineSDK:registration_feature(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:registration_feature() instead.
-function DedlineSDK:RegistrationFeature(data)
-  local EntityMod = require("entity.registration_feature_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:stat():list() / client:stat():load({ id = ... })
-function DedlineSDK:stat(data)
+-- Idiomatic facade: client:Stat():list() / client:Stat():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DedlineSDK:Stat(data)
   local EntityMod = require("entity.stat_entity")
   if data == nil then
     if self._stat == nil then
@@ -294,15 +285,10 @@ function DedlineSDK:stat(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:stat() instead.
-function DedlineSDK:Stat(data)
-  local EntityMod = require("entity.stat_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:state():list() / client:state():load({ id = ... })
-function DedlineSDK:state(data)
+-- Idiomatic facade: client:State():list() / client:State():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DedlineSDK:State(data)
   local EntityMod = require("entity.state_entity")
   if data == nil then
     if self._state == nil then
@@ -310,12 +296,6 @@ function DedlineSDK:state(data)
     end
     return self._state
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:state() instead.
-function DedlineSDK:State(data)
-  local EntityMod = require("entity.state_entity")
   return EntityMod.new(self, data)
 end
 

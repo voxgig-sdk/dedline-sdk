@@ -31,17 +31,17 @@ local sdk = require("dedline_sdk")
 local client = sdk.new()
 ```
 
-### 2. List deadlines
+### 2. List deadline records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:deadline():list()
+local deadlines, err = client:Deadline():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(deadlines) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:deadline():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Deadline():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -192,17 +192,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local deadline, err = client:Deadline():load({ id = "example_id" })
+    if err then error(err) end
+    -- deadline is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -266,7 +271,7 @@ API path: `/states.json`
 
 ### Deadline
 
-Create an instance: `const deadline = client.deadline`
+Create an instance: `local deadline = client:Deadline(nil)`
 
 #### Operations
 
@@ -283,14 +288,14 @@ Create an instance: `const deadline = client.deadline`
 
 #### Example: List
 
-```ts
-const deadlines = await client.deadline.list()
+```lua
+local deadlines, err = client:Deadline():list()
 ```
 
 
 ### RegistrationFeature
 
-Create an instance: `const registration_feature = client.registration_feature`
+Create an instance: `local registration_feature = client:RegistrationFeature(nil)`
 
 #### Operations
 
@@ -300,14 +305,14 @@ Create an instance: `const registration_feature = client.registration_feature`
 
 #### Example: List
 
-```ts
-const registration_features = await client.registration_feature.list()
+```lua
+local registration_features, err = client:RegistrationFeature():list()
 ```
 
 
 ### Stat
 
-Create an instance: `const stat = client.stat`
+Create an instance: `local stat = client:Stat(nil)`
 
 #### Operations
 
@@ -326,14 +331,14 @@ Create an instance: `const stat = client.stat`
 
 #### Example: Load
 
-```ts
-const stat = await client.stat.load({ id: 'stat_id' })
+```lua
+local stat, err = client:Stat():load({ id = "stat_id" })
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `local state = client:State(nil)`
 
 #### Operations
 
@@ -360,14 +365,14 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```lua
+local state, err = client:State():load({ id = "state_id" })
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```lua
+local states, err = client:State():list()
 ```
 
 
@@ -442,7 +447,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local deadline = client:deadline()
+local deadline = client:Deadline()
 deadline:load({ id = "example_id" })
 
 -- deadline:data_get() now returns the loaded deadline data

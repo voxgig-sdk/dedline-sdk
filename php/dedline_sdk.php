@@ -233,10 +233,10 @@ class DedlineSDK
 
     private $_deadline = null;
 
-    // Idiomatic facade: $client->deadline()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Deadline() (PHP method
-    // names are case-insensitive).
-    public function deadline($data = null)
+    // Canonical facade: $client->Deadline()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->deadline()
+    // resolves here too.
+    public function Deadline($data = null)
     {
         require_once __DIR__ . '/entity/deadline_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DedlineSDK
 
     private $_registration_feature = null;
 
-    // Idiomatic facade: $client->registration_feature()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RegistrationFeature() (PHP method
-    // names are case-insensitive).
-    public function registration_feature($data = null)
+    // Canonical facade: $client->RegistrationFeature()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->registration_feature()
+    // resolves here too.
+    public function RegistrationFeature($data = null)
     {
         require_once __DIR__ . '/entity/registration_feature_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DedlineSDK
 
     private $_stat = null;
 
-    // Idiomatic facade: $client->stat()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Stat() (PHP method
-    // names are case-insensitive).
-    public function stat($data = null)
+    // Canonical facade: $client->Stat()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->stat()
+    // resolves here too.
+    public function Stat($data = null)
     {
         require_once __DIR__ . '/entity/stat_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class DedlineSDK
 
     private $_state = null;
 
-    // Idiomatic facade: $client->state()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias State() (PHP method
-    // names are case-insensitive).
-    public function state($data = null)
+    // Canonical facade: $client->State()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->state()
+    // resolves here too.
+    public function State($data = null)
     {
         require_once __DIR__ . '/entity/state_entity.php';
         if ($data === null) {

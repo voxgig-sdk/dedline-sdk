@@ -95,7 +95,7 @@ same parameters as `direct()`.
 ## DeadlineEntity
 
 ```lua
-local deadline = client:deadline(nil)
+local deadline = client:Deadline(nil)
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ local deadline = client:deadline(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:deadline():list()
+local results, err = client:Deadline():list()
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## RegistrationFeatureEntity
 
 ```lua
-local registration_feature = client:registration_feature(nil)
+local registration_feature = client:RegistrationFeature(nil)
 ```
 
 ### Operations
@@ -158,7 +158,7 @@ local registration_feature = client:registration_feature(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:registration_feature():list()
+local results, err = client:RegistrationFeature():list()
 ```
 
 ### Common Methods
@@ -194,7 +194,7 @@ Return the entity name.
 ## StatEntity
 
 ```lua
-local stat = client:stat(nil)
+local stat = client:Stat(nil)
 ```
 
 ### Fields
@@ -213,7 +213,7 @@ local stat = client:stat(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:stat():load({ id = "stat_id" })
+local result, err = client:Stat():load({ id = "stat_id" })
 ```
 
 ### Common Methods
@@ -249,7 +249,7 @@ Return the entity name.
 ## StateEntity
 
 ```lua
-local state = client:state(nil)
+local state = client:State(nil)
 ```
 
 ### Fields
@@ -275,7 +275,7 @@ local state = client:state(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:state():list()
+local results, err = client:State():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -283,7 +283,7 @@ local results, err = client:state():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:state():load({ id = "state_id" })
+local result, err = client:State():load({ id = "state_id" })
 ```
 
 ### Common Methods

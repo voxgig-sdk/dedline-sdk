@@ -26,9 +26,11 @@ import { DedlineSDK } from '@voxgig-sdk/dedline'
 
 const client = new DedlineSDK()
 
-// List all deadlines
-const deadlines = await client.deadline.list()
-console.log(deadlines.data)
+// List all deadlines (returns Deadline[])
+const deadlines = await client.Deadline().list()
+for (const deadline of deadlines) {
+  console.log(deadline)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -86,9 +88,10 @@ from dedline_sdk import DedlineSDK
 
 client = DedlineSDK()
 
-# List all deadlines
-deadlines = client.deadline.list()
-print(deadlines)
+# List all deadlines (returns a list, raises on error)
+deadlines = client.Deadline().list({})
+for deadline in deadlines:
+    print(deadline)
 ```
 
 ### PHP
@@ -99,8 +102,8 @@ require_once 'dedline_sdk.php';
 
 $client = new DedlineSDK();
 
-// List all deadlines (throws on error)
-$deadlines = $client->deadline()->list();
+// List all deadlines (returns an array; throws on error)
+$deadlines = $client->Deadline()->list();
 print_r($deadlines);
 ```
 
@@ -123,8 +126,8 @@ require_relative "Dedline_sdk"
 
 client = DedlineSDK.new
 
-# List all deadlines
-deadlines = client.deadline.list
+# List all deadlines (returns an Array; raises on error)
+deadlines = client.Deadline.list
 puts deadlines
 ```
 
@@ -136,7 +139,7 @@ local sdk = require("dedline_sdk")
 local client = sdk.new()
 
 -- List all deadlines
-local deadlines, err = client:deadline():list()
+local deadlines, err = client:Deadline():list()
 print(deadlines)
 ```
 
@@ -149,22 +152,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DedlineSDK.test()
-const result = await client.deadline.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const deadline = await client.Deadline().load({ id: 'test01' })
+// deadline is a bare Deadline populated with mock data
+console.log(deadline)
 ```
 
 ### Python
 
 ```python
 client = DedlineSDK.test()
-result = client.deadline.load({"id": "test01"})
+deadline = client.Deadline().load({"id": "test01"})
+print(deadline)
 ```
 
 ### PHP
 
 ```php
-$client = DedlineSDK::test();
-$result = $client->deadline()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DedlineSDK::test([
+    "entity" => ["deadline" => ["test01" => ["id" => "test01"]]],
+]);
+$deadline = $client->Deadline()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -179,15 +187,18 @@ result, err := client.Deadline(nil).Load(
 ### Ruby
 
 ```ruby
-client = DedlineSDK.test
-result = client.deadline.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DedlineSDK.test({
+  "entity" => { "deadline" => { "test01" => { "id" => "test01" } } },
+})
+deadline = client.Deadline.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:deadline():load({ id = "test01" })
+local result, err = client:Deadline():load({ id = "test01" })
 ```
 
 ## How it works
@@ -235,6 +246,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

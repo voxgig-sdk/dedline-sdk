@@ -98,7 +98,7 @@ same parameters as `direct()`. Raises on error.
 ## DeadlineEntity
 
 ```ruby
-deadline = client.deadline
+deadline = client.Deadline
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ deadline = client.deadline
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.deadline.list(nil)
+results = client.Deadline.list(nil)
 ```
 
 ### Common Methods
@@ -151,7 +151,7 @@ Return the entity name.
 ## RegistrationFeatureEntity
 
 ```ruby
-registration_feature = client.registration_feature
+registration_feature = client.RegistrationFeature
 ```
 
 ### Operations
@@ -161,7 +161,7 @@ registration_feature = client.registration_feature
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.registration_feature.list(nil)
+results = client.RegistrationFeature.list(nil)
 ```
 
 ### Common Methods
@@ -197,7 +197,7 @@ Return the entity name.
 ## StatEntity
 
 ```ruby
-stat = client.stat
+stat = client.Stat
 ```
 
 ### Fields
@@ -216,7 +216,7 @@ stat = client.stat
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.stat.load({ "id" => "stat_id" })
+result = client.Stat.load({ "id" => "stat_id" })
 ```
 
 ### Common Methods
@@ -252,7 +252,7 @@ Return the entity name.
 ## StateEntity
 
 ```ruby
-state = client.state
+state = client.State
 ```
 
 ### Fields
@@ -278,7 +278,7 @@ state = client.state
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.state.list(nil)
+results = client.State.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -286,7 +286,7 @@ results = client.state.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.state.load({ "id" => "state_id" })
+result = client.State.load({ "id" => "state_id" })
 ```
 
 ### Common Methods

@@ -29,18 +29,16 @@ require_once 'dedline_sdk.php';
 $client = new DedlineSDK();
 ```
 
-### 2. List deadlines
+### 2. List deadline records
 
 ```php
 try {
-    $result = $client->deadline()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Deadline records — iterate directly.
+    $deadlines = $client->Deadline()->list();
+    foreach ($deadlines as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = DedlineSDK::test();
+$client = DedlineSDK::test([
+    "entity" => ["deadline" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->deadline()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$deadline = $client->Deadline()->load(["id" => "test01"]);
+print_r($deadline);
 ```
 
 ### Use a custom fetch function
@@ -274,7 +276,7 @@ API path: `/states.json`
 
 ### Deadline
 
-Create an instance: `const deadline = client.deadline`
+Create an instance: `$deadline = $client->Deadline();`
 
 #### Operations
 
@@ -291,14 +293,15 @@ Create an instance: `const deadline = client.deadline`
 
 #### Example: List
 
-```ts
-const deadlines = await client.deadline.list()
+```php
+// list() returns an array of Deadline records (throws on error).
+$deadlines = $client->Deadline()->list();
 ```
 
 
 ### RegistrationFeature
 
-Create an instance: `const registration_feature = client.registration_feature`
+Create an instance: `$registration_feature = $client->RegistrationFeature();`
 
 #### Operations
 
@@ -308,14 +311,15 @@ Create an instance: `const registration_feature = client.registration_feature`
 
 #### Example: List
 
-```ts
-const registration_features = await client.registration_feature.list()
+```php
+// list() returns an array of RegistrationFeature records (throws on error).
+$registration_features = $client->RegistrationFeature()->list();
 ```
 
 
 ### Stat
 
-Create an instance: `const stat = client.stat`
+Create an instance: `$stat = $client->Stat();`
 
 #### Operations
 
@@ -334,14 +338,15 @@ Create an instance: `const stat = client.stat`
 
 #### Example: Load
 
-```ts
-const stat = await client.stat.load({ id: 'stat_id' })
+```php
+// load() returns the bare Stat record (throws on error).
+$stat = $client->Stat()->load(["id" => "stat_id"]);
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `$state = $client->State();`
 
 #### Operations
 
@@ -368,14 +373,16 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```php
+// load() returns the bare State record (throws on error).
+$state = $client->State()->load(["id" => "state_id"]);
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```php
+// list() returns an array of State records (throws on error).
+$states = $client->State()->list();
 ```
 
 
@@ -450,7 +457,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$deadline = $client->deadline();
+$deadline = $client->Deadline();
 $deadline->load(["id" => "example_id"]);
 
 // $deadline->dataGet() now returns the loaded deadline data

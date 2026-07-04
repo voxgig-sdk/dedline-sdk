@@ -28,16 +28,14 @@ require_relative "Dedline_sdk"
 client = DedlineSDK.new
 ```
 
-### 2. List deadlines
+### 2. List deadline records
 
 ```ruby
 begin
-  result = client.deadline.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Deadline records — iterate directly.
+  deadlines = client.Deadline.list
+  deadlines.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = DedlineSDK.test
+client = DedlineSDK.test({
+  "entity" => { "deadline" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.deadline.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+deadline = client.Deadline.load({ "id" => "test01" })
+puts deadline
 ```
 
 ### Use a custom fetch function
@@ -269,7 +271,7 @@ API path: `/states.json`
 
 ### Deadline
 
-Create an instance: `const deadline = client.deadline`
+Create an instance: `deadline = client.Deadline`
 
 #### Operations
 
@@ -286,14 +288,15 @@ Create an instance: `const deadline = client.deadline`
 
 #### Example: List
 
-```ts
-const deadlines = await client.deadline.list()
+```ruby
+# list returns an Array of Deadline records (raises on error).
+deadlines = client.Deadline.list
 ```
 
 
 ### RegistrationFeature
 
-Create an instance: `const registration_feature = client.registration_feature`
+Create an instance: `registration_feature = client.RegistrationFeature`
 
 #### Operations
 
@@ -303,14 +306,15 @@ Create an instance: `const registration_feature = client.registration_feature`
 
 #### Example: List
 
-```ts
-const registration_features = await client.registration_feature.list()
+```ruby
+# list returns an Array of RegistrationFeature records (raises on error).
+registration_features = client.RegistrationFeature.list
 ```
 
 
 ### Stat
 
-Create an instance: `const stat = client.stat`
+Create an instance: `stat = client.Stat`
 
 #### Operations
 
@@ -329,14 +333,15 @@ Create an instance: `const stat = client.stat`
 
 #### Example: Load
 
-```ts
-const stat = await client.stat.load({ id: 'stat_id' })
+```ruby
+# load returns the bare Stat record (raises on error).
+stat = client.Stat.load({ "id" => "stat_id" })
 ```
 
 
 ### State
 
-Create an instance: `const state = client.state`
+Create an instance: `state = client.State`
 
 #### Operations
 
@@ -363,14 +368,16 @@ Create an instance: `const state = client.state`
 
 #### Example: Load
 
-```ts
-const state = await client.state.load({ id: 'state_id' })
+```ruby
+# load returns the bare State record (raises on error).
+state = client.State.load({ "id" => "state_id" })
 ```
 
 #### Example: List
 
-```ts
-const states = await client.state.list()
+```ruby
+# list returns an Array of State records (raises on error).
+states = client.State.list
 ```
 
 
@@ -445,7 +452,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-deadline = client.deadline
+deadline = client.Deadline
 deadline.load({ "id" => "example_id" })
 
 # deadline.data_get now returns the loaded deadline data

@@ -208,52 +208,28 @@ class DedlineSDK
   end
 
 
-  # Idiomatic facade: client.deadline.list / client.deadline.load({ "id" => ... })
-  def deadline
-    require_relative 'entity/deadline_entity'
-    @deadline ||= DeadlineEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.deadline instead.
+  # Canonical facade: client.Deadline.list / client.Deadline.load({ "id" => ... })
   def Deadline(data = nil)
     require_relative 'entity/deadline_entity'
     DeadlineEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.registration_feature.list / client.registration_feature.load({ "id" => ... })
-  def registration_feature
-    require_relative 'entity/registration_feature_entity'
-    @registration_feature ||= RegistrationFeatureEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.registration_feature instead.
+  # Canonical facade: client.RegistrationFeature.list / client.RegistrationFeature.load({ "id" => ... })
   def RegistrationFeature(data = nil)
     require_relative 'entity/registration_feature_entity'
     RegistrationFeatureEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.stat.list / client.stat.load({ "id" => ... })
-  def stat
-    require_relative 'entity/stat_entity'
-    @stat ||= StatEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.stat instead.
+  # Canonical facade: client.Stat.list / client.Stat.load({ "id" => ... })
   def Stat(data = nil)
     require_relative 'entity/stat_entity'
     StatEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.state.list / client.state.load({ "id" => ... })
-  def state
-    require_relative 'entity/state_entity'
-    @state ||= StateEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.state instead.
+  # Canonical facade: client.State.list / client.State.load({ "id" => ... })
   def State(data = nil)
     require_relative 'entity/state_entity'
     StateEntity.new(self, data)
