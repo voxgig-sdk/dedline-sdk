@@ -10,12 +10,16 @@ export interface Deadline {
   primary?: any[]
 }
 
-export type DeadlineListMatch = Partial<Deadline>
+export interface DeadlineListMatch {
+  general?: any[]
+  primary?: any[]
+}
 
 export interface RegistrationFeature {
 }
 
-export type RegistrationFeatureListMatch = Partial<RegistrationFeature>
+export interface RegistrationFeatureListMatch {
+}
 
 export interface Stat {
   last_updated: string
@@ -24,7 +28,12 @@ export interface Stat {
   total_state: number
 }
 
-export type StatLoadMatch = Partial<Stat>
+export interface StatLoadMatch {
+  last_updated?: string
+  online_registration_available?: number
+  same_day_registration_available?: number
+  total_state?: number
+}
 
 export interface State {
   deadline: string
@@ -44,5 +53,17 @@ export interface StateLoadMatch {
   state_abbreviation: string
 }
 
-export type StateListMatch = Partial<State>
+export interface StateListMatch {
+  deadline?: string
+  emoji?: string
+  general_election_date?: string
+  label?: string
+  last_minute_accepted?: boolean
+  note?: string
+  online_accepted?: boolean
+  primary_date?: string
+  primary_deadline?: string
+  url?: string
+  value?: string
+}
 

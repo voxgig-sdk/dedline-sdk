@@ -109,8 +109,8 @@ deadline := client.Deadline(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `general` | ``$ARRAY`` | No |  |
-| `primary` | ``$ARRAY`` | No |  |
+| `general` | `[]any` | No |  |
+| `primary` | `[]any` | No |  |
 
 ### Operations
 
@@ -196,10 +196,10 @@ stat := client.Stat(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | ``$STRING`` | Yes |  |
-| `online_registration_available` | ``$INTEGER`` | Yes |  |
-| `same_day_registration_available` | ``$INTEGER`` | Yes |  |
-| `total_state` | ``$INTEGER`` | Yes |  |
+| `last_updated` | `string` | Yes |  |
+| `online_registration_available` | `int` | Yes |  |
+| `same_day_registration_available` | `int` | Yes |  |
+| `total_state` | `int` | Yes |  |
 
 ### Operations
 
@@ -208,7 +208,7 @@ stat := client.Stat(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Stat(nil).Load(map[string]any{"id": "stat_id"}, nil)
+result, err := client.Stat(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -245,17 +245,17 @@ state := client.State(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | ``$STRING`` | Yes |  |
-| `emoji` | ``$STRING`` | Yes |  |
-| `general_election_date` | ``$STRING`` | Yes |  |
-| `label` | ``$STRING`` | Yes |  |
-| `last_minute_accepted` | ``$BOOLEAN`` | Yes |  |
-| `note` | ``$STRING`` | No |  |
-| `online_accepted` | ``$BOOLEAN`` | Yes |  |
-| `primary_date` | ``$STRING`` | Yes |  |
-| `primary_deadline` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `value` | ``$STRING`` | Yes |  |
+| `deadline` | `string` | Yes |  |
+| `emoji` | `string` | Yes |  |
+| `general_election_date` | `string` | Yes |  |
+| `label` | `string` | Yes |  |
+| `last_minute_accepted` | `bool` | Yes |  |
+| `note` | `string` | No |  |
+| `online_accepted` | `bool` | Yes |  |
+| `primary_date` | `string` | Yes |  |
+| `primary_deadline` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
+| `value` | `string` | Yes |  |
 
 ### Operations
 
@@ -272,7 +272,7 @@ results, err := client.State(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.State(nil).Load(map[string]any{"id": "state_id"}, nil)
+result, err := client.State(nil).Load(nil, nil)
 ```
 
 ### Common Methods

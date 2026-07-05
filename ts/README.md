@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Dedline API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.Deadline()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +42,35 @@ const deadlines = await client.Deadline().list()
 
 for (const deadline of deadlines) {
   console.log(deadline)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const deadlines = await client.Deadline().list()
+  console.log(deadlines)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -85,7 +119,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DedlineSDK.test()
 
-const deadline = await client.Deadline().load({ id: 'test01' })
+const deadline = await client.Deadline().list()
 // deadline is a bare entity populated with mock response data
 console.log(deadline)
 ```
@@ -104,12 +138,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.Deadline()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -202,11 +236,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): DedlineSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -216,10 +247,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -327,8 +357,8 @@ Create an instance: `const deadline = client.Deadline()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `general` | ``$ARRAY`` |  |
-| `primary` | ``$ARRAY`` |  |
+| `general` | `any[]` |  |
+| `primary` | `any[]` |  |
 
 #### Example: List
 
@@ -368,15 +398,15 @@ Create an instance: `const stat = client.Stat()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | ``$STRING`` |  |
-| `online_registration_available` | ``$INTEGER`` |  |
-| `same_day_registration_available` | ``$INTEGER`` |  |
-| `total_state` | ``$INTEGER`` |  |
+| `last_updated` | `string` |  |
+| `online_registration_available` | `number` |  |
+| `same_day_registration_available` | `number` |  |
+| `total_state` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const stat = await client.Stat().load({ id: 'stat_id' })
+const stat = await client.Stat().load()
 ```
 
 
@@ -395,22 +425,22 @@ Create an instance: `const state = client.State()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deadline` | ``$STRING`` |  |
-| `emoji` | ``$STRING`` |  |
-| `general_election_date` | ``$STRING`` |  |
-| `label` | ``$STRING`` |  |
-| `last_minute_accepted` | ``$BOOLEAN`` |  |
-| `note` | ``$STRING`` |  |
-| `online_accepted` | ``$BOOLEAN`` |  |
-| `primary_date` | ``$STRING`` |  |
-| `primary_deadline` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
-| `value` | ``$STRING`` |  |
+| `deadline` | `string` |  |
+| `emoji` | `string` |  |
+| `general_election_date` | `string` |  |
+| `label` | `string` |  |
+| `last_minute_accepted` | `boolean` |  |
+| `note` | `string` |  |
+| `online_accepted` | `boolean` |  |
+| `primary_date` | `string` |  |
+| `primary_deadline` | `string` |  |
+| `url` | `string` |  |
+| `value` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const state = await client.State().load({ id: 'state_id' })
+const state = await client.State().load()
 ```
 
 #### Example: List
@@ -420,12 +450,16 @@ const states = await client.State().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -442,11 +476,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -482,16 +514,16 @@ import { DedlineSDK } from '@voxgig-sdk/dedline'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const deadline = client.Deadline()
-await deadline.load({ id: "example_id" })
+await deadline.list()
 
-// deadline.data() now returns the loaded deadline data
-// deadline.match() returns { id: "example_id" }
+// deadline.data() now returns the deadline data from the last `list`
+// deadline.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

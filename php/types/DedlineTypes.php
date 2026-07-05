@@ -19,7 +19,7 @@ class Deadline
     public ?array $primary = null;
 }
 
-/** Match filter for Deadline#list (any subset of Deadline fields). */
+/** Request payload for Deadline#list. */
 class DeadlineListMatch
 {
     public ?array $general = null;
@@ -31,7 +31,7 @@ class RegistrationFeature
 {
 }
 
-/** Match filter for RegistrationFeature#list (any subset of RegistrationFeature fields). */
+/** Request payload for RegistrationFeature#list. */
 class RegistrationFeatureListMatch
 {
 }
@@ -45,7 +45,7 @@ class Stat
     public int $total_state;
 }
 
-/** Match filter for Stat#load (any subset of Stat fields). */
+/** Request payload for Stat#load. */
 class StatLoadMatch
 {
     public ?string $last_updated = null;
@@ -76,7 +76,7 @@ class StateLoadMatch
     public string $state_abbreviation;
 }
 
-/** Match filter for State#list (any subset of State fields). */
+/** Request payload for State#list. */
 class StateListMatch
 {
     public ?string $deadline = null;

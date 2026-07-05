@@ -14,8 +14,7 @@ type Deadline struct {
 	Primary *[]any `json:"primary,omitempty"`
 }
 
-// DeadlineListMatch mirrors the deadline fields as an all-optional match
-// filter (Go analog of Partial<Deadline>).
+// DeadlineListMatch is the typed request payload for Deadline.ListTyped.
 type DeadlineListMatch struct {
 	General *[]any `json:"general,omitempty"`
 	Primary *[]any `json:"primary,omitempty"`
@@ -25,8 +24,7 @@ type DeadlineListMatch struct {
 type RegistrationFeature struct {
 }
 
-// RegistrationFeatureListMatch mirrors the registration_feature fields as an all-optional match
-// filter (Go analog of Partial<RegistrationFeature>).
+// RegistrationFeatureListMatch is the typed request payload for RegistrationFeature.ListTyped.
 type RegistrationFeatureListMatch struct {
 }
 
@@ -38,8 +36,7 @@ type Stat struct {
 	TotalState int `json:"total_state"`
 }
 
-// StatLoadMatch mirrors the stat fields as an all-optional match
-// filter (Go analog of Partial<Stat>).
+// StatLoadMatch is the typed request payload for Stat.LoadTyped.
 type StatLoadMatch struct {
 	LastUpdated *string `json:"last_updated,omitempty"`
 	OnlineRegistrationAvailable *int `json:"online_registration_available,omitempty"`
@@ -67,8 +64,7 @@ type StateLoadMatch struct {
 	StateAbbreviation string `json:"state_abbreviation"`
 }
 
-// StateListMatch mirrors the state fields as an all-optional match
-// filter (Go analog of Partial<State>).
+// StateListMatch is the typed request payload for State.ListTyped.
 type StateListMatch struct {
 	Deadline *string `json:"deadline,omitempty"`
 	Emoji *string `json:"emoji,omitempty"`

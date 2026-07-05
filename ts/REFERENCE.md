@@ -152,8 +152,8 @@ const deadline = client.Deadline()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `general` | ``$ARRAY`` | No |  |
-| `primary` | ``$ARRAY`` | No |  |
+| `general` | `any[]` | No |  |
+| `primary` | `any[]` | No |  |
 
 ### Operations
 
@@ -247,10 +247,10 @@ const stat = client.Stat()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | ``$STRING`` | Yes |  |
-| `online_registration_available` | ``$INTEGER`` | Yes |  |
-| `same_day_registration_available` | ``$INTEGER`` | Yes |  |
-| `total_state` | ``$INTEGER`` | Yes |  |
+| `last_updated` | `string` | Yes |  |
+| `online_registration_available` | `number` | Yes |  |
+| `same_day_registration_available` | `number` | Yes |  |
+| `total_state` | `number` | Yes |  |
 
 ### Operations
 
@@ -259,7 +259,7 @@ const stat = client.Stat()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Stat().load({ id: 'stat_id' })
+const result = await client.Stat().load()
 ```
 
 ### Common Methods
@@ -300,17 +300,17 @@ const state = client.State()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | ``$STRING`` | Yes |  |
-| `emoji` | ``$STRING`` | Yes |  |
-| `general_election_date` | ``$STRING`` | Yes |  |
-| `label` | ``$STRING`` | Yes |  |
-| `last_minute_accepted` | ``$BOOLEAN`` | Yes |  |
-| `note` | ``$STRING`` | No |  |
-| `online_accepted` | ``$BOOLEAN`` | Yes |  |
-| `primary_date` | ``$STRING`` | Yes |  |
-| `primary_deadline` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `value` | ``$STRING`` | Yes |  |
+| `deadline` | `string` | Yes |  |
+| `emoji` | `string` | Yes |  |
+| `general_election_date` | `string` | Yes |  |
+| `label` | `string` | Yes |  |
+| `last_minute_accepted` | `boolean` | Yes |  |
+| `note` | `string` | No |  |
+| `online_accepted` | `boolean` | Yes |  |
+| `primary_date` | `string` | Yes |  |
+| `primary_deadline` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
+| `value` | `string` | Yes |  |
 
 ### Operations
 
@@ -327,7 +327,7 @@ const results = await client.State().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.State().load({ id: 'state_id' })
+const result = await client.State().load()
 ```
 
 ### Common Methods

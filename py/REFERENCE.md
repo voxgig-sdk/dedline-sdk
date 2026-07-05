@@ -99,17 +99,17 @@ deadline = client.Deadline()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `general` | ``$ARRAY`` | No |  |
-| `primary` | ``$ARRAY`` | No |  |
+| `general` | `list` | No |  |
+| `primary` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Deadline().list({})
+results = client.Deadline().list()
 for deadline in results:
     print(deadline)
 ```
@@ -151,12 +151,12 @@ registration_feature = client.RegistrationFeature()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.RegistrationFeature().list({})
+results = client.RegistrationFeature().list()
 for registration_feature in results:
     print(registration_feature)
 ```
@@ -200,10 +200,10 @@ stat = client.Stat()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | ``$STRING`` | Yes |  |
-| `online_registration_available` | ``$INTEGER`` | Yes |  |
-| `same_day_registration_available` | ``$INTEGER`` | Yes |  |
-| `total_state` | ``$INTEGER`` | Yes |  |
+| `last_updated` | `str` | Yes |  |
+| `online_registration_available` | `int` | Yes |  |
+| `same_day_registration_available` | `int` | Yes |  |
+| `total_state` | `int` | Yes |  |
 
 ### Operations
 
@@ -212,7 +212,7 @@ stat = client.Stat()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Stat().load({"id": "stat_id"})
+result = client.Stat().load()
 ```
 
 ### Common Methods
@@ -254,26 +254,26 @@ state = client.State()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | ``$STRING`` | Yes |  |
-| `emoji` | ``$STRING`` | Yes |  |
-| `general_election_date` | ``$STRING`` | Yes |  |
-| `label` | ``$STRING`` | Yes |  |
-| `last_minute_accepted` | ``$BOOLEAN`` | Yes |  |
-| `note` | ``$STRING`` | No |  |
-| `online_accepted` | ``$BOOLEAN`` | Yes |  |
-| `primary_date` | ``$STRING`` | Yes |  |
-| `primary_deadline` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `value` | ``$STRING`` | Yes |  |
+| `deadline` | `str` | Yes |  |
+| `emoji` | `str` | Yes |  |
+| `general_election_date` | `str` | Yes |  |
+| `label` | `str` | Yes |  |
+| `last_minute_accepted` | `bool` | Yes |  |
+| `note` | `str` | No |  |
+| `online_accepted` | `bool` | Yes |  |
+| `primary_date` | `str` | Yes |  |
+| `primary_deadline` | `str` | Yes |  |
+| `url` | `str` | Yes |  |
+| `value` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.State().list({})
+results = client.State().list()
 for state in results:
     print(state)
 ```
@@ -283,7 +283,7 @@ for state in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.State().load({"id": "state_id"})
+result = client.State().load()
 ```
 
 ### Common Methods

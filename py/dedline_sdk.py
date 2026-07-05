@@ -221,25 +221,25 @@ class DedlineSDK:
 
 
     def Deadline(self, data=None) -> "DeadlineEntity":
-        """Entity factory: client.Deadline().list({}) / client.Deadline().load({"id": ...})."""
+        """Entity factory: client.Deadline().list() / client.Deadline().load({"id": ...})."""
         from entity.deadline_entity import DeadlineEntity
         return DeadlineEntity(self, data)
 
 
     def RegistrationFeature(self, data=None) -> "RegistrationFeatureEntity":
-        """Entity factory: client.RegistrationFeature().list({}) / client.RegistrationFeature().load({"id": ...})."""
+        """Entity factory: client.RegistrationFeature().list() / client.RegistrationFeature().load({"id": ...})."""
         from entity.registration_feature_entity import RegistrationFeatureEntity
         return RegistrationFeatureEntity(self, data)
 
 
     def Stat(self, data=None) -> "StatEntity":
-        """Entity factory: client.Stat().list({}) / client.Stat().load({"id": ...})."""
+        """Entity factory: client.Stat().list() / client.Stat().load({"id": ...})."""
         from entity.stat_entity import StatEntity
         return StatEntity(self, data)
 
 
     def State(self, data=None) -> "StateEntity":
-        """Entity factory: client.State().list({}) / client.State().load({"id": ...})."""
+        """Entity factory: client.State().list() / client.State().load({"id": ...})."""
         from entity.state_entity import StateEntity
         return StateEntity(self, data)
 

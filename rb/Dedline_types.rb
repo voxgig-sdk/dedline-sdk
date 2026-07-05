@@ -21,7 +21,7 @@ Deadline = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Deadline#list (any subset of Deadline fields).
+# Request payload for Deadline#list.
 #
 # @!attribute [rw] general
 #   @return [Array, nil]
@@ -38,7 +38,7 @@ DeadlineListMatch = Struct.new(
 class RegistrationFeature
 end
 
-# Match filter for RegistrationFeature#list (any subset of RegistrationFeature fields).
+# Request payload for RegistrationFeature#list.
 class RegistrationFeatureListMatch
 end
 
@@ -63,7 +63,7 @@ Stat = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Stat#load (any subset of Stat fields).
+# Request payload for Stat#load.
 #
 # @!attribute [rw] last_updated
 #   @return [String, nil]
@@ -142,7 +142,7 @@ StateLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for State#list (any subset of State fields).
+# Request payload for State#list.
 #
 # @!attribute [rw] deadline
 #   @return [String, nil]

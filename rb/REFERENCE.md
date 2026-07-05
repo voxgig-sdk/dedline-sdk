@@ -8,7 +8,7 @@ Complete API reference for the Dedline Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'dedline_sdk'
+require_relative 'Dedline_sdk'
 
 client = DedlineSDK.new(options)
 ```
@@ -105,17 +105,17 @@ deadline = client.Deadline
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `general` | ``$ARRAY`` | No |  |
-| `primary` | ``$ARRAY`` | No |  |
+| `general` | `Array` | No |  |
+| `primary` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Deadline.list(nil)
+results = client.Deadline.list
 ```
 
 ### Common Methods
@@ -156,12 +156,12 @@ registration_feature = client.RegistrationFeature
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.RegistrationFeature.list(nil)
+results = client.RegistrationFeature.list
 ```
 
 ### Common Methods
@@ -204,10 +204,10 @@ stat = client.Stat
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | ``$STRING`` | Yes |  |
-| `online_registration_available` | ``$INTEGER`` | Yes |  |
-| `same_day_registration_available` | ``$INTEGER`` | Yes |  |
-| `total_state` | ``$INTEGER`` | Yes |  |
+| `last_updated` | `String` | Yes |  |
+| `online_registration_available` | `Integer` | Yes |  |
+| `same_day_registration_available` | `Integer` | Yes |  |
+| `total_state` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -216,7 +216,7 @@ stat = client.Stat
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Stat.load({ "id" => "stat_id" })
+result = client.Stat.load()
 ```
 
 ### Common Methods
@@ -259,26 +259,26 @@ state = client.State
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | ``$STRING`` | Yes |  |
-| `emoji` | ``$STRING`` | Yes |  |
-| `general_election_date` | ``$STRING`` | Yes |  |
-| `label` | ``$STRING`` | Yes |  |
-| `last_minute_accepted` | ``$BOOLEAN`` | Yes |  |
-| `note` | ``$STRING`` | No |  |
-| `online_accepted` | ``$BOOLEAN`` | Yes |  |
-| `primary_date` | ``$STRING`` | Yes |  |
-| `primary_deadline` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `value` | ``$STRING`` | Yes |  |
+| `deadline` | `String` | Yes |  |
+| `emoji` | `String` | Yes |  |
+| `general_election_date` | `String` | Yes |  |
+| `label` | `String` | Yes |  |
+| `last_minute_accepted` | `Boolean` | Yes |  |
+| `note` | `String` | No |  |
+| `online_accepted` | `Boolean` | Yes |  |
+| `primary_date` | `String` | Yes |  |
+| `primary_deadline` | `String` | Yes |  |
+| `url` | `String` | Yes |  |
+| `value` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.State.list(nil)
+results = client.State.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -286,7 +286,7 @@ results = client.State.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.State.load({ "id" => "state_id" })
+result = client.State.load()
 ```
 
 ### Common Methods

@@ -11,6 +11,8 @@
 ---@field primary? table
 
 ---@class DeadlineListMatch
+---@field general? table
+---@field primary? table
 
 ---@class RegistrationFeature
 
@@ -23,6 +25,10 @@
 ---@field total_state number
 
 ---@class StatLoadMatch
+---@field last_updated? string
+---@field online_registration_available? number
+---@field same_day_registration_available? number
+---@field total_state? number
 
 ---@class State
 ---@field deadline string
@@ -41,6 +47,17 @@
 ---@field state_abbreviation string
 
 ---@class StateListMatch
+---@field deadline? string
+---@field emoji? string
+---@field general_election_date? string
+---@field label? string
+---@field last_minute_accepted? boolean
+---@field note? string
+---@field online_accepted? boolean
+---@field primary_date? string
+---@field primary_deadline? string
+---@field url? string
+---@field value? string
 
 local M = {}
 

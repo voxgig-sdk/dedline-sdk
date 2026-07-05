@@ -57,11 +57,11 @@ Create a new `StatEntity` instance. Pass `null` for no initial data.
 
 Create a new `StateEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DedlineUtility`
 
 Return a copy of the SDK utility object.
 
@@ -104,34 +104,34 @@ $deadline = $client->Deadline();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `general` | ``$ARRAY`` | No |  |
-| `primary` | ``$ARRAY`` | No |  |
+| `general` | `array` | No |  |
+| `primary` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Deadline()->list([]);
+$results = $client->Deadline()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -140,7 +140,7 @@ Set the entity match criteria.
 Create a new `DeadlineEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -155,29 +155,29 @@ $registration_feature = $client->RegistrationFeature();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->RegistrationFeature()->list([]);
+$results = $client->RegistrationFeature()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -186,7 +186,7 @@ Set the entity match criteria.
 Create a new `RegistrationFeatureEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -203,10 +203,10 @@ $stat = $client->Stat();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | ``$STRING`` | Yes |  |
-| `online_registration_available` | ``$INTEGER`` | Yes |  |
-| `same_day_registration_available` | ``$INTEGER`` | Yes |  |
-| `total_state` | ``$INTEGER`` | Yes |  |
+| `last_updated` | `string` | Yes |  |
+| `online_registration_available` | `int` | Yes |  |
+| `same_day_registration_available` | `int` | Yes |  |
+| `total_state` | `int` | Yes |  |
 
 ### Operations
 
@@ -215,24 +215,24 @@ $stat = $client->Stat();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Stat()->load(["id" => "stat_id"]);
+$result = $client->Stat()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -241,7 +241,7 @@ Set the entity match criteria.
 Create a new `StatEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -258,26 +258,26 @@ $state = $client->State();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | ``$STRING`` | Yes |  |
-| `emoji` | ``$STRING`` | Yes |  |
-| `general_election_date` | ``$STRING`` | Yes |  |
-| `label` | ``$STRING`` | Yes |  |
-| `last_minute_accepted` | ``$BOOLEAN`` | Yes |  |
-| `note` | ``$STRING`` | No |  |
-| `online_accepted` | ``$BOOLEAN`` | Yes |  |
-| `primary_date` | ``$STRING`` | Yes |  |
-| `primary_deadline` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
-| `value` | ``$STRING`` | Yes |  |
+| `deadline` | `string` | Yes |  |
+| `emoji` | `string` | Yes |  |
+| `general_election_date` | `string` | Yes |  |
+| `label` | `string` | Yes |  |
+| `last_minute_accepted` | `bool` | Yes |  |
+| `note` | `string` | No |  |
+| `online_accepted` | `bool` | Yes |  |
+| `primary_date` | `string` | Yes |  |
+| `primary_deadline` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
+| `value` | `string` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->State()->list([]);
+$results = $client->State()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -285,24 +285,24 @@ $results = $client->State()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->State()->load(["id" => "state_id"]);
+$result = $client->State()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -311,7 +311,7 @@ Set the entity match criteria.
 Create a new `StateEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
