@@ -47,6 +47,16 @@ for _, item in ipairs(deadlines) do
 end
 ```
 
+### 3. Load a state
+
+State is nested under state_abbreviation, so provide the `state_abbreviation`.
+
+```lua
+local state, err = client:State():load({ state_abbreviation = "example_state_abbreviation" })
+if err then error(err) end
+print(state)
+```
+
 
 ## Error handling
 
@@ -387,7 +397,7 @@ Create an instance: `local state = client:State(nil)`
 #### Example: Load
 
 ```lua
-local state, err = client:State():load()
+local state, err = client:State():load({ state_abbreviation = "state_abbreviation" })
 ```
 
 #### Example: List

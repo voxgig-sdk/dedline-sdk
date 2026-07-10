@@ -50,6 +50,19 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
+### 3. Load a state
+
+State is nested under state_abbreviation, so provide the `state_abbreviation`.
+`load()` returns the bare record (a `dict`) and raises on error.
+
+```python
+try:
+    state = client.State().load({"state_abbreviation": "example_state_abbreviation"})
+    print(state)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
 
 ## Error handling
 
@@ -397,7 +410,7 @@ Create an instance: `state = client.State()`
 #### Example: Load
 
 ```python
-state = client.State().load()
+state = client.State().load({"state_abbreviation": "state_abbreviation"})
 ```
 
 #### Example: List

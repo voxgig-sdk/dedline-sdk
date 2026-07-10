@@ -45,6 +45,22 @@ for (const deadline of deadlines) {
 }
 ```
 
+### 3. Load a state
+
+State is nested under state_abbreviation, so provide the `state_abbreviation`.
+`load()` returns the entity directly and throws on failure:
+
+```ts
+try {
+  const state = await client.State().load({
+    state_abbreviation: 'example_state_abbreviation',
+  })
+  console.log(state)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
 
 ## Error handling
 
@@ -440,7 +456,7 @@ Create an instance: `const state = client.State()`
 #### Example: Load
 
 ```ts
-const state = await client.State().load()
+const state = await client.State().load({ state_abbreviation: 'state_abbreviation' })
 ```
 
 #### Example: List

@@ -283,7 +283,7 @@ for state in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.State().load()
+result = client.State().load({"state_abbreviation": "state_abbreviation"})
 ```
 
 ### Common Methods

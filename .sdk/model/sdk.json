@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -551,14 +548,17 @@
           "name": "Open Source",
           "url": "https://github.com/dedline-io/dedline-api"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://dedline-api.netlify.app"
           }
         ],
+        "summary": "A static API that provides information about US election registration deadlines.",
         "title": "Dedline API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/dedline-io/dedline-api"
       },
       "option": {},
       "target": {
@@ -611,6 +611,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -661,6 +664,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

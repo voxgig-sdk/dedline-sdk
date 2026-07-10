@@ -44,6 +44,20 @@ rescue => err
 end
 ```
 
+### 3. Load a state
+
+State is nested under state_abbreviation, so provide the `state_abbreviation`.
+
+```ruby
+begin
+  # load returns the bare State record (raises on error).
+  state = client.State.load({ "state_abbreviation" => "example_state_abbreviation" })
+  puts state
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
 
 ## Error handling
 
@@ -395,7 +409,7 @@ Create an instance: `state = client.State`
 
 ```ruby
 # load returns the bare State record (raises on error).
-state = client.State.load()
+state = client.State.load({ "state_abbreviation" => "state_abbreviation" })
 ```
 
 #### Example: List

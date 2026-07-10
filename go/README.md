@@ -349,7 +349,7 @@ fmt.Println(deadlines) // the array of records
 
 ### RegistrationFeature
 
-Create an instance: `registration_feature := client.RegistrationFeature(nil)`
+Create an instance: `registrationFeature := client.RegistrationFeature(nil)`
 
 #### Operations
 
@@ -360,11 +360,11 @@ Create an instance: `registration_feature := client.RegistrationFeature(nil)`
 #### Example: List
 
 ```go
-registration_features, err := client.RegistrationFeature(nil).List(nil, nil)
+registrationFeatures, err := client.RegistrationFeature(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(registration_features) // the array of records
+fmt.Println(registrationFeatures) // the array of records
 ```
 
 
@@ -428,7 +428,7 @@ Create an instance: `state := client.State(nil)`
 #### Example: Load
 
 ```go
-state, err := client.State(nil).Load(nil, nil)
+state, err := client.State(nil).Load(map[string]any{"state_abbreviation": "state_abbreviation"}, nil)
 if err != nil {
     panic(err)
 }

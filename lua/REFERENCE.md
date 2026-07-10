@@ -283,7 +283,7 @@ local results, err = client:State():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:State():load()
+local result, err = client:State():load({ state_abbreviation = "state_abbreviation" })
 ```
 
 ### Common Methods

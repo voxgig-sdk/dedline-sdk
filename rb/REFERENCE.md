@@ -286,7 +286,7 @@ results = client.State.list
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.State.load()
+result = client.State.load({ "state_abbreviation" => "state_abbreviation" })
 ```
 
 ### Common Methods

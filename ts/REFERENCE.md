@@ -327,7 +327,7 @@ const results = await client.State().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.State().load()
+const result = await client.State().load({ state_abbreviation: 'state_abbreviation' })
 ```
 
 ### Common Methods

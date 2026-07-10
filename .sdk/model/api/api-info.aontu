@@ -19,9 +19,9 @@ main: {
           url: "https://dedline-api.netlify.app"
         }
       ]
+      summary: "A static API that provides information about US election registration deadlines."
       title: "Dedline API"
       version: "1.0.0"
+      website: "https://github.com/dedline-io/dedline-api"
     }
   }
-}
-

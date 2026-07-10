@@ -103,6 +103,7 @@ same parameters as `Direct()`.
 
 ```go
 deadline := client.Deadline(nil)
+fmt.Println(deadline.GetName()) // "deadline"
 ```
 
 ### Fields
@@ -120,6 +121,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Deadline(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -149,7 +154,8 @@ Return the entity name.
 ## RegistrationFeatureEntity
 
 ```go
-registration_feature := client.RegistrationFeature(nil)
+registrationFeature := client.RegistrationFeature(nil)
+fmt.Println(registrationFeature.GetName()) // "registration_feature"
 ```
 
 ### Operations
@@ -160,6 +166,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.RegistrationFeature(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -190,6 +200,7 @@ Return the entity name.
 
 ```go
 stat := client.Stat(nil)
+fmt.Println(stat.GetName()) // "stat"
 ```
 
 ### Fields
@@ -209,6 +220,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Stat(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -239,6 +254,7 @@ Return the entity name.
 
 ```go
 state := client.State(nil)
+fmt.Println(state.GetName()) // "state"
 ```
 
 ### Fields
@@ -265,6 +281,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.State(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -272,7 +292,11 @@ results, err := client.State(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.State(nil).Load(nil, nil)
+result, err := client.State(nil).Load(map[string]any{"state_abbreviation": "state_abbreviation"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
