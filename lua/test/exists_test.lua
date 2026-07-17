@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Dedline SDK exists test
 
 local sdk = require("dedline_sdk")
 
