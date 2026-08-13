@@ -285,10 +285,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `"last_updated"` |  |
-| `"online_registration_available"` |  |
-| `"same_day_registration_available"` |  |
-| `"total_state"` |  |
+| `"lastUpdated"` |  |
+| `"onlineRegistrationAvailable"` |  |
+| `"sameDayRegistrationAvailable"` |  |
+| `"totalStates"` |  |
 
 Operations: Load.
 
@@ -300,13 +300,13 @@ API path: `/stats.json`
 | --- | --- |
 | `"deadline"` |  |
 | `"emoji"` |  |
-| `"general_election_date"` |  |
+| `"generalElectionDate"` |  |
 | `"label"` |  |
-| `"last_minute_accepted"` |  |
-| `"note"` |  |
-| `"online_accepted"` |  |
-| `"primary_date"` |  |
-| `"primary_deadline"` |  |
+| `"lastMinuteAccepted"` |  |
+| `"notes"` |  |
+| `"onlineAccepted"` |  |
+| `"primaryDate"` |  |
+| `"primaryDeadline"` |  |
 | `"url"` |  |
 | `"value"` |  |
 
@@ -382,10 +382,10 @@ Create an instance: `stat := client.Stat(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `string` |  |
-| `online_registration_available` | `int` |  |
-| `same_day_registration_available` | `int` |  |
-| `total_state` | `int` |  |
+| `lastUpdated` | `string` |  |
+| `onlineRegistrationAvailable` | `int` |  |
+| `sameDayRegistrationAvailable` | `int` |  |
+| `totalStates` | `int` |  |
 
 #### Example: Load
 
@@ -415,13 +415,13 @@ Create an instance: `state := client.State(nil)`
 | --- | --- | --- |
 | `deadline` | `string` |  |
 | `emoji` | `string` |  |
-| `general_election_date` | `string` |  |
+| `generalElectionDate` | `string` |  |
 | `label` | `string` |  |
-| `last_minute_accepted` | `bool` |  |
-| `note` | `string` |  |
-| `online_accepted` | `bool` |  |
-| `primary_date` | `string` |  |
-| `primary_deadline` | `string` |  |
+| `lastMinuteAccepted` | `bool` |  |
+| `notes` | `string` |  |
+| `onlineAccepted` | `bool` |  |
+| `primaryDate` | `string` |  |
+| `primaryDeadline` | `string` |  |
 | `url` | `string` |  |
 | `value` | `string` |  |
 

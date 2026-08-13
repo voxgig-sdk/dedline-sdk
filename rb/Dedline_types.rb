@@ -44,43 +44,43 @@ end
 
 # Stat entity data model.
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String]
 #
-# @!attribute [rw] online_registration_available
+# @!attribute [rw] onlineRegistrationAvailable
 #   @return [Integer]
 #
-# @!attribute [rw] same_day_registration_available
+# @!attribute [rw] sameDayRegistrationAvailable
 #   @return [Integer]
 #
-# @!attribute [rw] total_state
+# @!attribute [rw] totalStates
 #   @return [Integer]
 Stat = Struct.new(
-  :last_updated,
-  :online_registration_available,
-  :same_day_registration_available,
-  :total_state,
+  :lastUpdated,
+  :onlineRegistrationAvailable,
+  :sameDayRegistrationAvailable,
+  :totalStates,
   keyword_init: true
 )
 
 # Request payload for Stat#load.
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
-# @!attribute [rw] online_registration_available
+# @!attribute [rw] onlineRegistrationAvailable
 #   @return [Integer, nil]
 #
-# @!attribute [rw] same_day_registration_available
+# @!attribute [rw] sameDayRegistrationAvailable
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_state
+# @!attribute [rw] totalStates
 #   @return [Integer, nil]
 StatLoadMatch = Struct.new(
-  :last_updated,
-  :online_registration_available,
-  :same_day_registration_available,
-  :total_state,
+  :lastUpdated,
+  :onlineRegistrationAvailable,
+  :sameDayRegistrationAvailable,
+  :totalStates,
   keyword_init: true
 )
 
@@ -92,25 +92,25 @@ StatLoadMatch = Struct.new(
 # @!attribute [rw] emoji
 #   @return [String]
 #
-# @!attribute [rw] general_election_date
+# @!attribute [rw] generalElectionDate
 #   @return [String]
 #
 # @!attribute [rw] label
 #   @return [String]
 #
-# @!attribute [rw] last_minute_accepted
+# @!attribute [rw] lastMinuteAccepted
 #   @return [Boolean]
 #
-# @!attribute [rw] note
+# @!attribute [rw] notes
 #   @return [String, nil]
 #
-# @!attribute [rw] online_accepted
+# @!attribute [rw] onlineAccepted
 #   @return [Boolean]
 #
-# @!attribute [rw] primary_date
+# @!attribute [rw] primaryDate
 #   @return [String]
 #
-# @!attribute [rw] primary_deadline
+# @!attribute [rw] primaryDeadline
 #   @return [String]
 #
 # @!attribute [rw] url
@@ -121,13 +121,13 @@ StatLoadMatch = Struct.new(
 State = Struct.new(
   :deadline,
   :emoji,
-  :general_election_date,
+  :generalElectionDate,
   :label,
-  :last_minute_accepted,
-  :note,
-  :online_accepted,
-  :primary_date,
-  :primary_deadline,
+  :lastMinuteAccepted,
+  :notes,
+  :onlineAccepted,
+  :primaryDate,
+  :primaryDeadline,
   :url,
   :value,
   keyword_init: true
@@ -150,25 +150,25 @@ StateLoadMatch = Struct.new(
 # @!attribute [rw] emoji
 #   @return [String, nil]
 #
-# @!attribute [rw] general_election_date
+# @!attribute [rw] generalElectionDate
 #   @return [String, nil]
 #
 # @!attribute [rw] label
 #   @return [String, nil]
 #
-# @!attribute [rw] last_minute_accepted
+# @!attribute [rw] lastMinuteAccepted
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] note
+# @!attribute [rw] notes
 #   @return [String, nil]
 #
-# @!attribute [rw] online_accepted
+# @!attribute [rw] onlineAccepted
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] primary_date
+# @!attribute [rw] primaryDate
 #   @return [String, nil]
 #
-# @!attribute [rw] primary_deadline
+# @!attribute [rw] primaryDeadline
 #   @return [String, nil]
 #
 # @!attribute [rw] url
@@ -179,13 +179,13 @@ StateLoadMatch = Struct.new(
 StateListMatch = Struct.new(
   :deadline,
   :emoji,
-  :general_election_date,
+  :generalElectionDate,
   :label,
-  :last_minute_accepted,
-  :note,
-  :online_accepted,
-  :primary_date,
-  :primary_deadline,
+  :lastMinuteAccepted,
+  :notes,
+  :onlineAccepted,
+  :primaryDate,
+  :primaryDeadline,
   :url,
   :value,
   keyword_init: true

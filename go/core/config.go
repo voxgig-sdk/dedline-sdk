@@ -51,6 +51,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/upcoming.json",
 								"parts": []any{
@@ -64,7 +65,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -82,6 +82,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/lastMinuteAccepted.json",
 								"parts": []any{
@@ -97,6 +98,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/onlineNotAccepted.json",
 								"parts": []any{
@@ -110,7 +112,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -121,28 +122,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "last_updated",
+						"name": "lastUpdated",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "online_registration_available",
+						"name": "onlineRegistrationAvailable",
 						"req": true,
 						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "same_day_registration_available",
+						"name": "sameDayRegistrationAvailable",
 						"req": true,
 						"type": "`$INTEGER`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "total_state",
+						"name": "totalStates",
 						"req": true,
 						"type": "`$INTEGER`",
 						"index$": 3,
@@ -157,6 +158,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/stats.json",
 								"parts": []any{
@@ -170,7 +172,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -195,7 +196,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "general_election_date",
+						"name": "generalElectionDate",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 2,
@@ -209,35 +210,35 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "last_minute_accepted",
+						"name": "lastMinuteAccepted",
 						"req": true,
 						"type": "`$BOOLEAN`",
 						"index$": 4,
 					},
 					map[string]any{
 						"active": true,
-						"name": "note",
+						"name": "notes",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "online_accepted",
+						"name": "onlineAccepted",
 						"req": true,
 						"type": "`$BOOLEAN`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "primary_date",
+						"name": "primaryDate",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "primary_deadline",
+						"name": "primaryDeadline",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 8,
@@ -266,6 +267,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/states.json",
 								"parts": []any{
@@ -274,12 +276,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.states`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -301,6 +302,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{stateAbbreviation}.json",
 								"parts": []any{
@@ -320,7 +322,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

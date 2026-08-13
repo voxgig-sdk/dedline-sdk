@@ -233,9 +233,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local deadline, err = client:Deadline():load()
+    local stat, err = client:Stat():load()
     if err then error(err) end
-    -- deadline is the loaded record
+    -- stat is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -266,10 +266,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `last_updated` |  |
-| `online_registration_available` |  |
-| `same_day_registration_available` |  |
-| `total_state` |  |
+| `lastUpdated` |  |
+| `onlineRegistrationAvailable` |  |
+| `sameDayRegistrationAvailable` |  |
+| `totalStates` |  |
 
 Operations: Load.
 
@@ -281,13 +281,13 @@ API path: `/stats.json`
 | --- | --- |
 | `deadline` |  |
 | `emoji` |  |
-| `general_election_date` |  |
+| `generalElectionDate` |  |
 | `label` |  |
-| `last_minute_accepted` |  |
-| `note` |  |
-| `online_accepted` |  |
-| `primary_date` |  |
-| `primary_deadline` |  |
+| `lastMinuteAccepted` |  |
+| `notes` |  |
+| `onlineAccepted` |  |
+| `primaryDate` |  |
+| `primaryDeadline` |  |
 | `url` |  |
 | `value` |  |
 
@@ -355,10 +355,10 @@ Create an instance: `local stat = client:Stat(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `string` |  |
-| `online_registration_available` | `number` |  |
-| `same_day_registration_available` | `number` |  |
-| `total_state` | `number` |  |
+| `lastUpdated` | `string` |  |
+| `onlineRegistrationAvailable` | `number` |  |
+| `sameDayRegistrationAvailable` | `number` |  |
+| `totalStates` | `number` |  |
 
 #### Example: Load
 
@@ -384,13 +384,13 @@ Create an instance: `local state = client:State(nil)`
 | --- | --- | --- |
 | `deadline` | `string` |  |
 | `emoji` | `string` |  |
-| `general_election_date` | `string` |  |
+| `generalElectionDate` | `string` |  |
 | `label` | `string` |  |
-| `last_minute_accepted` | `boolean` |  |
-| `note` | `string` |  |
-| `online_accepted` | `boolean` |  |
-| `primary_date` | `string` |  |
-| `primary_deadline` | `string` |  |
+| `lastMinuteAccepted` | `boolean` |  |
+| `notes` | `string` |  |
+| `onlineAccepted` | `boolean` |  |
+| `primaryDate` | `string` |  |
+| `primaryDeadline` | `string` |  |
 | `url` | `string` |  |
 | `value` | `string` |  |
 

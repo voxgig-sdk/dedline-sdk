@@ -201,10 +201,10 @@ local stat = client:Stat(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | `string` | Yes |  |
-| `online_registration_available` | `number` | Yes |  |
-| `same_day_registration_available` | `number` | Yes |  |
-| `total_state` | `number` | Yes |  |
+| `lastUpdated` | `string` | Yes |  |
+| `onlineRegistrationAvailable` | `number` | Yes |  |
+| `sameDayRegistrationAvailable` | `number` | Yes |  |
+| `totalStates` | `number` | Yes |  |
 
 ### Operations
 
@@ -258,13 +258,13 @@ local state = client:State(nil)
 | --- | --- | --- | --- |
 | `deadline` | `string` | Yes |  |
 | `emoji` | `string` | Yes |  |
-| `general_election_date` | `string` | Yes |  |
+| `generalElectionDate` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
-| `last_minute_accepted` | `boolean` | Yes |  |
-| `note` | `string` | No |  |
-| `online_accepted` | `boolean` | Yes |  |
-| `primary_date` | `string` | Yes |  |
-| `primary_deadline` | `string` | Yes |  |
+| `lastMinuteAccepted` | `boolean` | Yes |  |
+| `notes` | `string` | No |  |
+| `onlineAccepted` | `boolean` | Yes |  |
+| `primaryDate` | `string` | Yes |  |
+| `primaryDeadline` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
 | `value` | `string` | Yes |  |
 

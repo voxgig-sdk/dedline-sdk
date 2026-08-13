@@ -22,47 +22,53 @@ export interface RegistrationFeatureListMatch {
 }
 
 export interface Stat {
-  last_updated: string
-  online_registration_available: number
-  same_day_registration_available: number
-  total_state: number
+  lastUpdated: string
+  onlineRegistrationAvailable: number
+  sameDayRegistrationAvailable: number
+  totalStates: number
 }
 
 export interface StatLoadMatch {
-  last_updated?: string
-  online_registration_available?: number
-  same_day_registration_available?: number
-  total_state?: number
+  lastUpdated?: string
+  onlineRegistrationAvailable?: number
+  sameDayRegistrationAvailable?: number
+  totalStates?: number
 }
 
 export interface State {
   deadline: string
   emoji: string
-  general_election_date: string
+  generalElectionDate: string
   label: string
-  last_minute_accepted: boolean
-  note?: string
-  online_accepted: boolean
-  primary_date: string
-  primary_deadline: string
+  lastMinuteAccepted: boolean
+  notes?: string
+  onlineAccepted: boolean
+  primaryDate: string
+  primaryDeadline: string
   url: string
   value: string
 }
 
 export interface StateLoadMatch {
   state_abbreviation: string
+
+  // Selects a custom action instead of the plain load:
+  //   'state_abbreviation'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface StateListMatch {
   deadline?: string
   emoji?: string
-  general_election_date?: string
+  generalElectionDate?: string
   label?: string
-  last_minute_accepted?: boolean
-  note?: string
-  online_accepted?: boolean
-  primary_date?: string
-  primary_deadline?: string
+  lastMinuteAccepted?: boolean
+  notes?: string
+  onlineAccepted?: boolean
+  primaryDate?: string
+  primaryDeadline?: string
   url?: string
   value?: string
 }

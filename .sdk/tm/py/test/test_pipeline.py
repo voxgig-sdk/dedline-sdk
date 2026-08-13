@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DedlineSDK
-from core.error import DedlineError
-from core.result import DedlineResult
-from core.response import DedlineResponse
-from core.spec import DedlineSpec
-from feature.base_feature import DedlineBaseFeature
+from projectname_sdk.core.error import DedlineError
+from projectname_sdk.core.result import DedlineResult
+from projectname_sdk.core.response import DedlineResponse
+from projectname_sdk.core.spec import DedlineSpec
+from projectname_sdk.feature.base_feature import DedlineBaseFeature
 
 
 def _client():

@@ -63,7 +63,7 @@ describe('RegistrationFeatureEntity', async () => {
     const registration_feature_ref01_ent = client.RegistrationFeature()
     const registration_feature_ref01_match: any = {}
 
-    const registration_feature_ref01_list = await registration_feature_ref01_ent.list(registration_feature_ref01_match)
+    const registration_feature_ref01_list = (await registration_feature_ref01_ent.list(registration_feature_ref01_match)).map((e: any) => e.data())
 
 
   })

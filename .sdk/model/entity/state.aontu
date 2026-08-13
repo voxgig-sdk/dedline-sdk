@@ -16,7 +16,7 @@ main: kit: entity: state: {
       type: "`$STRING`"
     }
     {
-      name: "general_election_date"
+      name: "generalElectionDate"
       req: true
       type: "`$STRING`"
     }
@@ -26,27 +26,27 @@ main: kit: entity: state: {
       type: "`$STRING`"
     }
     {
-      name: "last_minute_accepted"
+      name: "lastMinuteAccepted"
       req: true
       type: "`$BOOLEAN`"
     }
     {
-      name: "note"
+      name: "notes"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "online_accepted"
+      name: "onlineAccepted"
       req: true
       type: "`$BOOLEAN`"
     }
     {
-      name: "primary_date"
+      name: "primaryDate"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "primary_deadline"
+      name: "primaryDeadline"
       req: true
       type: "`$STRING`"
     }
@@ -75,7 +75,7 @@ main: kit: entity: state: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.states`"
           }
         }
       ]

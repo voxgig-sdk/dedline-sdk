@@ -63,7 +63,7 @@ describe('StateEntity', async () => {
     const state_ref01_ent = client.State()
     const state_ref01_match: any = {}
 
-    const state_ref01_list = await state_ref01_ent.list(state_ref01_match)
+    const state_ref01_list = (await state_ref01_ent.list(state_ref01_match)).map((e: any) => e.data())
 
 
 

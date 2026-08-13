@@ -35,7 +35,9 @@ const client = new DedlineSDK()
 
 ### 2. List deadline records
 
-`list()` resolves to an array of Deadline objects — iterate it directly:
+`list()` resolves to an array of Deadline ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const deadlines = await client.Deadline().list()
@@ -136,7 +138,8 @@ Create a mock client for unit testing — no server required:
 const client = DedlineSDK.test()
 
 const deadline = await client.Deadline().list()
-// deadline is a bare entity populated with mock response data
+// deadline is the entity, populated with mock response data
+// — call deadline.data() for the record itself
 console.log(deadline)
 ```
 
@@ -325,10 +328,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `last_updated` |  |
-| `online_registration_available` |  |
-| `same_day_registration_available` |  |
-| `total_state` |  |
+| `lastUpdated` |  |
+| `onlineRegistrationAvailable` |  |
+| `sameDayRegistrationAvailable` |  |
+| `totalStates` |  |
 
 Operations: load.
 
@@ -340,13 +343,13 @@ API path: `/stats.json`
 | --- | --- |
 | `deadline` |  |
 | `emoji` |  |
-| `general_election_date` |  |
+| `generalElectionDate` |  |
 | `label` |  |
-| `last_minute_accepted` |  |
-| `note` |  |
-| `online_accepted` |  |
-| `primary_date` |  |
-| `primary_deadline` |  |
+| `lastMinuteAccepted` |  |
+| `notes` |  |
+| `onlineAccepted` |  |
+| `primaryDate` |  |
+| `primaryDeadline` |  |
 | `url` |  |
 | `value` |  |
 
@@ -414,10 +417,10 @@ Create an instance: `const stat = client.Stat()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `string` |  |
-| `online_registration_available` | `number` |  |
-| `same_day_registration_available` | `number` |  |
-| `total_state` | `number` |  |
+| `lastUpdated` | `string` |  |
+| `onlineRegistrationAvailable` | `number` |  |
+| `sameDayRegistrationAvailable` | `number` |  |
+| `totalStates` | `number` |  |
 
 #### Example: Load
 
@@ -443,13 +446,13 @@ Create an instance: `const state = client.State()`
 | --- | --- | --- |
 | `deadline` | `string` |  |
 | `emoji` | `string` |  |
-| `general_election_date` | `string` |  |
+| `generalElectionDate` | `string` |  |
 | `label` | `string` |  |
-| `last_minute_accepted` | `boolean` |  |
-| `note` | `string` |  |
-| `online_accepted` | `boolean` |  |
-| `primary_date` | `string` |  |
-| `primary_deadline` | `string` |  |
+| `lastMinuteAccepted` | `boolean` |  |
+| `notes` | `string` |  |
+| `onlineAccepted` | `boolean` |  |
+| `primaryDate` | `string` |  |
+| `primaryDeadline` | `string` |  |
 | `url` | `string` |  |
 | `value` | `string` |  |
 

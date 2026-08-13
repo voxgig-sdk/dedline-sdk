@@ -50,7 +50,7 @@ State is nested under state_abbreviation, so provide the `state_abbreviation`.
 
 ```ruby
 begin
-  # load returns the bare State record (raises on error).
+  # load returns the ENTITY — call data_get for the State record (raises on error).
   state = client.State.load({ "state_abbreviation" => "example_state_abbreviation" })
   puts state
 rescue => err
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = DedlineSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 deadline = client.Deadline.list()
 puts deadline
 ```
@@ -274,10 +275,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `last_updated` |  |
-| `online_registration_available` |  |
-| `same_day_registration_available` |  |
-| `total_state` |  |
+| `lastUpdated` |  |
+| `onlineRegistrationAvailable` |  |
+| `sameDayRegistrationAvailable` |  |
+| `totalStates` |  |
 
 Operations: Load.
 
@@ -289,13 +290,13 @@ API path: `/stats.json`
 | --- | --- |
 | `deadline` |  |
 | `emoji` |  |
-| `general_election_date` |  |
+| `generalElectionDate` |  |
 | `label` |  |
-| `last_minute_accepted` |  |
-| `note` |  |
-| `online_accepted` |  |
-| `primary_date` |  |
-| `primary_deadline` |  |
+| `lastMinuteAccepted` |  |
+| `notes` |  |
+| `onlineAccepted` |  |
+| `primaryDate` |  |
+| `primaryDeadline` |  |
 | `url` |  |
 | `value` |  |
 
@@ -365,15 +366,15 @@ Create an instance: `stat = client.Stat`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `String` |  |
-| `online_registration_available` | `Integer` |  |
-| `same_day_registration_available` | `Integer` |  |
-| `total_state` | `Integer` |  |
+| `lastUpdated` | `String` |  |
+| `onlineRegistrationAvailable` | `Integer` |  |
+| `sameDayRegistrationAvailable` | `Integer` |  |
+| `totalStates` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Stat record (raises on error).
+# load returns the ENTITY — call data_get for the Stat record (raises on error).
 stat = client.Stat.load()
 ```
 
@@ -395,20 +396,20 @@ Create an instance: `state = client.State`
 | --- | --- | --- |
 | `deadline` | `String` |  |
 | `emoji` | `String` |  |
-| `general_election_date` | `String` |  |
+| `generalElectionDate` | `String` |  |
 | `label` | `String` |  |
-| `last_minute_accepted` | `Boolean` |  |
-| `note` | `String` |  |
-| `online_accepted` | `Boolean` |  |
-| `primary_date` | `String` |  |
-| `primary_deadline` | `String` |  |
+| `lastMinuteAccepted` | `Boolean` |  |
+| `notes` | `String` |  |
+| `onlineAccepted` | `Boolean` |  |
+| `primaryDate` | `String` |  |
+| `primaryDeadline` | `String` |  |
 | `url` | `String` |  |
 | `value` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare State record (raises on error).
+# load returns the ENTITY — call data_get for the State record (raises on error).
 state = client.State.load({ "state_abbreviation" => "state_abbreviation" })
 ```
 

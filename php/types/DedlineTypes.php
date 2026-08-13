@@ -39,19 +39,19 @@ class RegistrationFeatureListMatch
 /** Stat entity data model. */
 class Stat
 {
-    public string $last_updated;
-    public int $online_registration_available;
-    public int $same_day_registration_available;
-    public int $total_state;
+    public string $lastUpdated;
+    public int $onlineRegistrationAvailable;
+    public int $sameDayRegistrationAvailable;
+    public int $totalStates;
 }
 
 /** Request payload for Stat#load. */
 class StatLoadMatch
 {
-    public ?string $last_updated = null;
-    public ?int $online_registration_available = null;
-    public ?int $same_day_registration_available = null;
-    public ?int $total_state = null;
+    public ?string $lastUpdated = null;
+    public ?int $onlineRegistrationAvailable = null;
+    public ?int $sameDayRegistrationAvailable = null;
+    public ?int $totalStates = null;
 }
 
 /** State entity data model. */
@@ -59,13 +59,13 @@ class State
 {
     public string $deadline;
     public string $emoji;
-    public string $general_election_date;
+    public string $generalElectionDate;
     public string $label;
-    public bool $last_minute_accepted;
-    public ?string $note = null;
-    public bool $online_accepted;
-    public string $primary_date;
-    public string $primary_deadline;
+    public bool $lastMinuteAccepted;
+    public ?string $notes = null;
+    public bool $onlineAccepted;
+    public string $primaryDate;
+    public string $primaryDeadline;
     public string $url;
     public string $value;
 }
@@ -81,13 +81,13 @@ class StateListMatch
 {
     public ?string $deadline = null;
     public ?string $emoji = null;
-    public ?string $general_election_date = null;
+    public ?string $generalElectionDate = null;
     public ?string $label = null;
-    public ?bool $last_minute_accepted = null;
-    public ?string $note = null;
-    public ?bool $online_accepted = null;
-    public ?string $primary_date = null;
-    public ?string $primary_deadline = null;
+    public ?bool $lastMinuteAccepted = null;
+    public ?string $notes = null;
+    public ?bool $onlineAccepted = null;
+    public ?string $primaryDate = null;
+    public ?string $primaryDeadline = null;
     public ?string $url = null;
     public ?string $value = null;
 }

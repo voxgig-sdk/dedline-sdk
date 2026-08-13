@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DedlineControl
-from core.error import DedlineError
-from core.result import DedlineResult
-from core.spec import DedlineSpec
+from dedline_sdk.config import make_config
+from dedline_sdk.features import _make_feature
+from dedline_sdk.core.control import DedlineControl
+from dedline_sdk.core.error import DedlineError
+from dedline_sdk.core.result import DedlineResult
+from dedline_sdk.core.spec import DedlineSpec
 
 
 # True when this SDK was generated with the named feature.

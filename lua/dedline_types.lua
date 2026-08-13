@@ -19,27 +19,27 @@
 ---@class RegistrationFeatureListMatch
 
 ---@class Stat
----@field last_updated string
----@field online_registration_available number
----@field same_day_registration_available number
----@field total_state number
+---@field lastUpdated string
+---@field onlineRegistrationAvailable number
+---@field sameDayRegistrationAvailable number
+---@field totalStates number
 
 ---@class StatLoadMatch
----@field last_updated? string
----@field online_registration_available? number
----@field same_day_registration_available? number
----@field total_state? number
+---@field lastUpdated? string
+---@field onlineRegistrationAvailable? number
+---@field sameDayRegistrationAvailable? number
+---@field totalStates? number
 
 ---@class State
 ---@field deadline string
 ---@field emoji string
----@field general_election_date string
+---@field generalElectionDate string
 ---@field label string
----@field last_minute_accepted boolean
----@field note? string
----@field online_accepted boolean
----@field primary_date string
----@field primary_deadline string
+---@field lastMinuteAccepted boolean
+---@field notes? string
+---@field onlineAccepted boolean
+---@field primaryDate string
+---@field primaryDeadline string
 ---@field url string
 ---@field value string
 
@@ -49,13 +49,13 @@
 ---@class StateListMatch
 ---@field deadline? string
 ---@field emoji? string
----@field general_election_date? string
+---@field generalElectionDate? string
 ---@field label? string
----@field last_minute_accepted? boolean
----@field note? string
----@field online_accepted? boolean
----@field primary_date? string
----@field primary_deadline? string
+---@field lastMinuteAccepted? boolean
+---@field notes? string
+---@field onlineAccepted? boolean
+---@field primaryDate? string
+---@field primaryDeadline? string
 ---@field url? string
 ---@field value? string
 

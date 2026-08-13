@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ DedlineUtility::setRegistrar(function (DedlineUtility $u): void {
     $u->prepare_params = [DedlinePrepareParams::class, 'call'];
     $u->prepare_path = [DedlinePreparePath::class, 'call'];
     $u->prepare_query = [DedlinePrepareQuery::class, 'call'];
+    $u->graphql_body = [DedlineGraphql::class, 'body'];
+    $u->graphql_errors = [DedlineGraphql::class, 'errors'];
     $u->result_basic = [DedlineResultBasic::class, 'call'];
     $u->result_body = [DedlineResultBody::class, 'call'];
     $u->result_headers = [DedlineResultHeaders::class, 'call'];

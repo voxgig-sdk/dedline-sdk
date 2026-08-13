@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DedlineSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DedlineSDK.test({
+  entity: {
+    deadline: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const deadlines = await client.Deadline().list()
-// deadlines is an array of bare Deadline records populated with mock data
+// deadlines is an array of Deadline entities, populated with mock data
+// — call deadlines[0].data() for the record itself
 console.log(deadlines)
 ```
 
@@ -110,7 +119,7 @@ import { DedlineSDK } from '@voxgig-sdk/dedline'
 
 const client = new DedlineSDK()
 
-// List all deadlines (returns Deadline[])
+// List all deadlines (returns DeadlineEntity[] — .data() for the record)
 const deadlines = await client.Deadline().list()
 for (const deadline of deadlines) {
   console.log(deadline)
@@ -361,6 +370,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://dedline-api.netlify.app](https://dedline-api.netlify.app)
 

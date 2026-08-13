@@ -2,24 +2,24 @@
   "existing": {
     "stat": {
       "STAT00": {
-        "last_updated": "s28",
-        "online_registration_available": "s29",
-        "same_day_registration_available": "s2a",
-        "total_state": "s2b",
+        "lastUpdated": "s28",
+        "onlineRegistrationAvailable": "s29",
+        "sameDayRegistrationAvailable": "s2a",
+        "totalStates": "s2b",
         "id": "STAT00"
       },
       "STAT01": {
-        "last_updated": "s50",
-        "online_registration_available": "s51",
-        "same_day_registration_available": "s52",
-        "total_state": "s53",
+        "lastUpdated": "s50",
+        "onlineRegistrationAvailable": "s51",
+        "sameDayRegistrationAvailable": "s52",
+        "totalStates": "s53",
         "id": "STAT01"
       },
       "STAT02": {
-        "last_updated": "s78",
-        "online_registration_available": "s79",
-        "same_day_registration_available": "s7a",
-        "total_state": "s7b",
+        "lastUpdated": "s78",
+        "onlineRegistrationAvailable": "s79",
+        "sameDayRegistrationAvailable": "s7a",
+        "totalStates": "s7b",
         "id": "STAT02"
       }
     }
@@ -27,10 +27,10 @@
   "new": {
     "stat": {
       "stat_ref01": {
-        "last_updated": "sa0",
-        "online_registration_available": "sa1",
-        "same_day_registration_available": "sa2",
-        "total_state": "sa3"
+        "lastUpdated": "sa0",
+        "onlineRegistrationAvailable": "sa1",
+        "sameDayRegistrationAvailable": "sa2",
+        "totalStates": "sa3"
       }
     }
   }

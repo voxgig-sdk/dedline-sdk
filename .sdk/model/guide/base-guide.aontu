@@ -29,6 +29,7 @@ guide: {
   entity: state: {
     path: "/states.json": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.states`")|top
     }
     path: "/states/{stateAbbreviation}.json": {
       action: "state_abbreviation": {}

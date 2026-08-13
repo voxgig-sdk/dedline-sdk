@@ -37,7 +37,7 @@ class DeadlineEntity extends DedlineEntityBase<Deadline> {
 
 
 
-  async list(this: any, reqmatch?: DeadlineListMatch, ctrl?: Control): Promise<Deadline[]> {
+  async list(this: any, reqmatch?: DeadlineListMatch, ctrl?: Control): Promise<DeadlineEntity[]> {
 
     const utility = this._utility
 

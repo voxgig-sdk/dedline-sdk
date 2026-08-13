@@ -203,10 +203,10 @@ $stat = $client->Stat();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | `string` | Yes |  |
-| `online_registration_available` | `int` | Yes |  |
-| `same_day_registration_available` | `int` | Yes |  |
-| `total_state` | `int` | Yes |  |
+| `lastUpdated` | `string` | Yes |  |
+| `onlineRegistrationAvailable` | `int` | Yes |  |
+| `sameDayRegistrationAvailable` | `int` | Yes |  |
+| `totalStates` | `int` | Yes |  |
 
 ### Operations
 
@@ -260,13 +260,13 @@ $state = $client->State();
 | --- | --- | --- | --- |
 | `deadline` | `string` | Yes |  |
 | `emoji` | `string` | Yes |  |
-| `general_election_date` | `string` | Yes |  |
+| `generalElectionDate` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
-| `last_minute_accepted` | `bool` | Yes |  |
-| `note` | `string` | No |  |
-| `online_accepted` | `bool` | Yes |  |
-| `primary_date` | `string` | Yes |  |
-| `primary_deadline` | `string` | Yes |  |
+| `lastMinuteAccepted` | `bool` | Yes |  |
+| `notes` | `string` | No |  |
+| `onlineAccepted` | `bool` | Yes |  |
+| `primaryDate` | `string` | Yes |  |
+| `primaryDeadline` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
 | `value` | `string` | Yes |  |
 

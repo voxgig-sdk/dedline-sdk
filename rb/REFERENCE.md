@@ -204,10 +204,10 @@ stat = client.Stat
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | `String` | Yes |  |
-| `online_registration_available` | `Integer` | Yes |  |
-| `same_day_registration_available` | `Integer` | Yes |  |
-| `total_state` | `Integer` | Yes |  |
+| `lastUpdated` | `String` | Yes |  |
+| `onlineRegistrationAvailable` | `Integer` | Yes |  |
+| `sameDayRegistrationAvailable` | `Integer` | Yes |  |
+| `totalStates` | `Integer` | Yes |  |
 
 ### Operations
 
@@ -261,13 +261,13 @@ state = client.State
 | --- | --- | --- | --- |
 | `deadline` | `String` | Yes |  |
 | `emoji` | `String` | Yes |  |
-| `general_election_date` | `String` | Yes |  |
+| `generalElectionDate` | `String` | Yes |  |
 | `label` | `String` | Yes |  |
-| `last_minute_accepted` | `Boolean` | Yes |  |
-| `note` | `String` | No |  |
-| `online_accepted` | `Boolean` | Yes |  |
-| `primary_date` | `String` | Yes |  |
-| `primary_deadline` | `String` | Yes |  |
+| `lastMinuteAccepted` | `Boolean` | Yes |  |
+| `notes` | `String` | No |  |
+| `onlineAccepted` | `Boolean` | Yes |  |
+| `primaryDate` | `String` | Yes |  |
+| `primaryDeadline` | `String` | Yes |  |
 | `url` | `String` | Yes |  |
 | `value` | `String` | Yes |  |
 

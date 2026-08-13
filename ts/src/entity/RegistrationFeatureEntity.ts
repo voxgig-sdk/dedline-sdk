@@ -37,7 +37,7 @@ class RegistrationFeatureEntity extends DedlineEntityBase<RegistrationFeature> {
 
 
 
-  async list(this: any, reqmatch?: RegistrationFeatureListMatch, ctrl?: Control): Promise<RegistrationFeature[]> {
+  async list(this: any, reqmatch?: RegistrationFeatureListMatch, ctrl?: Control): Promise<RegistrationFeatureEntity[]> {
 
     const utility = this._utility
 

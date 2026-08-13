@@ -51,7 +51,7 @@ State is nested under state_abbreviation, so provide the `state_abbreviation`.
 
 ```php
 try {
-    // load() returns the bare State record (throws on error).
+    // load() returns the ENTITY — call data_get() for the State record (throws on error).
     $state = $client->State()->load(["state_abbreviation" => "example_state_abbreviation"]);
     print_r($state);
 } catch (\Throwable $err) {
@@ -139,7 +139,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = DedlineSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $deadline = $client->Deadline()->list();
 print_r($deadline);
 ```
@@ -242,7 +243,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -284,10 +285,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `last_updated` |  |
-| `online_registration_available` |  |
-| `same_day_registration_available` |  |
-| `total_state` |  |
+| `lastUpdated` |  |
+| `onlineRegistrationAvailable` |  |
+| `sameDayRegistrationAvailable` |  |
+| `totalStates` |  |
 
 Operations: Load.
 
@@ -299,13 +300,13 @@ API path: `/stats.json`
 | --- | --- |
 | `deadline` |  |
 | `emoji` |  |
-| `general_election_date` |  |
+| `generalElectionDate` |  |
 | `label` |  |
-| `last_minute_accepted` |  |
-| `note` |  |
-| `online_accepted` |  |
-| `primary_date` |  |
-| `primary_deadline` |  |
+| `lastMinuteAccepted` |  |
+| `notes` |  |
+| `onlineAccepted` |  |
+| `primaryDate` |  |
+| `primaryDeadline` |  |
 | `url` |  |
 | `value` |  |
 
@@ -375,15 +376,15 @@ Create an instance: `$stat = $client->Stat();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `string` |  |
-| `online_registration_available` | `int` |  |
-| `same_day_registration_available` | `int` |  |
-| `total_state` | `int` |  |
+| `lastUpdated` | `string` |  |
+| `onlineRegistrationAvailable` | `int` |  |
+| `sameDayRegistrationAvailable` | `int` |  |
+| `totalStates` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Stat record (throws on error).
+// load() returns the ENTITY — call data_get() for the Stat record (throws on error).
 $stat = $client->Stat()->load();
 ```
 
@@ -405,20 +406,20 @@ Create an instance: `$state = $client->State();`
 | --- | --- | --- |
 | `deadline` | `string` |  |
 | `emoji` | `string` |  |
-| `general_election_date` | `string` |  |
+| `generalElectionDate` | `string` |  |
 | `label` | `string` |  |
-| `last_minute_accepted` | `bool` |  |
-| `note` | `string` |  |
-| `online_accepted` | `bool` |  |
-| `primary_date` | `string` |  |
-| `primary_deadline` | `string` |  |
+| `lastMinuteAccepted` | `bool` |  |
+| `notes` | `string` |  |
+| `onlineAccepted` | `bool` |  |
+| `primaryDate` | `string` |  |
+| `primaryDeadline` | `string` |  |
 | `url` | `string` |  |
 | `value` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare State record (throws on error).
+// load() returns the ENTITY — call data_get() for the State record (throws on error).
 $state = $client->State()->load(["state_abbreviation" => "state_abbreviation"]);
 ```
 

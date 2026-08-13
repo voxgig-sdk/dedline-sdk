@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Dedline SDK exists test
 
 import pytest
 from dedline_sdk import DedlineSDK

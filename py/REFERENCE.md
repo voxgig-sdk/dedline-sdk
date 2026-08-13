@@ -200,10 +200,10 @@ stat = client.Stat()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | `str` | Yes |  |
-| `online_registration_available` | `int` | Yes |  |
-| `same_day_registration_available` | `int` | Yes |  |
-| `total_state` | `int` | Yes |  |
+| `lastUpdated` | `str` | Yes |  |
+| `onlineRegistrationAvailable` | `int` | Yes |  |
+| `sameDayRegistrationAvailable` | `int` | Yes |  |
+| `totalStates` | `int` | Yes |  |
 
 ### Operations
 
@@ -256,13 +256,13 @@ state = client.State()
 | --- | --- | --- | --- |
 | `deadline` | `str` | Yes |  |
 | `emoji` | `str` | Yes |  |
-| `general_election_date` | `str` | Yes |  |
+| `generalElectionDate` | `str` | Yes |  |
 | `label` | `str` | Yes |  |
-| `last_minute_accepted` | `bool` | Yes |  |
-| `note` | `str` | No |  |
-| `online_accepted` | `bool` | Yes |  |
-| `primary_date` | `str` | Yes |  |
-| `primary_deadline` | `str` | Yes |  |
+| `lastMinuteAccepted` | `bool` | Yes |  |
+| `notes` | `str` | No |  |
+| `onlineAccepted` | `bool` | Yes |  |
+| `primaryDate` | `str` | Yes |  |
+| `primaryDeadline` | `str` | Yes |  |
 | `url` | `str` | Yes |  |
 | `value` | `str` | Yes |  |
 

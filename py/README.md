@@ -53,7 +53,7 @@ except Exception as err:
 ### 3. Load a state
 
 State is nested under state_abbreviation, so provide the `state_abbreviation`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -137,7 +137,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DedlineSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 deadline = client.Deadline().list()
 # deadline contains the mock response record
 ```
@@ -237,7 +238,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -279,10 +280,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `last_updated` |  |
-| `online_registration_available` |  |
-| `same_day_registration_available` |  |
-| `total_state` |  |
+| `lastUpdated` |  |
+| `onlineRegistrationAvailable` |  |
+| `sameDayRegistrationAvailable` |  |
+| `totalStates` |  |
 
 Operations: Load.
 
@@ -294,13 +295,13 @@ API path: `/stats.json`
 | --- | --- |
 | `deadline` |  |
 | `emoji` |  |
-| `general_election_date` |  |
+| `generalElectionDate` |  |
 | `label` |  |
-| `last_minute_accepted` |  |
-| `note` |  |
-| `online_accepted` |  |
-| `primary_date` |  |
-| `primary_deadline` |  |
+| `lastMinuteAccepted` |  |
+| `notes` |  |
+| `onlineAccepted` |  |
+| `primaryDate` |  |
+| `primaryDeadline` |  |
 | `url` |  |
 | `value` |  |
 
@@ -368,10 +369,10 @@ Create an instance: `stat = client.Stat()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `last_updated` | `str` |  |
-| `online_registration_available` | `int` |  |
-| `same_day_registration_available` | `int` |  |
-| `total_state` | `int` |  |
+| `lastUpdated` | `str` |  |
+| `onlineRegistrationAvailable` | `int` |  |
+| `sameDayRegistrationAvailable` | `int` |  |
+| `totalStates` | `int` |  |
 
 #### Example: Load
 
@@ -397,13 +398,13 @@ Create an instance: `state = client.State()`
 | --- | --- | --- |
 | `deadline` | `str` |  |
 | `emoji` | `str` |  |
-| `general_election_date` | `str` |  |
+| `generalElectionDate` | `str` |  |
 | `label` | `str` |  |
-| `last_minute_accepted` | `bool` |  |
-| `note` | `str` |  |
-| `online_accepted` | `bool` |  |
-| `primary_date` | `str` |  |
-| `primary_deadline` | `str` |  |
+| `lastMinuteAccepted` | `bool` |  |
+| `notes` | `str` |  |
+| `onlineAccepted` | `bool` |  |
+| `primaryDate` | `str` |  |
+| `primaryDeadline` | `str` |  |
 | `url` | `str` |  |
 | `value` | `str` |  |
 

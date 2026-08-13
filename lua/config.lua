@@ -51,6 +51,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/upcoming.json",
                 ["parts"] = {
@@ -82,6 +83,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/lastMinuteAccepted.json",
                 ["parts"] = {
@@ -97,6 +99,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/onlineNotAccepted.json",
                 ["parts"] = {
@@ -121,28 +124,28 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "last_updated",
+            ["name"] = "lastUpdated",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "online_registration_available",
+            ["name"] = "onlineRegistrationAvailable",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "same_day_registration_available",
+            ["name"] = "sameDayRegistrationAvailable",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "total_state",
+            ["name"] = "totalStates",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
@@ -157,6 +160,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/stats.json",
                 ["parts"] = {
@@ -195,7 +199,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "general_election_date",
+            ["name"] = "generalElectionDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -209,35 +213,35 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "last_minute_accepted",
+            ["name"] = "lastMinuteAccepted",
             ["req"] = true,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 4,
           },
           {
             ["active"] = true,
-            ["name"] = "note",
+            ["name"] = "notes",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 5,
           },
           {
             ["active"] = true,
-            ["name"] = "online_accepted",
+            ["name"] = "onlineAccepted",
             ["req"] = true,
             ["type"] = "`$BOOLEAN`",
             ["index$"] = 6,
           },
           {
             ["active"] = true,
-            ["name"] = "primary_date",
+            ["name"] = "primaryDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 7,
           },
           {
             ["active"] = true,
-            ["name"] = "primary_deadline",
+            ["name"] = "primaryDeadline",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 8,
@@ -266,6 +270,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/states.json",
                 ["parts"] = {
@@ -274,7 +279,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.states`",
                 },
                 ["index$"] = 0,
               },
@@ -301,6 +306,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/states/{stateAbbreviation}.json",
                 ["parts"] = {

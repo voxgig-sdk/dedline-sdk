@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/dedline-sdk/go/core"
+)
 
 // Deadline is the typed data model for the deadline entity.
 type Deadline struct {
@@ -30,31 +34,31 @@ type RegistrationFeatureListMatch struct {
 
 // Stat is the typed data model for the stat entity.
 type Stat struct {
-	LastUpdated string `json:"last_updated"`
-	OnlineRegistrationAvailable int `json:"online_registration_available"`
-	SameDayRegistrationAvailable int `json:"same_day_registration_available"`
-	TotalState int `json:"total_state"`
+	LastUpdated string `json:"lastUpdated"`
+	OnlineRegistrationAvailable int `json:"onlineRegistrationAvailable"`
+	SameDayRegistrationAvailable int `json:"sameDayRegistrationAvailable"`
+	TotalStates int `json:"totalStates"`
 }
 
 // StatLoadMatch is the typed request payload for Stat.LoadTyped.
 type StatLoadMatch struct {
-	LastUpdated *string `json:"last_updated,omitempty"`
-	OnlineRegistrationAvailable *int `json:"online_registration_available,omitempty"`
-	SameDayRegistrationAvailable *int `json:"same_day_registration_available,omitempty"`
-	TotalState *int `json:"total_state,omitempty"`
+	LastUpdated *string `json:"lastUpdated,omitempty"`
+	OnlineRegistrationAvailable *int `json:"onlineRegistrationAvailable,omitempty"`
+	SameDayRegistrationAvailable *int `json:"sameDayRegistrationAvailable,omitempty"`
+	TotalStates *int `json:"totalStates,omitempty"`
 }
 
 // State is the typed data model for the state entity.
 type State struct {
 	Deadline string `json:"deadline"`
 	Emoji string `json:"emoji"`
-	GeneralElectionDate string `json:"general_election_date"`
+	GeneralElectionDate string `json:"generalElectionDate"`
 	Label string `json:"label"`
-	LastMinuteAccepted bool `json:"last_minute_accepted"`
-	Note *string `json:"note,omitempty"`
-	OnlineAccepted bool `json:"online_accepted"`
-	PrimaryDate string `json:"primary_date"`
-	PrimaryDeadline string `json:"primary_deadline"`
+	LastMinuteAccepted bool `json:"lastMinuteAccepted"`
+	Notes *string `json:"notes,omitempty"`
+	OnlineAccepted bool `json:"onlineAccepted"`
+	PrimaryDate string `json:"primaryDate"`
+	PrimaryDeadline string `json:"primaryDeadline"`
 	Url string `json:"url"`
 	Value string `json:"value"`
 }
@@ -68,13 +72,13 @@ type StateLoadMatch struct {
 type StateListMatch struct {
 	Deadline *string `json:"deadline,omitempty"`
 	Emoji *string `json:"emoji,omitempty"`
-	GeneralElectionDate *string `json:"general_election_date,omitempty"`
+	GeneralElectionDate *string `json:"generalElectionDate,omitempty"`
 	Label *string `json:"label,omitempty"`
-	LastMinuteAccepted *bool `json:"last_minute_accepted,omitempty"`
-	Note *string `json:"note,omitempty"`
-	OnlineAccepted *bool `json:"online_accepted,omitempty"`
-	PrimaryDate *string `json:"primary_date,omitempty"`
-	PrimaryDeadline *string `json:"primary_deadline,omitempty"`
+	LastMinuteAccepted *bool `json:"lastMinuteAccepted,omitempty"`
+	Notes *string `json:"notes,omitempty"`
+	OnlineAccepted *bool `json:"onlineAccepted,omitempty"`
+	PrimaryDate *string `json:"primaryDate,omitempty"`
+	PrimaryDeadline *string `json:"primaryDeadline,omitempty"`
 	Url *string `json:"url,omitempty"`
 	Value *string `json:"value,omitempty"`
 }
@@ -91,12 +95,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -108,12 +126,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

@@ -63,7 +63,7 @@ describe('DeadlineEntity', async () => {
     const deadline_ref01_ent = client.Deadline()
     const deadline_ref01_match: any = {}
 
-    const deadline_ref01_list = await deadline_ref01_ent.list(deadline_ref01_match)
+    const deadline_ref01_list = (await deadline_ref01_ent.list(deadline_ref01_match)).map((e: any) => e.data())
 
 
   })

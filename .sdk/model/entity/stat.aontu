@@ -6,22 +6,22 @@ main: kit: entity: stat: {
 
   fields: [
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "online_registration_available"
+      name: "onlineRegistrationAvailable"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "same_day_registration_available"
+      name: "sameDayRegistrationAvailable"
       req: true
       type: "`$INTEGER`"
     }
     {
-      name: "total_state"
+      name: "totalStates"
       req: true
       type: "`$INTEGER`"
     }

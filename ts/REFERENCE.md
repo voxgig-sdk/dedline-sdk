@@ -247,10 +247,10 @@ const stat = client.Stat()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `last_updated` | `string` | Yes |  |
-| `online_registration_available` | `number` | Yes |  |
-| `same_day_registration_available` | `number` | Yes |  |
-| `total_state` | `number` | Yes |  |
+| `lastUpdated` | `string` | Yes |  |
+| `onlineRegistrationAvailable` | `number` | Yes |  |
+| `sameDayRegistrationAvailable` | `number` | Yes |  |
+| `totalStates` | `number` | Yes |  |
 
 ### Operations
 
@@ -302,15 +302,35 @@ const state = client.State()
 | --- | --- | --- | --- |
 | `deadline` | `string` | Yes |  |
 | `emoji` | `string` | Yes |  |
-| `general_election_date` | `string` | Yes |  |
+| `generalElectionDate` | `string` | Yes |  |
 | `label` | `string` | Yes |  |
-| `last_minute_accepted` | `boolean` | Yes |  |
-| `note` | `string` | No |  |
-| `online_accepted` | `boolean` | Yes |  |
-| `primary_date` | `string` | Yes |  |
-| `primary_deadline` | `string` | Yes |  |
+| `lastMinuteAccepted` | `boolean` | Yes |  |
+| `notes` | `string` | No |  |
+| `onlineAccepted` | `boolean` | Yes |  |
+| `primaryDate` | `string` | Yes |  |
+| `primaryDeadline` | `string` | Yes |  |
 | `url` | `string` | Yes |  |
 | `value` | `string` | Yes |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `state_abbreviation` | `/states/{stateAbbreviation}.json` | `client.State().load({ $action: 'state_abbreviation', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+State record — check the API definition for its shape.
+
+```ts
+const result = await client.State().load({
+  $action: 'state_abbreviation',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
