@@ -15,7 +15,7 @@ require_relative "../Dedline_sdk"
 module DedlineFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DedlineConfig.make_config["feature"]
+    f = DedlineConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

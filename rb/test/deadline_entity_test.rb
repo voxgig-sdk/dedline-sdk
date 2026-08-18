@@ -33,7 +33,7 @@ class DeadlineEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = DedlineConfig.make_config
+    cfg = DedlineConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = DedlineSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

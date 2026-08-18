@@ -28,7 +28,7 @@ class DedlineSDK
     utility = DedlineUtility.new
     @_utility = utility
 
-    config = DedlineConfig.make_config
+    config = DedlineConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

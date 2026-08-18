@@ -40,7 +40,7 @@ class DedlineSDK
         $utility = new DedlineUtility();
         $this->_utility = $utility;
 
-        $config = DedlineConfig::make_config();
+        $config = DedlineConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

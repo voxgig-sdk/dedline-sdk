@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://dedline-api.netlify.app',
+    base: "https://dedline-api.netlify.app",
 
     headers: {
       "content-type": "application/json"
@@ -64,18 +64,12 @@ class Config {
     "deadline": {
       "fields": [
         {
-          "active": true,
           "name": "general",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "primary",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         }
       ],
       "name": "deadline",
@@ -85,7 +79,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -97,11 +90,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -117,7 +108,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -129,11 +119,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -145,11 +133,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -159,32 +145,24 @@ class Config {
     "stat": {
       "fields": [
         {
-          "active": true,
           "name": "lastUpdated",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "onlineRegistrationAvailable",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 1
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "sameDayRegistrationAvailable",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "totalStates",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 3
+          "type": "`$INTEGER`"
         }
       ],
       "name": "stat",
@@ -194,7 +172,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -206,11 +183,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -220,81 +195,58 @@ class Config {
     "state": {
       "fields": [
         {
-          "active": true,
           "name": "deadline",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "emoji",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "generalElectionDate",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "label",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "lastMinuteAccepted",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 4
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "notes",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "onlineAccepted",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 6
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "primaryDate",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "primaryDeadline",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "url",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 9
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "value",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         }
       ],
       "name": "state",
@@ -304,7 +256,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "GET",
@@ -316,29 +267,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.states`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         },
         "load": {
           "input": "data",
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "ca",
                     "kind": "param",
                     "name": "state_abbreviation",
                     "orig": "state_abbreviation",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -358,11 +304,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {

@@ -1,5 +1,8 @@
 -- Dedline SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -28,18 +31,12 @@ local function make_config()
       ["deadline"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "general",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "primary",
-            ["req"] = false,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 1,
           },
         },
         ["name"] = "deadline",
@@ -49,7 +46,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -62,10 +58,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -81,7 +75,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -94,10 +87,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -110,10 +101,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 1,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {
@@ -123,32 +112,24 @@ local function make_config()
       ["stat"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "lastUpdated",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "onlineRegistrationAvailable",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "sameDayRegistrationAvailable",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "totalStates",
             ["req"] = true,
             ["type"] = "`$INTEGER`",
-            ["index$"] = 3,
           },
         },
         ["name"] = "stat",
@@ -158,7 +139,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -171,10 +151,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {
@@ -184,81 +162,58 @@ local function make_config()
       ["state"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "deadline",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "emoji",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "generalElectionDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "label",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "lastMinuteAccepted",
             ["req"] = true,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "notes",
-            ["req"] = false,
             ["type"] = "`$STRING`",
-            ["index$"] = 5,
           },
           {
-            ["active"] = true,
             ["name"] = "onlineAccepted",
             ["req"] = true,
             ["type"] = "`$BOOLEAN`",
-            ["index$"] = 6,
           },
           {
-            ["active"] = true,
             ["name"] = "primaryDate",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 7,
           },
           {
-            ["active"] = true,
             ["name"] = "primaryDeadline",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 8,
           },
           {
-            ["active"] = true,
             ["name"] = "url",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 9,
           },
           {
-            ["active"] = true,
             ["name"] = "value",
             ["req"] = true,
             ["type"] = "`$STRING`",
-            ["index$"] = 10,
           },
         },
         ["name"] = "state",
@@ -268,7 +223,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
@@ -281,28 +235,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.states`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
           ["load"] = {
             ["input"] = "data",
             ["name"] = "load",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["params"] = {
                     {
-                      ["active"] = true,
                       ["example"] = "ca",
                       ["kind"] = "param",
                       ["name"] = "state_abbreviation",
                       ["orig"] = "state_abbreviation",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
-                      ["index$"] = 0,
                     },
                   },
                 },
@@ -323,10 +272,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "load",
           },
         },
         ["relations"] = {

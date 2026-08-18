@@ -1,6 +1,20 @@
 # Dedline SDK configuration
 
 module DedlineConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -29,18 +43,12 @@ module DedlineConfig
         "deadline" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "general",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "primary",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 1,
             },
           ],
           "name" => "deadline",
@@ -50,7 +58,6 @@ module DedlineConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -63,10 +70,8 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -82,7 +87,6 @@ module DedlineConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -95,10 +99,8 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -111,10 +113,8 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 1,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -124,32 +124,24 @@ module DedlineConfig
         "stat" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "lastUpdated",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "onlineRegistrationAvailable",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "sameDayRegistrationAvailable",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "totalStates",
               "req" => true,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
           ],
           "name" => "stat",
@@ -159,7 +151,6 @@ module DedlineConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -172,10 +163,8 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -185,81 +174,58 @@ module DedlineConfig
         "state" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "deadline",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "emoji",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "generalElectionDate",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "label",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "lastMinuteAccepted",
               "req" => true,
               "type" => "`$BOOLEAN`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "notes",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "onlineAccepted",
               "req" => true,
               "type" => "`$BOOLEAN`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "primaryDate",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "primaryDeadline",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "url",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "value",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 10,
             },
           ],
           "name" => "state",
@@ -269,7 +235,6 @@ module DedlineConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -282,28 +247,23 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body.states`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "ca",
                         "kind" => "param",
                         "name" => "state_abbreviation",
                         "orig" => "state_abbreviation",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -324,10 +284,8 @@ module DedlineConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

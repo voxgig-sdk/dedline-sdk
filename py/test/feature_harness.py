@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from dedline_sdk.config import make_config
+from dedline_sdk.config import shared_config
 from dedline_sdk.features import _make_feature
 from dedline_sdk.core.control import DedlineControl
 from dedline_sdk.core.error import DedlineError
@@ -24,7 +24,7 @@ from dedline_sdk.core.spec import DedlineSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
