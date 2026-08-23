@@ -203,10 +203,10 @@ $stat = $client->Stat();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `lastUpdated` | `string` | Yes |  |
-| `onlineRegistrationAvailable` | `int` | Yes |  |
-| `sameDayRegistrationAvailable` | `int` | Yes |  |
-| `totalStates` | `int` | Yes |  |
+| `lastUpdated` | `string` | Yes | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `int` | Yes | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `int` | Yes | Number of states that allow same-day registration |
+| `totalStates` | `int` | Yes | Total number of states (including DC) |
 
 ### Operations
 
@@ -258,17 +258,17 @@ $state = $client->State();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | `string` | Yes |  |
-| `emoji` | `string` | Yes |  |
-| `generalElectionDate` | `string` | Yes |  |
-| `label` | `string` | Yes |  |
-| `lastMinuteAccepted` | `bool` | Yes |  |
-| `notes` | `string` | No |  |
-| `onlineAccepted` | `bool` | Yes |  |
-| `primaryDate` | `string` | Yes |  |
-| `primaryDeadline` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
-| `value` | `string` | Yes |  |
+| `deadline` | `string` | Yes | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `string` | Yes | State-themed emoji |
+| `generalElectionDate` | `string` | Yes | General election date in YYYYMMDD format |
+| `label` | `string` | Yes | Full state name |
+| `lastMinuteAccepted` | `bool` | Yes | Whether voters can register on election day |
+| `notes` | `string` | No | Additional details about state registration |
+| `onlineAccepted` | `bool` | Yes | Whether voters can register online |
+| `primaryDate` | `string` | Yes | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `string` | Yes | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `string` | Yes | Official state voter registration website |
+| `value` | `string` | Yes | Two-letter state abbreviation |
 
 ### Operations
 

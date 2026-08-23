@@ -275,10 +275,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `lastUpdated` |  |
-| `onlineRegistrationAvailable` |  |
-| `sameDayRegistrationAvailable` |  |
-| `totalStates` |  |
+| `lastUpdated` | Date when the data was last updated |
+| `onlineRegistrationAvailable` | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | Number of states that allow same-day registration |
+| `totalStates` | Total number of states (including DC) |
 
 Operations: Load.
 
@@ -288,17 +288,17 @@ API path: `/stats.json`
 
 | Field | Description |
 | --- | --- |
-| `deadline` |  |
-| `emoji` |  |
-| `generalElectionDate` |  |
-| `label` |  |
-| `lastMinuteAccepted` |  |
-| `notes` |  |
-| `onlineAccepted` |  |
-| `primaryDate` |  |
-| `primaryDeadline` |  |
-| `url` |  |
-| `value` |  |
+| `deadline` | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | State-themed emoji |
+| `generalElectionDate` | General election date in YYYYMMDD format |
+| `label` | Full state name |
+| `lastMinuteAccepted` | Whether voters can register on election day |
+| `notes` | Additional details about state registration |
+| `onlineAccepted` | Whether voters can register online |
+| `primaryDate` | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | Official state voter registration website |
+| `value` | Two-letter state abbreviation |
 
 Operations: List, Load.
 
@@ -366,10 +366,10 @@ Create an instance: `stat = client.Stat`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `lastUpdated` | `String` |  |
-| `onlineRegistrationAvailable` | `Integer` |  |
-| `sameDayRegistrationAvailable` | `Integer` |  |
-| `totalStates` | `Integer` |  |
+| `lastUpdated` | `String` | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `Integer` | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `Integer` | Number of states that allow same-day registration |
+| `totalStates` | `Integer` | Total number of states (including DC) |
 
 #### Example: Load
 
@@ -394,17 +394,17 @@ Create an instance: `state = client.State`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deadline` | `String` |  |
-| `emoji` | `String` |  |
-| `generalElectionDate` | `String` |  |
-| `label` | `String` |  |
-| `lastMinuteAccepted` | `Boolean` |  |
-| `notes` | `String` |  |
-| `onlineAccepted` | `Boolean` |  |
-| `primaryDate` | `String` |  |
-| `primaryDeadline` | `String` |  |
-| `url` | `String` |  |
-| `value` | `String` |  |
+| `deadline` | `String` | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `String` | State-themed emoji |
+| `generalElectionDate` | `String` | General election date in YYYYMMDD format |
+| `label` | `String` | Full state name |
+| `lastMinuteAccepted` | `Boolean` | Whether voters can register on election day |
+| `notes` | `String` | Additional details about state registration |
+| `onlineAccepted` | `Boolean` | Whether voters can register online |
+| `primaryDate` | `String` | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `String` | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `String` | Official state voter registration website |
+| `value` | `String` | Two-letter state abbreviation |
 
 #### Example: Load
 

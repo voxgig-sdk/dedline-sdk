@@ -8,56 +8,67 @@ main: kit: entity: state: {
     {
       name: "deadline"
       req: true
+      short: "General election voter registration deadline in YYYYMMDD format"
       type: "`$STRING`"
     }
     {
       name: "emoji"
       req: true
+      short: "State-themed emoji"
       type: "`$STRING`"
     }
     {
       name: "generalElectionDate"
       req: true
+      short: "General election date in YYYYMMDD format"
       type: "`$STRING`"
     }
     {
       name: "label"
       req: true
+      short: "Full state name"
       type: "`$STRING`"
     }
     {
       name: "lastMinuteAccepted"
       req: true
+      short: "Whether voters can register on election day"
       type: "`$BOOLEAN`"
     }
     {
       name: "notes"
       req: false
+      short: "Additional details about state registration"
       type: "`$STRING`"
     }
     {
       name: "onlineAccepted"
       req: true
+      short: "Whether voters can register online"
       type: "`$BOOLEAN`"
     }
     {
       name: "primaryDate"
       req: true
+      short: "Primary election date in YYYYMMDD format"
       type: "`$STRING`"
     }
     {
       name: "primaryDeadline"
       req: true
+      short: "Primary election voter registration deadline in YYYYMMDD format"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: true
+      short: "Official state voter registration website"
       type: "`$STRING`"
     }
     {
       name: "value"
       req: true
+      short: "Two-letter state abbreviation"
       type: "`$STRING`"
     }
   ]

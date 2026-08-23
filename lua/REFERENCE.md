@@ -201,10 +201,10 @@ local stat = client:Stat(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `lastUpdated` | `string` | Yes |  |
-| `onlineRegistrationAvailable` | `number` | Yes |  |
-| `sameDayRegistrationAvailable` | `number` | Yes |  |
-| `totalStates` | `number` | Yes |  |
+| `lastUpdated` | `string` | Yes | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `number` | Yes | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `number` | Yes | Number of states that allow same-day registration |
+| `totalStates` | `number` | Yes | Total number of states (including DC) |
 
 ### Operations
 
@@ -256,17 +256,17 @@ local state = client:State(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | `string` | Yes |  |
-| `emoji` | `string` | Yes |  |
-| `generalElectionDate` | `string` | Yes |  |
-| `label` | `string` | Yes |  |
-| `lastMinuteAccepted` | `boolean` | Yes |  |
-| `notes` | `string` | No |  |
-| `onlineAccepted` | `boolean` | Yes |  |
-| `primaryDate` | `string` | Yes |  |
-| `primaryDeadline` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
-| `value` | `string` | Yes |  |
+| `deadline` | `string` | Yes | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `string` | Yes | State-themed emoji |
+| `generalElectionDate` | `string` | Yes | General election date in YYYYMMDD format |
+| `label` | `string` | Yes | Full state name |
+| `lastMinuteAccepted` | `boolean` | Yes | Whether voters can register on election day |
+| `notes` | `string` | No | Additional details about state registration |
+| `onlineAccepted` | `boolean` | Yes | Whether voters can register online |
+| `primaryDate` | `string` | Yes | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `string` | Yes | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `string` | Yes | Official state voter registration website |
+| `value` | `string` | Yes | Two-letter state abbreviation |
 
 ### Operations
 

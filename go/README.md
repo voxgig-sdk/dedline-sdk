@@ -6,7 +6,7 @@ The Golang SDK for the Dedline API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Deadline(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -285,10 +285,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `"lastUpdated"` |  |
-| `"onlineRegistrationAvailable"` |  |
-| `"sameDayRegistrationAvailable"` |  |
-| `"totalStates"` |  |
+| `"lastUpdated"` | Date when the data was last updated |
+| `"onlineRegistrationAvailable"` | Number of states that offer online registration |
+| `"sameDayRegistrationAvailable"` | Number of states that allow same-day registration |
+| `"totalStates"` | Total number of states (including DC) |
 
 Operations: Load.
 
@@ -298,17 +298,17 @@ API path: `/stats.json`
 
 | Field | Description |
 | --- | --- |
-| `"deadline"` |  |
-| `"emoji"` |  |
-| `"generalElectionDate"` |  |
-| `"label"` |  |
-| `"lastMinuteAccepted"` |  |
-| `"notes"` |  |
-| `"onlineAccepted"` |  |
-| `"primaryDate"` |  |
-| `"primaryDeadline"` |  |
-| `"url"` |  |
-| `"value"` |  |
+| `"deadline"` | General election voter registration deadline in YYYYMMDD format |
+| `"emoji"` | State-themed emoji |
+| `"generalElectionDate"` | General election date in YYYYMMDD format |
+| `"label"` | Full state name |
+| `"lastMinuteAccepted"` | Whether voters can register on election day |
+| `"notes"` | Additional details about state registration |
+| `"onlineAccepted"` | Whether voters can register online |
+| `"primaryDate"` | Primary election date in YYYYMMDD format |
+| `"primaryDeadline"` | Primary election voter registration deadline in YYYYMMDD format |
+| `"url"` | Official state voter registration website |
+| `"value"` | Two-letter state abbreviation |
 
 Operations: List, Load.
 
@@ -382,10 +382,10 @@ Create an instance: `stat := client.Stat(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `lastUpdated` | `string` |  |
-| `onlineRegistrationAvailable` | `int` |  |
-| `sameDayRegistrationAvailable` | `int` |  |
-| `totalStates` | `int` |  |
+| `lastUpdated` | `string` | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `int` | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `int` | Number of states that allow same-day registration |
+| `totalStates` | `int` | Total number of states (including DC) |
 
 #### Example: Load
 
@@ -413,17 +413,17 @@ Create an instance: `state := client.State(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deadline` | `string` |  |
-| `emoji` | `string` |  |
-| `generalElectionDate` | `string` |  |
-| `label` | `string` |  |
-| `lastMinuteAccepted` | `bool` |  |
-| `notes` | `string` |  |
-| `onlineAccepted` | `bool` |  |
-| `primaryDate` | `string` |  |
-| `primaryDeadline` | `string` |  |
-| `url` | `string` |  |
-| `value` | `string` |  |
+| `deadline` | `string` | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `string` | State-themed emoji |
+| `generalElectionDate` | `string` | General election date in YYYYMMDD format |
+| `label` | `string` | Full state name |
+| `lastMinuteAccepted` | `bool` | Whether voters can register on election day |
+| `notes` | `string` | Additional details about state registration |
+| `onlineAccepted` | `bool` | Whether voters can register online |
+| `primaryDate` | `string` | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `string` | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `string` | Official state voter registration website |
+| `value` | `string` | Two-letter state abbreviation |
 
 #### Example: Load
 

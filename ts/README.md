@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -328,10 +328,10 @@ API path: `/lastMinuteAccepted.json`
 
 | Field | Description |
 | --- | --- |
-| `lastUpdated` |  |
-| `onlineRegistrationAvailable` |  |
-| `sameDayRegistrationAvailable` |  |
-| `totalStates` |  |
+| `lastUpdated` | Date when the data was last updated |
+| `onlineRegistrationAvailable` | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | Number of states that allow same-day registration |
+| `totalStates` | Total number of states (including DC) |
 
 Operations: load.
 
@@ -341,17 +341,17 @@ API path: `/stats.json`
 
 | Field | Description |
 | --- | --- |
-| `deadline` |  |
-| `emoji` |  |
-| `generalElectionDate` |  |
-| `label` |  |
-| `lastMinuteAccepted` |  |
-| `notes` |  |
-| `onlineAccepted` |  |
-| `primaryDate` |  |
-| `primaryDeadline` |  |
-| `url` |  |
-| `value` |  |
+| `deadline` | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | State-themed emoji |
+| `generalElectionDate` | General election date in YYYYMMDD format |
+| `label` | Full state name |
+| `lastMinuteAccepted` | Whether voters can register on election day |
+| `notes` | Additional details about state registration |
+| `onlineAccepted` | Whether voters can register online |
+| `primaryDate` | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | Official state voter registration website |
+| `value` | Two-letter state abbreviation |
 
 Operations: list, load.
 
@@ -417,10 +417,10 @@ Create an instance: `const stat = client.Stat()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `lastUpdated` | `string` |  |
-| `onlineRegistrationAvailable` | `number` |  |
-| `sameDayRegistrationAvailable` | `number` |  |
-| `totalStates` | `number` |  |
+| `lastUpdated` | `string` | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `number` | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `number` | Number of states that allow same-day registration |
+| `totalStates` | `number` | Total number of states (including DC) |
 
 #### Example: Load
 
@@ -444,17 +444,17 @@ Create an instance: `const state = client.State()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deadline` | `string` |  |
-| `emoji` | `string` |  |
-| `generalElectionDate` | `string` |  |
-| `label` | `string` |  |
-| `lastMinuteAccepted` | `boolean` |  |
-| `notes` | `string` |  |
-| `onlineAccepted` | `boolean` |  |
-| `primaryDate` | `string` |  |
-| `primaryDeadline` | `string` |  |
-| `url` | `string` |  |
-| `value` | `string` |  |
+| `deadline` | `string` | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `string` | State-themed emoji |
+| `generalElectionDate` | `string` | General election date in YYYYMMDD format |
+| `label` | `string` | Full state name |
+| `lastMinuteAccepted` | `boolean` | Whether voters can register on election day |
+| `notes` | `string` | Additional details about state registration |
+| `onlineAccepted` | `boolean` | Whether voters can register online |
+| `primaryDate` | `string` | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `string` | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `string` | Official state voter registration website |
+| `value` | `string` | Two-letter state abbreviation |
 
 #### Example: Load
 

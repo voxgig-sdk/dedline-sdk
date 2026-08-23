@@ -8,21 +8,25 @@ main: kit: entity: stat: {
     {
       name: "lastUpdated"
       req: true
+      short: "Date when the data was last updated"
       type: "`$STRING`"
     }
     {
       name: "onlineRegistrationAvailable"
       req: true
+      short: "Number of states that offer online registration"
       type: "`$INTEGER`"
     }
     {
       name: "sameDayRegistrationAvailable"
       req: true
+      short: "Number of states that allow same-day registration"
       type: "`$INTEGER`"
     }
     {
       name: "totalStates"
       req: true
+      short: "Total number of states (including DC)"
       type: "`$INTEGER`"
     }
   ]

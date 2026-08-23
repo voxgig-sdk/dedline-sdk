@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "Dedline",
+      slug = "dedline",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -114,21 +117,25 @@ local function make_config()
           {
             ["name"] = "lastUpdated",
             ["req"] = true,
+            ["short"] = "Date when the data was last updated",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "onlineRegistrationAvailable",
             ["req"] = true,
+            ["short"] = "Number of states that offer online registration",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "sameDayRegistrationAvailable",
             ["req"] = true,
+            ["short"] = "Number of states that allow same-day registration",
             ["type"] = "`$INTEGER`",
           },
           {
             ["name"] = "totalStates",
             ["req"] = true,
+            ["short"] = "Total number of states (including DC)",
             ["type"] = "`$INTEGER`",
           },
         },
@@ -164,55 +171,66 @@ local function make_config()
           {
             ["name"] = "deadline",
             ["req"] = true,
+            ["short"] = "General election voter registration deadline in YYYYMMDD format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "emoji",
             ["req"] = true,
+            ["short"] = "State-themed emoji",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "generalElectionDate",
             ["req"] = true,
+            ["short"] = "General election date in YYYYMMDD format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "label",
             ["req"] = true,
+            ["short"] = "Full state name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "lastMinuteAccepted",
             ["req"] = true,
+            ["short"] = "Whether voters can register on election day",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "notes",
+            ["short"] = "Additional details about state registration",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "onlineAccepted",
             ["req"] = true,
+            ["short"] = "Whether voters can register online",
             ["type"] = "`$BOOLEAN`",
           },
           {
             ["name"] = "primaryDate",
             ["req"] = true,
+            ["short"] = "Primary election date in YYYYMMDD format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "primaryDeadline",
             ["req"] = true,
+            ["short"] = "Primary election voter registration deadline in YYYYMMDD format",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "url",
             ["req"] = true,
+            ["short"] = "Official state voter registration website",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "value",
             ["req"] = true,
+            ["short"] = "Two-letter state abbreviation",
             ["type"] = "`$STRING`",
           },
         },

@@ -200,10 +200,10 @@ stat = client.Stat()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `lastUpdated` | `str` | Yes |  |
-| `onlineRegistrationAvailable` | `int` | Yes |  |
-| `sameDayRegistrationAvailable` | `int` | Yes |  |
-| `totalStates` | `int` | Yes |  |
+| `lastUpdated` | `str` | Yes | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `int` | Yes | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `int` | Yes | Number of states that allow same-day registration |
+| `totalStates` | `int` | Yes | Total number of states (including DC) |
 
 ### Operations
 
@@ -254,17 +254,17 @@ state = client.State()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | `str` | Yes |  |
-| `emoji` | `str` | Yes |  |
-| `generalElectionDate` | `str` | Yes |  |
-| `label` | `str` | Yes |  |
-| `lastMinuteAccepted` | `bool` | Yes |  |
-| `notes` | `str` | No |  |
-| `onlineAccepted` | `bool` | Yes |  |
-| `primaryDate` | `str` | Yes |  |
-| `primaryDeadline` | `str` | Yes |  |
-| `url` | `str` | Yes |  |
-| `value` | `str` | Yes |  |
+| `deadline` | `str` | Yes | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `str` | Yes | State-themed emoji |
+| `generalElectionDate` | `str` | Yes | General election date in YYYYMMDD format |
+| `label` | `str` | Yes | Full state name |
+| `lastMinuteAccepted` | `bool` | Yes | Whether voters can register on election day |
+| `notes` | `str` | No | Additional details about state registration |
+| `onlineAccepted` | `bool` | Yes | Whether voters can register online |
+| `primaryDate` | `str` | Yes | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `str` | Yes | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `str` | Yes | Official state voter registration website |
+| `value` | `str` | Yes | Two-letter state abbreviation |
 
 ### Operations
 

@@ -204,10 +204,10 @@ stat = client.Stat
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `lastUpdated` | `String` | Yes |  |
-| `onlineRegistrationAvailable` | `Integer` | Yes |  |
-| `sameDayRegistrationAvailable` | `Integer` | Yes |  |
-| `totalStates` | `Integer` | Yes |  |
+| `lastUpdated` | `String` | Yes | Date when the data was last updated |
+| `onlineRegistrationAvailable` | `Integer` | Yes | Number of states that offer online registration |
+| `sameDayRegistrationAvailable` | `Integer` | Yes | Number of states that allow same-day registration |
+| `totalStates` | `Integer` | Yes | Total number of states (including DC) |
 
 ### Operations
 
@@ -259,17 +259,17 @@ state = client.State
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deadline` | `String` | Yes |  |
-| `emoji` | `String` | Yes |  |
-| `generalElectionDate` | `String` | Yes |  |
-| `label` | `String` | Yes |  |
-| `lastMinuteAccepted` | `Boolean` | Yes |  |
-| `notes` | `String` | No |  |
-| `onlineAccepted` | `Boolean` | Yes |  |
-| `primaryDate` | `String` | Yes |  |
-| `primaryDeadline` | `String` | Yes |  |
-| `url` | `String` | Yes |  |
-| `value` | `String` | Yes |  |
+| `deadline` | `String` | Yes | General election voter registration deadline in YYYYMMDD format |
+| `emoji` | `String` | Yes | State-themed emoji |
+| `generalElectionDate` | `String` | Yes | General election date in YYYYMMDD format |
+| `label` | `String` | Yes | Full state name |
+| `lastMinuteAccepted` | `Boolean` | Yes | Whether voters can register on election day |
+| `notes` | `String` | No | Additional details about state registration |
+| `onlineAccepted` | `Boolean` | Yes | Whether voters can register online |
+| `primaryDate` | `String` | Yes | Primary election date in YYYYMMDD format |
+| `primaryDeadline` | `String` | Yes | Primary election voter registration deadline in YYYYMMDD format |
+| `url` | `String` | Yes | Official state voter registration website |
+| `value` | `String` | Yes | Two-letter state abbreviation |
 
 ### Operations
 
