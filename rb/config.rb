@@ -28,6 +28,7 @@ module DedlineConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
