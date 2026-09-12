@@ -6,6 +6,7 @@ main: kit: entity: stat: {
 
   fields: [
     {
+      format: "date"
       name: "lastUpdated"
       req: true
       short: "Date when the data was last updated"
@@ -39,8 +40,10 @@ main: kit: entity: stat: {
         {
           method: "GET"
           orig: "/stats.json"
-          parts: [
-            "stats.json"
+          segments: [
+            {
+              lit: "stats.json"
+            }
           ]
           transform: {
             req: "`reqdata`"

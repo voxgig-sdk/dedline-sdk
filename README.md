@@ -128,12 +128,6 @@ const deadlines = await client.Deadline().list()
 for (const deadline of deadlines) {
   console.log(deadline)
 }
-
-// Load a specific state (returns a State)
-const state = await client.State().load({
-  state_abbreviation: 'example_state_abbreviation',
-})
-console.log(state)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -223,15 +217,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(deadlines)
-
-// Load a specific state
-state, err := client.State(nil).Load(
-    map[string]any{"state_abbreviation": "example_state_abbreviation"}, nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println(state)
 ```
 
 ### Ruby
@@ -368,7 +353,7 @@ customizable without forking any upstream tool:
 
 - **The model** (`.sdk/model/`) declares everything this project owns:
   package names, versions, active features, per-target settings. It is
-  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  written in [aontu](https://aontu.dev), a JSON-based
   specification language designed for building ontologies: easy to edit
   by hand, and files unify rather than override, so small declarations
   compose into one model. Regeneration re-reads it every time.

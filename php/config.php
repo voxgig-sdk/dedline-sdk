@@ -80,13 +80,18 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/upcoming.json',
-                  'parts' => [
-                    'upcoming.json',
+                  'segments' => [
+                    [
+                      'lit' => 'upcoming.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'upcoming.json',
                   ],
                 ],
               ],
@@ -109,13 +114,18 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/lastMinuteAccepted.json',
-                  'parts' => [
-                    'lastMinuteAccepted.json',
+                  'segments' => [
+                    [
+                      'lit' => 'lastMinuteAccepted.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'lastMinuteAccepted.json',
                   ],
                 ],
                 [
@@ -123,13 +133,18 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/onlineNotAccepted.json',
-                  'parts' => [
-                    'onlineNotAccepted.json',
+                  'segments' => [
+                    [
+                      'lit' => 'onlineNotAccepted.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'onlineNotAccepted.json',
                   ],
                 ],
               ],
@@ -142,6 +157,7 @@ class DedlineConfig
         'stat' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'lastUpdated',
               'req' => true,
               'short' => 'Date when the data was last updated',
@@ -177,13 +193,18 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/stats.json',
-                  'parts' => [
-                    'stats.json',
+                  'segments' => [
+                    [
+                      'lit' => 'stats.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'stats.json',
                   ],
                 ],
               ],
@@ -249,6 +270,7 @@ class DedlineConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'url',
               'req' => true,
               'short' => 'Official state voter registration website',
@@ -272,13 +294,18 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/states.json',
-                  'parts' => [
-                    'states.json',
+                  'segments' => [
+                    [
+                      'lit' => 'states.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.states`',
+                  ],
+                  'parts' => [
+                    'states.json',
                   ],
                 ],
               ],
@@ -303,9 +330,13 @@ class DedlineConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/states/{stateAbbreviation}.json',
-                  'parts' => [
-                    'states',
-                    '{stateAbbreviation}.json',
+                  'segments' => [
+                    [
+                      'lit' => 'states',
+                    ],
+                    [
+                      'lit' => '{stateAbbreviation}.json',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'state_abbreviation',
@@ -317,16 +348,16 @@ class DedlineConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'states',
+                    '{stateAbbreviation}.json',
+                  ],
                 ],
               ],
             ],
           ],
           'relations' => [
-            'ancestors' => [
-              [
-                'state',
-              ],
-            ],
+            'ancestors' => [],
           ],
         ],
       ],

@@ -58,13 +58,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/upcoming.json",
-								"parts": []any{
-									"upcoming.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "upcoming.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"upcoming.json",
 								},
 							},
 						},
@@ -87,13 +92,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/lastMinuteAccepted.json",
-								"parts": []any{
-									"lastMinuteAccepted.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "lastMinuteAccepted.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"lastMinuteAccepted.json",
 								},
 							},
 							map[string]any{
@@ -101,13 +111,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/onlineNotAccepted.json",
-								"parts": []any{
-									"onlineNotAccepted.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "onlineNotAccepted.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"onlineNotAccepted.json",
 								},
 							},
 						},
@@ -120,6 +135,7 @@ func MakeConfig() map[string]any {
 			"stat": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date",
 						"name": "lastUpdated",
 						"req": true,
 						"short": "Date when the data was last updated",
@@ -155,13 +171,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/stats.json",
-								"parts": []any{
-									"stats.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "stats.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"stats.json",
 								},
 							},
 						},
@@ -227,6 +248,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "url",
 						"req": true,
 						"short": "Official state voter registration website",
@@ -250,13 +272,18 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/states.json",
-								"parts": []any{
-									"states.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "states.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.states`",
+								},
+								"parts": []any{
+									"states.json",
 								},
 							},
 						},
@@ -281,9 +308,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/states/{stateAbbreviation}.json",
-								"parts": []any{
-									"states",
-									"{stateAbbreviation}.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "states",
+									},
+									map[string]any{
+										"lit": "{stateAbbreviation}.json",
+									},
 								},
 								"select": map[string]any{
 									"$action": "state_abbreviation",
@@ -295,20 +326,31 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"states",
+									"{stateAbbreviation}.json",
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"state",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

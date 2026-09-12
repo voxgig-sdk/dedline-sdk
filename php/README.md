@@ -45,20 +45,6 @@ try {
 }
 ```
 
-### 3. Load a state
-
-State is nested under state_abbreviation, so provide the `state_abbreviation`.
-
-```php
-try {
-    // load() returns the ENTITY — call data_get() for the State record (throws on error).
-    $state = $client->State()->load(["state_abbreviation" => "example_state_abbreviation"]);
-    print_r($state);
-} catch (\Throwable $err) {
-    echo "Error: " . $err->getMessage();
-}
-```
-
 
 ## Error handling
 

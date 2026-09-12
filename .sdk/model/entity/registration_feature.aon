@@ -12,8 +12,10 @@ main: kit: entity: registration_feature: {
         {
           method: "GET"
           orig: "/lastMinuteAccepted.json"
-          parts: [
-            "lastMinuteAccepted.json"
+          segments: [
+            {
+              lit: "lastMinuteAccepted.json"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -23,8 +25,10 @@ main: kit: entity: registration_feature: {
         {
           method: "GET"
           orig: "/onlineNotAccepted.json"
-          parts: [
-            "onlineNotAccepted.json"
+          segments: [
+            {
+              lit: "onlineNotAccepted.json"
+            }
           ]
           transform: {
             req: "`reqdata`"

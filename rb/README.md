@@ -44,20 +44,6 @@ rescue => err
 end
 ```
 
-### 3. Load a state
-
-State is nested under state_abbreviation, so provide the `state_abbreviation`.
-
-```ruby
-begin
-  # load returns the ENTITY — call data_get for the State record (raises on error).
-  state = client.State.load({ "state_abbreviation" => "example_state_abbreviation" })
-  puts state
-rescue => err
-  warn "load failed: #{err}"
-end
-```
-
 
 ## Error handling
 

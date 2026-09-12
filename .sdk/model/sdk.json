@@ -57,8 +57,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/upcoming.json",
-                  "parts": [
-                    "upcoming.json"
+                  "segments": [
+                    {
+                      "lit": "upcoming.json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -91,8 +93,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lastMinuteAccepted.json",
-                  "parts": [
-                    "lastMinuteAccepted.json"
+                  "segments": [
+                    {
+                      "lit": "lastMinuteAccepted.json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -106,8 +110,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/onlineNotAccepted.json",
-                  "parts": [
-                    "onlineNotAccepted.json"
+                  "segments": [
+                    {
+                      "lit": "onlineNotAccepted.json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -130,6 +136,7 @@
           "fields": [
             {
               "active": true,
+              "format": "date",
               "name": "lastUpdated",
               "req": true,
               "short": "Date when the data was last updated",
@@ -169,8 +176,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/stats.json",
-                  "parts": [
-                    "stats.json"
+                  "segments": [
+                    {
+                      "lit": "stats.json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -256,6 +265,7 @@
             },
             {
               "active": true,
+              "format": "uri",
               "name": "url",
               "req": true,
               "short": "Official state voter registration website",
@@ -281,8 +291,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/states.json",
-                  "parts": [
-                    "states.json"
+                  "segments": [
+                    {
+                      "lit": "states.json"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -314,9 +326,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/states/{stateAbbreviation}.json",
-                  "parts": [
-                    "states",
-                    "{stateAbbreviation}.json"
+                  "segments": [
+                    {
+                      "lit": "states"
+                    },
+                    {
+                      "lit": "{stateAbbreviation}.json"
+                    }
                   ],
                   "select": {
                     "$action": "state_abbreviation",
@@ -333,11 +349,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "state"
-              ]
-            ]
+            "ancestors": []
           }
         }
       },
@@ -405,8 +417,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -632,6 +647,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -657,6 +675,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -708,6 +730,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -732,6 +755,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -783,6 +807,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -807,6 +832,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -847,6 +873,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -872,6 +901,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -906,6 +938,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -931,6 +966,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -971,6 +1009,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -996,6 +1037,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1041,6 +1085,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1066,6 +1113,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1083,11 +1133,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1116,6 +1161,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1140,6 +1188,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

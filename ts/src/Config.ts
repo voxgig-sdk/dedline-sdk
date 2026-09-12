@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -95,14 +106,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/upcoming.json",
-              "parts": [
-                "upcoming.json"
+              "segments": [
+                {
+                  "lit": "upcoming.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "upcoming.json"
+              ]
             }
           ]
         }
@@ -124,28 +140,38 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/lastMinuteAccepted.json",
-              "parts": [
-                "lastMinuteAccepted.json"
+              "segments": [
+                {
+                  "lit": "lastMinuteAccepted.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "lastMinuteAccepted.json"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/onlineNotAccepted.json",
-              "parts": [
-                "onlineNotAccepted.json"
+              "segments": [
+                {
+                  "lit": "onlineNotAccepted.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "onlineNotAccepted.json"
+              ]
             }
           ]
         }
@@ -157,6 +183,7 @@ class Config {
     "stat": {
       "fields": [
         {
+          "format": "date",
           "name": "lastUpdated",
           "req": true,
           "short": "Date when the data was last updated",
@@ -192,14 +219,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/stats.json",
-              "parts": [
-                "stats.json"
+              "segments": [
+                {
+                  "lit": "stats.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "stats.json"
+              ]
             }
           ]
         }
@@ -264,6 +296,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "req": true,
           "short": "Official state voter registration website",
@@ -287,14 +320,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/states.json",
-              "parts": [
-                "states.json"
+              "segments": [
+                {
+                  "lit": "states.json"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.states`"
-              }
+              },
+              "parts": [
+                "states.json"
+              ]
             }
           ]
         },
@@ -318,9 +356,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/states/{stateAbbreviation}.json",
-              "parts": [
-                "states",
-                "{stateAbbreviation}.json"
+              "segments": [
+                {
+                  "lit": "states"
+                },
+                {
+                  "lit": "{stateAbbreviation}.json"
+                }
               ],
               "select": {
                 "$action": "state_abbreviation",
@@ -331,17 +373,17 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "states",
+                "{stateAbbreviation}.json"
+              ]
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "state"
-          ]
-        ]
+        "ancestors": []
       }
     }
   }
@@ -351,6 +393,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

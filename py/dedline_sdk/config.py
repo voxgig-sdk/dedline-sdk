@@ -1,6 +1,14 @@
 # Dedline SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -75,14 +83,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/upcoming.json",
-                "parts": [
-                  "upcoming.json",
+                "segments": [
+                  {
+                    "lit": "upcoming.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "upcoming.json",
+                ],
               },
             ],
           },
@@ -104,28 +117,38 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/lastMinuteAccepted.json",
-                "parts": [
-                  "lastMinuteAccepted.json",
+                "segments": [
+                  {
+                    "lit": "lastMinuteAccepted.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "lastMinuteAccepted.json",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/onlineNotAccepted.json",
-                "parts": [
-                  "onlineNotAccepted.json",
+                "segments": [
+                  {
+                    "lit": "onlineNotAccepted.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "onlineNotAccepted.json",
+                ],
               },
             ],
           },
@@ -137,6 +160,7 @@ def make_config():
       "stat": {
         "fields": [
           {
+            "format": "date",
             "name": "lastUpdated",
             "req": True,
             "short": "Date when the data was last updated",
@@ -172,14 +196,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/stats.json",
-                "parts": [
-                  "stats.json",
+                "segments": [
+                  {
+                    "lit": "stats.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "stats.json",
+                ],
               },
             ],
           },
@@ -244,6 +273,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "url",
             "req": True,
             "short": "Official state voter registration website",
@@ -267,14 +297,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states.json",
-                "parts": [
-                  "states.json",
+                "segments": [
+                  {
+                    "lit": "states.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.states`",
                 },
+                "parts": [
+                  "states.json",
+                ],
               },
             ],
           },
@@ -298,9 +333,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/states/{stateAbbreviation}.json",
-                "parts": [
-                  "states",
-                  "{stateAbbreviation}.json",
+                "segments": [
+                  {
+                    "lit": "states",
+                  },
+                  {
+                    "lit": "{stateAbbreviation}.json",
+                  },
                 ],
                 "select": {
                   "$action": "state_abbreviation",
@@ -312,16 +351,16 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "states",
+                  "{stateAbbreviation}.json",
+                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "state",
-            ],
-          ],
+          "ancestors": [],
         },
       },
     },

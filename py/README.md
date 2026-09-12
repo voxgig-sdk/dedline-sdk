@@ -50,19 +50,6 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
-### 3. Load a state
-
-State is nested under state_abbreviation, so provide the `state_abbreviation`.
-`load()` returns the ENTITY — call data_get() for the record — and raises on error.
-
-```python
-try:
-    state = client.State().load({"state_abbreviation": "example_state_abbreviation"})
-    print(state)
-except Exception as err:
-    print(f"load failed: {err}")
-```
-
 
 ## Error handling
 
