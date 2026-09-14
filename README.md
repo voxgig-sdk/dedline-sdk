@@ -105,7 +105,7 @@ local results, err = client:Deadline():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/dedline` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dedline-sdk/releases) |
+| TypeScript | `@voxgig-sdk/dedline-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dedline-sdk/releases) |
 | Python | `voxgig-sdk-dedline` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dedline-sdk/releases) |
 | PHP | `voxgig-sdk/dedline` | publish pending — [install from git tag](https://github.com/voxgig-sdk/dedline-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/dedline-sdk/go` | `go get github.com/voxgig-sdk/dedline-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Deadline():list()
 ### TypeScript
 
 ```ts
-import { DedlineSDK } from '@voxgig-sdk/dedline'
+import { DedlineSDK } from '@voxgig-sdk/dedline-sdk'
 
 const client = new DedlineSDK()
 

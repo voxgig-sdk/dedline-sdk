@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DedlineSDK } from '@voxgig-sdk/dedline'
+import { DedlineSDK } from '@voxgig-sdk/dedline-sdk'
 
 const client = new DedlineSDK()
 ```
@@ -535,7 +535,7 @@ dedline/
 Import the SDK from the package root:
 
 ```ts
-import { DedlineSDK } from '@voxgig-sdk/dedline'
+import { DedlineSDK } from '@voxgig-sdk/dedline-sdk'
 ```
 
 ### Entity state
