@@ -10,6 +10,12 @@ main: kit: entity: registration_feature: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /lastMinuteAccepted.json"
+            json: "{\"operationId\":\"getSameDayRegistrationStates\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"CA\",\"CO\",\"CT\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/lastMinuteAccepted.json"
           segments: [
@@ -23,6 +29,12 @@ main: kit: entity: registration_feature: {
           }
         }
         {
+          contract: {
+            id: "GET /onlineNotAccepted.json"
+            json: "{\"operationId\":\"getStatesWithoutOnlineRegistration\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"AR\",\"ME\",\"MS\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/onlineNotAccepted.json"
           segments: [

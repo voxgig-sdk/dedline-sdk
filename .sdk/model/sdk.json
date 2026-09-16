@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "deadline": {
           "active": true,
@@ -54,6 +118,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /upcoming.json",
+                    "json": "{\"operationId\":\"getUpcomingDeadlines\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"general\":[],\"primary\":[{\"daysUntil\":8,\"deadline\":\"20260202\",\"label\":\"Texas\",\"state\":\"TX\"}]},\"schema\":{\"properties\":{\"general\":{\"items\":{\"properties\":{\"daysUntil\":{\"description\":\"Number of days until the deadline\",\"example\":8,\"type\":\"integer\"},\"deadline\":{\"description\":\"Registration deadline in YYYYMMDD format\",\"example\":\"20260202\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"Texas\",\"type\":\"string\"},\"state\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"TX\",\"type\":\"string\"}},\"required\":[\"state\",\"label\",\"deadline\",\"daysUntil\"],\"type\":\"object\"},\"type\":\"array\"},\"primary\":{\"items\":{\"properties\":{\"daysUntil\":{\"description\":\"Number of days until the deadline\",\"example\":8,\"type\":\"integer\"},\"deadline\":{\"description\":\"Registration deadline in YYYYMMDD format\",\"example\":\"20260202\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"Texas\",\"type\":\"string\"},\"state\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"TX\",\"type\":\"string\"}},\"required\":[\"state\",\"label\",\"deadline\",\"daysUntil\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/upcoming.json",
@@ -90,6 +160,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /lastMinuteAccepted.json",
+                    "json": "{\"operationId\":\"getSameDayRegistrationStates\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"CA\",\"CO\",\"CT\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/lastMinuteAccepted.json",
@@ -107,6 +183,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /onlineNotAccepted.json",
+                    "json": "{\"operationId\":\"getStatesWithoutOnlineRegistration\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":[\"AR\",\"ME\",\"MS\"],\"schema\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/onlineNotAccepted.json",
@@ -173,6 +255,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /stats.json",
+                    "json": "{\"operationId\":\"getStatistics\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"lastUpdated\":\"2026-01-25\",\"onlineRegistrationAvailable\":41,\"sameDayRegistrationAvailable\":21,\"totalStates\":51},\"schema\":{\"properties\":{\"lastUpdated\":{\"description\":\"Date when the data was last updated\",\"example\":\"2026-01-25\",\"format\":\"date\",\"type\":\"string\"},\"onlineRegistrationAvailable\":{\"description\":\"Number of states that offer online registration\",\"example\":41,\"type\":\"integer\"},\"sameDayRegistrationAvailable\":{\"description\":\"Number of states that allow same-day registration\",\"example\":21,\"type\":\"integer\"},\"totalStates\":{\"description\":\"Total number of states (including DC)\",\"example\":51,\"type\":\"integer\"}},\"required\":[\"totalStates\",\"onlineRegistrationAvailable\",\"sameDayRegistrationAvailable\",\"lastUpdated\"],\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/stats.json",
@@ -288,6 +376,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /states.json",
+                    "json": "{\"operationId\":\"getAllStates\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"states\":[{\"deadline\":\"20261019\",\"emoji\":\"🌴🌴🌴🌴🌴\",\"generalElectionDate\":\"20261103\",\"label\":\"California\",\"lastMinuteAccepted\":true,\"notes\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"onlineAccepted\":true,\"primaryDate\":\"20260602\",\"primaryDeadline\":\"20260518\",\"url\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"value\":\"CA\"}]},\"schema\":{\"properties\":{\"states\":{\"items\":{\"properties\":{\"deadline\":{\"description\":\"General election voter registration deadline in YYYYMMDD format\",\"example\":\"20261019\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"emoji\":{\"description\":\"State-themed emoji\",\"example\":\"🌴🌴🌴🌴🌴\",\"type\":\"string\"},\"generalElectionDate\":{\"description\":\"General election date in YYYYMMDD format\",\"example\":\"20261103\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"California\",\"type\":\"string\"},\"lastMinuteAccepted\":{\"description\":\"Whether voters can register on election day\",\"example\":true,\"type\":\"boolean\"},\"notes\":{\"description\":\"Additional details about state registration\",\"example\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"type\":\"string\"},\"onlineAccepted\":{\"description\":\"Whether voters can register online\",\"example\":true,\"type\":\"boolean\"},\"primaryDate\":{\"description\":\"Primary election date in YYYYMMDD format\",\"example\":\"20260602\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"primaryDeadline\":{\"description\":\"Primary election voter registration deadline in YYYYMMDD format\",\"example\":\"20260518\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"url\":{\"description\":\"Official state voter registration website\",\"example\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"format\":\"uri\",\"type\":\"string\"},\"value\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"CA\",\"type\":\"string\"}},\"required\":[\"label\",\"value\",\"deadline\",\"primaryDeadline\",\"primaryDate\",\"generalElectionDate\",\"url\",\"onlineAccepted\",\"lastMinuteAccepted\",\"emoji\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/states.json",
@@ -323,6 +417,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /states/{stateAbbreviation}.json",
+                    "json": "{\"operationId\":\"getStateByAbbreviation\",\"parameters\":[{\"description\":\"Two-letter state abbreviation (e.g., CA, NY, TX). Case-insensitive.\",\"in\":\"path\",\"name\":\"stateAbbreviation\",\"required\":true,\"schema\":{\"example\":\"ca\",\"pattern\":\"^[A-Za-z]{2}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deadline\":\"20261024\",\"emoji\":\"🗽🗽🗽🗽🗽\",\"generalElectionDate\":\"20261103\",\"label\":\"New York\",\"lastMinuteAccepted\":false,\"notes\":\"In New York, those with felony convictions get their voting rights restored after serving their sentence!\",\"onlineAccepted\":true,\"primaryDate\":\"20260623\",\"primaryDeadline\":\"20260528\",\"url\":\"https://www.ny.gov/services/register-vote\",\"value\":\"NY\"},\"schema\":{\"properties\":{\"deadline\":{\"description\":\"General election voter registration deadline in YYYYMMDD format\",\"example\":\"20261019\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"emoji\":{\"description\":\"State-themed emoji\",\"example\":\"🌴🌴🌴🌴🌴\",\"type\":\"string\"},\"generalElectionDate\":{\"description\":\"General election date in YYYYMMDD format\",\"example\":\"20261103\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"California\",\"type\":\"string\"},\"lastMinuteAccepted\":{\"description\":\"Whether voters can register on election day\",\"example\":true,\"type\":\"boolean\"},\"notes\":{\"description\":\"Additional details about state registration\",\"example\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"type\":\"string\"},\"onlineAccepted\":{\"description\":\"Whether voters can register online\",\"example\":true,\"type\":\"boolean\"},\"primaryDate\":{\"description\":\"Primary election date in YYYYMMDD format\",\"example\":\"20260602\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"primaryDeadline\":{\"description\":\"Primary election voter registration deadline in YYYYMMDD format\",\"example\":\"20260518\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"url\":{\"description\":\"Official state voter registration website\",\"example\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"format\":\"uri\",\"type\":\"string\"},\"value\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"CA\",\"type\":\"string\"}},\"required\":[\"label\",\"value\",\"deadline\",\"primaryDeadline\",\"primaryDate\",\"generalElectionDate\",\"url\",\"onlineAccepted\",\"lastMinuteAccepted\",\"emoji\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"State not found\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/states/{stateAbbreviation}.json",
@@ -354,13 +454,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -450,6 +760,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -608,6 +1014,48 @@
         "website": "https://github.com/dedline-io/dedline-api"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1162,6 +1610,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1203,7 +1652,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

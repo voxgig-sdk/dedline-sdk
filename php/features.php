@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Dedline SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class DedlineFeatures
@@ -14,8 +17,14 @@ class DedlineFeatures
         switch ($name) {
             case "base":
                 return new DedlineBaseFeature();
+            case "ratelimit":
+                return new DedlineRatelimitFeature();
+            case "retry":
+                return new DedlineRetryFeature();
             case "test":
                 return new DedlineTestFeature();
+            case "timeout":
+                return new DedlineTimeoutFeature();
             default:
                 return new DedlineBaseFeature();
         }
@@ -31,7 +40,10 @@ class DedlineFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

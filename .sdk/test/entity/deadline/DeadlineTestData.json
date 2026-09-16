@@ -22,5 +22,111 @@
         "primary": []
       }
     }
+  },
+  "requests": {
+    "GET /upcoming.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getUpcomingDeadlines",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "general": [],
+                  "primary": [
+                    {
+                      "daysUntil": 8,
+                      "deadline": "20260202",
+                      "label": "Texas",
+                      "state": "TX"
+                    }
+                  ]
+                },
+                "schema": {
+                  "properties": {
+                    "general": {
+                      "items": {
+                        "properties": {
+                          "daysUntil": {
+                            "description": "Number of days until the deadline",
+                            "example": 8,
+                            "type": "integer"
+                          },
+                          "deadline": {
+                            "description": "Registration deadline in YYYYMMDD format",
+                            "example": "20260202",
+                            "pattern": "^[0-9]{8}$",
+                            "type": "string"
+                          },
+                          "label": {
+                            "description": "Full state name",
+                            "example": "Texas",
+                            "type": "string"
+                          },
+                          "state": {
+                            "description": "Two-letter state abbreviation",
+                            "example": "TX",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "state",
+                          "label",
+                          "deadline",
+                          "daysUntil"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "primary": {
+                      "items": {
+                        "properties": {
+                          "daysUntil": {
+                            "description": "Number of days until the deadline",
+                            "example": 8,
+                            "type": "integer"
+                          },
+                          "deadline": {
+                            "description": "Registration deadline in YYYYMMDD format",
+                            "example": "20260202",
+                            "pattern": "^[0-9]{8}$",
+                            "type": "string"
+                          },
+                          "label": {
+                            "description": "Full state name",
+                            "example": "Texas",
+                            "type": "string"
+                          },
+                          "state": {
+                            "description": "Two-letter state abbreviation",
+                            "example": "TX",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "state",
+                          "label",
+                          "deadline",
+                          "daysUntil"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

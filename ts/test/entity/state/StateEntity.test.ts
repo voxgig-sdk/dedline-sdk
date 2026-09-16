@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DedlineSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('StateEntity', async () => {
 
     const live = 'TRUE' === process.env.DEDLINE_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'state.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'state.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DEDLINE_TEST_STATE_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"deadline","req":true,"short":"General election voter registration deadline in YYYYMMDD format","type":"`$STRING`","index$":0},{"active":true,"name":"emoji","req":true,"short":"State-themed emoji","type":"`$STRING`","index$":1},{"active":true,"name":"generalElectionDate","req":true,"short":"General election date in YYYYMMDD format","type":"`$STRING`","index$":2},{"active":true,"name":"label","req":true,"short":"Full state name","type":"`$STRING`","index$":3},{"active":true,"name":"lastMinuteAccepted","req":true,"short":"Whether voters can register on election day","type":"`$BOOLEAN`","index$":4},{"active":true,"name":"notes","req":false,"short":"Additional details about state registration","type":"`$STRING`","index$":5},{"active":true,"name":"onlineAccepted","req":true,"short":"Whether voters can register online","type":"`$BOOLEAN`","index$":6},{"active":true,"name":"primaryDate","req":true,"short":"Primary election date in YYYYMMDD format","type":"`$STRING`","index$":7},{"active":true,"name":"primaryDeadline","req":true,"short":"Primary election voter registration deadline in YYYYMMDD format","type":"`$STRING`","index$":8},{"active":true,"format":"uri","name":"url","req":true,"short":"Official state voter registration website","type":"`$STRING`","index$":9},{"active":true,"name":"value","req":true,"short":"Two-letter state abbreviation","type":"`$STRING`","index$":10}],"name":"state","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{},"contract":{"id":"GET /states.json","json":"{\"operationId\":\"getAllStates\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"states\":[{\"deadline\":\"20261019\",\"emoji\":\"🌴🌴🌴🌴🌴\",\"generalElectionDate\":\"20261103\",\"label\":\"California\",\"lastMinuteAccepted\":true,\"notes\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"onlineAccepted\":true,\"primaryDate\":\"20260602\",\"primaryDeadline\":\"20260518\",\"url\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"value\":\"CA\"}]},\"schema\":{\"properties\":{\"states\":{\"items\":{\"properties\":{\"deadline\":{\"description\":\"General election voter registration deadline in YYYYMMDD format\",\"example\":\"20261019\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"emoji\":{\"description\":\"State-themed emoji\",\"example\":\"🌴🌴🌴🌴🌴\",\"type\":\"string\"},\"generalElectionDate\":{\"description\":\"General election date in YYYYMMDD format\",\"example\":\"20261103\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"California\",\"type\":\"string\"},\"lastMinuteAccepted\":{\"description\":\"Whether voters can register on election day\",\"example\":true,\"type\":\"boolean\"},\"notes\":{\"description\":\"Additional details about state registration\",\"example\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"type\":\"string\"},\"onlineAccepted\":{\"description\":\"Whether voters can register online\",\"example\":true,\"type\":\"boolean\"},\"primaryDate\":{\"description\":\"Primary election date in YYYYMMDD format\",\"example\":\"20260602\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"primaryDeadline\":{\"description\":\"Primary election voter registration deadline in YYYYMMDD format\",\"example\":\"20260518\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"url\":{\"description\":\"Official state voter registration website\",\"example\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"format\":\"uri\",\"type\":\"string\"},\"value\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"CA\",\"type\":\"string\"}},\"required\":[\"label\",\"value\",\"deadline\",\"primaryDeadline\",\"primaryDate\",\"generalElectionDate\",\"url\",\"onlineAccepted\",\"lastMinuteAccepted\",\"emoji\"],\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/states.json","segments":[{"lit":"states.json"}],"select":{},"transform":{"req":"`reqdata`","res":"`body.states`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"ca","kind":"param","name":"state_abbreviation","orig":"state_abbreviation","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /states/{stateAbbreviation}.json","json":"{\"operationId\":\"getStateByAbbreviation\",\"parameters\":[{\"description\":\"Two-letter state abbreviation (e.g., CA, NY, TX). Case-insensitive.\",\"in\":\"path\",\"name\":\"stateAbbreviation\",\"required\":true,\"schema\":{\"example\":\"ca\",\"pattern\":\"^[A-Za-z]{2}$\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"deadline\":\"20261024\",\"emoji\":\"🗽🗽🗽🗽🗽\",\"generalElectionDate\":\"20261103\",\"label\":\"New York\",\"lastMinuteAccepted\":false,\"notes\":\"In New York, those with felony convictions get their voting rights restored after serving their sentence!\",\"onlineAccepted\":true,\"primaryDate\":\"20260623\",\"primaryDeadline\":\"20260528\",\"url\":\"https://www.ny.gov/services/register-vote\",\"value\":\"NY\"},\"schema\":{\"properties\":{\"deadline\":{\"description\":\"General election voter registration deadline in YYYYMMDD format\",\"example\":\"20261019\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"emoji\":{\"description\":\"State-themed emoji\",\"example\":\"🌴🌴🌴🌴🌴\",\"type\":\"string\"},\"generalElectionDate\":{\"description\":\"General election date in YYYYMMDD format\",\"example\":\"20261103\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"label\":{\"description\":\"Full state name\",\"example\":\"California\",\"type\":\"string\"},\"lastMinuteAccepted\":{\"description\":\"Whether voters can register on election day\",\"example\":true,\"type\":\"boolean\"},\"notes\":{\"description\":\"Additional details about state registration\",\"example\":\"In California, those convicted of felonies can register and vote after serving their sentence.\",\"type\":\"string\"},\"onlineAccepted\":{\"description\":\"Whether voters can register online\",\"example\":true,\"type\":\"boolean\"},\"primaryDate\":{\"description\":\"Primary election date in YYYYMMDD format\",\"example\":\"20260602\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"primaryDeadline\":{\"description\":\"Primary election voter registration deadline in YYYYMMDD format\",\"example\":\"20260518\",\"pattern\":\"^[0-9]{8}$\",\"type\":\"string\"},\"url\":{\"description\":\"Official state voter registration website\",\"example\":\"https://www.sos.ca.gov/elections/voter-registration/\",\"format\":\"uri\",\"type\":\"string\"},\"value\":{\"description\":\"Two-letter state abbreviation\",\"example\":\"CA\",\"type\":\"string\"}},\"required\":[\"label\",\"value\",\"deadline\",\"primaryDeadline\",\"primaryDate\",\"generalElectionDate\",\"url\",\"onlineAccepted\",\"lastMinuteAccepted\",\"emoji\"],\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"State not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/states/{stateAbbreviation}.json","segments":[{"lit":"states"},{"lit":"{stateAbbreviation}.json"}],"select":{"$action":"state_abbreviation","exist":["state_abbreviation"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"state","name__orig":"state","Name":"State","name_":"state","name-":"state","NAME":"STATE","index$":3}, {"active":true,"entity":"state","key$":"BasicStateFlow","kind":"basic","name":"BasicStateFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"state_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"state_ref01","srcdatavar":"state_ref01_data","suffix":"_dt0"},"match":{"state_abbreviation":"state_abbreviation01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-state_ref01"}}],"index$":1}]}, 'State')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DEDLINE_TEST_STATE_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DEDLINE_TEST_STATE_ENTID': idmap,
     'DEDLINE_TEST_LIVE': 'FALSE',
@@ -127,7 +119,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DEDLINE_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DEDLINE_TEST_STATE_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DedlineSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -139,7 +137,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -152,7 +151,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DEDLINE_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

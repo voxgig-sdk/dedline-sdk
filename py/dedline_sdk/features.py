@@ -1,12 +1,18 @@
 # Dedline SDK feature factory
 
 from dedline_sdk.feature.base_feature import DedlineBaseFeature
+from dedline_sdk.feature.ratelimit_feature import DedlineRatelimitFeature
+from dedline_sdk.feature.retry_feature import DedlineRetryFeature
 from dedline_sdk.feature.test_feature import DedlineTestFeature
+from dedline_sdk.feature.timeout_feature import DedlineTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DedlineBaseFeature(),
+    "ratelimit": lambda: DedlineRatelimitFeature(),
+    "retry": lambda: DedlineRetryFeature(),
     "test": lambda: DedlineTestFeature(),
+    "timeout": lambda: DedlineTimeoutFeature(),
 }
 
 

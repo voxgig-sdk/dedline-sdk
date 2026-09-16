@@ -3,23 +3,23 @@
     "stat": {
       "STAT00": {
         "lastUpdated": "s28",
-        "onlineRegistrationAvailable": "s29",
-        "sameDayRegistrationAvailable": "s2a",
-        "totalStates": "s2b",
+        "onlineRegistrationAvailable": 41,
+        "sameDayRegistrationAvailable": 42,
+        "totalStates": 43,
         "id": "STAT00"
       },
       "STAT01": {
         "lastUpdated": "s50",
-        "onlineRegistrationAvailable": "s51",
-        "sameDayRegistrationAvailable": "s52",
-        "totalStates": "s53",
+        "onlineRegistrationAvailable": 81,
+        "sameDayRegistrationAvailable": 82,
+        "totalStates": 83,
         "id": "STAT01"
       },
       "STAT02": {
         "lastUpdated": "s78",
-        "onlineRegistrationAvailable": "s79",
-        "sameDayRegistrationAvailable": "s7a",
-        "totalStates": "s7b",
+        "onlineRegistrationAvailable": 121,
+        "sameDayRegistrationAvailable": 122,
+        "totalStates": 123,
         "id": "STAT02"
       }
     }
@@ -28,9 +28,67 @@
     "stat": {
       "stat_ref01": {
         "lastUpdated": "sa0",
-        "onlineRegistrationAvailable": "sa1",
-        "sameDayRegistrationAvailable": "sa2",
-        "totalStates": "sa3"
+        "onlineRegistrationAvailable": 161,
+        "sameDayRegistrationAvailable": 162,
+        "totalStates": 163
+      }
+    }
+  },
+  "requests": {
+    "GET /stats.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getStatistics",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "lastUpdated": "2026-01-25",
+                  "onlineRegistrationAvailable": 41,
+                  "sameDayRegistrationAvailable": 21,
+                  "totalStates": 51
+                },
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "description": "Date when the data was last updated",
+                      "example": "2026-01-25",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "onlineRegistrationAvailable": {
+                      "description": "Number of states that offer online registration",
+                      "example": 41,
+                      "type": "integer"
+                    },
+                    "sameDayRegistrationAvailable": {
+                      "description": "Number of states that allow same-day registration",
+                      "example": 21,
+                      "type": "integer"
+                    },
+                    "totalStates": {
+                      "description": "Total number of states (including DC)",
+                      "example": 51,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "totalStates",
+                    "onlineRegistrationAvailable",
+                    "sameDayRegistrationAvailable",
+                    "lastUpdated"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

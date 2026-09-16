@@ -38,6 +38,12 @@ main: kit: entity: stat: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /stats.json"
+            json: "{\"operationId\":\"getStatistics\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"lastUpdated\":\"2026-01-25\",\"onlineRegistrationAvailable\":41,\"sameDayRegistrationAvailable\":21,\"totalStates\":51},\"schema\":{\"properties\":{\"lastUpdated\":{\"description\":\"Date when the data was last updated\",\"example\":\"2026-01-25\",\"format\":\"date\",\"type\":\"string\"},\"onlineRegistrationAvailable\":{\"description\":\"Number of states that offer online registration\",\"example\":41,\"type\":\"integer\"},\"sameDayRegistrationAvailable\":{\"description\":\"Number of states that allow same-day registration\",\"example\":21,\"type\":\"integer\"},\"totalStates\":{\"description\":\"Total number of states (including DC)\",\"example\":51,\"type\":\"integer\"}},\"required\":[\"totalStates\",\"onlineRegistrationAvailable\",\"sameDayRegistrationAvailable\",\"lastUpdated\"],\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/stats.json"
           segments: [

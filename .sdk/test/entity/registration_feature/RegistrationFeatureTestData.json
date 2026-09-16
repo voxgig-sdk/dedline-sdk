@@ -10,5 +10,65 @@
     "registration_feature": {
       "registration_feature_ref01": {}
     }
+  },
+  "requests": {
+    "GET /lastMinuteAccepted.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getSameDayRegistrationStates",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  "CA",
+                  "CO",
+                  "CT"
+                ],
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /onlineNotAccepted.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getStatesWithoutOnlineRegistration",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": [
+                  "AR",
+                  "ME",
+                  "MS"
+                ],
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
